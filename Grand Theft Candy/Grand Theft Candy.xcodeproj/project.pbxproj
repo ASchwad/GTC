@@ -13,6 +13,7 @@
 		841BD7F3229579B000B87AF3 /* Grand_Theft_Candy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 841BD7F1229579B000B87AF3 /* Grand_Theft_Candy.xcdatamodeld */; };
 		841BD7F5229579B100B87AF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 841BD7F4229579B100B87AF3 /* Assets.xcassets */; };
 		841BD7F8229579B100B87AF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841BD7F6229579B100B87AF3 /* LaunchScreen.storyboard */; };
+		847BE2682295C0FB003A1A35 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE2672295C0FB003A1A35 /* Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		841BD7F4229579B100B87AF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		841BD7F7229579B100B87AF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		841BD7F9229579B100B87AF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		847BE2672295C0FB003A1A35 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			children = (
 				841BD7EA229579B000B87AF3 /* AppDelegate.swift */,
 				841BD7EC229579B000B87AF3 /* ViewController.swift */,
+				847BE2672295C0FB003A1A35 /* Helpers.swift */,
 				841BD7EE229579B000B87AF3 /* Main.storyboard */,
 				841BD7F4229579B100B87AF3 /* Assets.xcassets */,
 				841BD7F6229579B100B87AF3 /* LaunchScreen.storyboard */,
@@ -141,6 +144,7 @@
 				841BD7ED229579B000B87AF3 /* ViewController.swift in Sources */,
 				841BD7F3229579B000B87AF3 /* Grand_Theft_Candy.xcdatamodeld in Sources */,
 				841BD7EB229579B000B87AF3 /* AppDelegate.swift in Sources */,
+				847BE2682295C0FB003A1A35 /* Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
