@@ -7,24 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		840C704722A0097F008EB80F /* gangster.scn in Resources */ = {isa = PBXBuildFile; fileRef = 840C704322A0097E008EB80F /* gangster.scn */; };
+		840C704822A0097F008EB80F /* ARController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840C704422A0097E008EB80F /* ARController.swift */; };
+		840C704922A0097F008EB80F /* HorizontalPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840C704522A0097F008EB80F /* HorizontalPlane.swift */; };
+		840C704C22A00997008EB80F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840C704B22A00996008EB80F /* ViewController.swift */; };
+		840C704E22A1114E008EB80F /* playarea.scn in Resources */ = {isa = PBXBuildFile; fileRef = 840C704D22A1114D008EB80F /* playarea.scn */; };
 		841BD7EB229579B000B87AF3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841BD7EA229579B000B87AF3 /* AppDelegate.swift */; };
-		841BD7ED229579B000B87AF3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 841BD7EC229579B000B87AF3 /* ViewController.swift */; };
 		841BD7F0229579B000B87AF3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841BD7EE229579B000B87AF3 /* Main.storyboard */; };
 		841BD7F3229579B000B87AF3 /* Grand_Theft_Candy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 841BD7F1229579B000B87AF3 /* Grand_Theft_Candy.xcdatamodeld */; };
 		841BD7F5229579B100B87AF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 841BD7F4229579B100B87AF3 /* Assets.xcassets */; };
 		841BD7F8229579B100B87AF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841BD7F6229579B100B87AF3 /* LaunchScreen.storyboard */; };
+		8447DF3022A117C500BF5365 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447DF2F22A117C500BF5365 /* PlayerController.swift */; };
+		8447DF3822A1482D00BF5365 /* JoystickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447DF3722A1482D00BF5365 /* JoystickController.swift */; };
 		847BE2682295C0FB003A1A35 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE2672295C0FB003A1A35 /* Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		840C704322A0097E008EB80F /* gangster.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = gangster.scn; sourceTree = "<group>"; };
+		840C704422A0097E008EB80F /* ARController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARController.swift; sourceTree = "<group>"; };
+		840C704522A0097F008EB80F /* HorizontalPlane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalPlane.swift; sourceTree = "<group>"; };
+		840C704B22A00996008EB80F /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		840C704D22A1114D008EB80F /* playarea.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = playarea.scn; sourceTree = "<group>"; };
 		841BD7E7229579B000B87AF3 /* Grand Theft Candy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Grand Theft Candy.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		841BD7EA229579B000B87AF3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		841BD7EC229579B000B87AF3 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		841BD7EF229579B000B87AF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		841BD7F2229579B000B87AF3 /* Grand_Theft_Candy.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Grand_Theft_Candy.xcdatamodel; sourceTree = "<group>"; };
 		841BD7F4229579B100B87AF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		841BD7F7229579B100B87AF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		841BD7F9229579B100B87AF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8447DF2F22A117C500BF5365 /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
+		8447DF3722A1482D00BF5365 /* JoystickController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickController.swift; sourceTree = "<group>"; };
 		847BE2672295C0FB003A1A35 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -59,9 +71,15 @@
 			isa = PBXGroup;
 			children = (
 				841BD7EA229579B000B87AF3 /* AppDelegate.swift */,
-				841BD7EC229579B000B87AF3 /* ViewController.swift */,
 				847BE2672295C0FB003A1A35 /* Helpers.swift */,
+				840C704B22A00996008EB80F /* ViewController.swift */,
+				8447DF3722A1482D00BF5365 /* JoystickController.swift */,
 				841BD7EE229579B000B87AF3 /* Main.storyboard */,
+				840C704D22A1114D008EB80F /* playarea.scn */,
+				840C704422A0097E008EB80F /* ARController.swift */,
+				840C704322A0097E008EB80F /* gangster.scn */,
+				8447DF2F22A117C500BF5365 /* PlayerController.swift */,
+				840C704522A0097F008EB80F /* HorizontalPlane.swift */,
 				841BD7F4229579B100B87AF3 /* Assets.xcassets */,
 				841BD7F6229579B100B87AF3 /* LaunchScreen.storyboard */,
 				841BD7F9229579B100B87AF3 /* Info.plist */,
@@ -129,7 +147,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				841BD7F8229579B100B87AF3 /* LaunchScreen.storyboard in Resources */,
+				840C704722A0097F008EB80F /* gangster.scn in Resources */,
 				841BD7F5229579B100B87AF3 /* Assets.xcassets in Resources */,
+				840C704E22A1114E008EB80F /* playarea.scn in Resources */,
 				841BD7F0229579B000B87AF3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -141,10 +161,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				841BD7ED229579B000B87AF3 /* ViewController.swift in Sources */,
 				841BD7F3229579B000B87AF3 /* Grand_Theft_Candy.xcdatamodeld in Sources */,
 				841BD7EB229579B000B87AF3 /* AppDelegate.swift in Sources */,
 				847BE2682295C0FB003A1A35 /* Helpers.swift in Sources */,
+				840C704C22A00997008EB80F /* ViewController.swift in Sources */,
+				8447DF3022A117C500BF5365 /* PlayerController.swift in Sources */,
+				840C704922A0097F008EB80F /* HorizontalPlane.swift in Sources */,
+				840C704822A0097F008EB80F /* ARController.swift in Sources */,
+				8447DF3822A1482D00BF5365 /* JoystickController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
