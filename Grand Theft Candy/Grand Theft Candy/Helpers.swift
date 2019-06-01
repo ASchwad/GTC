@@ -13,26 +13,26 @@ import ARKit
 
 // Collection of useful methods which have a good chance to be reused
 
-    // Gets the root node for a given scn (useful for imported models)
-    public func GetRootNodeOfScn (scnname: String) -> SCNNode
-    {
-        let scene = SCNScene(named: scnname)!
-        return scene.rootNode.childNodes[0]
-    }
-    
-    // Calculates the radian for a given degree (Scenekit use rads for rotation)
-    public func DegreeToRad (degree: Float) -> Float
-    {
-        return Float(Double.pi/180) * degree
-    }
+// Gets the root node for a given scn (useful for imported models)
+public func GetRootNodeOfScn (scnname: String) -> SCNNode
+{
+    let scene = SCNScene(named: scnname)!
+    return scene.rootNode.childNodes[0]
+}
 
-  public func placeNodeOnHit(node: SCNNode, atHit hit: ARHitTestResult)
-  {
+// Calculates the radian for a given degree (Scenekit use rads for rotation)
+public func DegreeToRad (degree: Float) -> Float
+{
+    return Float(Double.pi/180) * degree
+}
+
+public func placeNodeOnHit(node: SCNNode, atHit hit: ARHitTestResult)
+{
     node.transform = SCNMatrix4(hit.anchor!.transform)
- 
+    
     
     let position = SCNVector3Make(hit.worldTransform.columns.3.x + node.geometry!.boundingBox.min.z, hit.worldTransform.columns.3.y, hit.worldTransform.columns.3.z)
-        node.position = position
+    node.position = position
 }
 
 // Creates a circle (as SKSShapeNode) for overlays with given properties
@@ -59,5 +59,6 @@ extension UIView {
         }
     }
 }
+
 
 

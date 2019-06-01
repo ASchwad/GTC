@@ -20,7 +20,7 @@ class JoystickController
     var initPositionX : CGFloat = 0
     var initPositionY : CGFloat = 0
     
-    func CreateJoysick(view: ARSCNView)
+    func CreateJoysick(view: ARSCNView) -> SKScene
     {
         let viewHeight = 100
         let viewWidth = 100
@@ -43,5 +43,9 @@ class JoystickController
         skScene.addChild(innerStick)
         skScene.isUserInteractionEnabled = false
         view.overlaySKScene = skScene
+        
+        return skScene
     }
+    
+    
 }

@@ -36,7 +36,7 @@ final class PlayerController {
         let finalDirection = float3(x: normalizedDirection.x, y: 0, z: -normalizedDirection.y)
         
         let currentPosition = float3(player.position)
-        player.position = SCNVector3(currentPosition + finalDirection * 0.2)
+        player.position = SCNVector3(currentPosition + finalDirection * 0.002)
     }
 
     required init?(coder aDecoder: NSCoder) {
