@@ -11,7 +11,7 @@ import ARKit
 import SceneKit
 import SpriteKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController ,ARSCNViewDelegate{
    
     @IBOutlet weak var sceneView: ARSCNView!
     
@@ -23,16 +23,18 @@ class ViewController: UIViewController {
         return view
       }()
     
-    
     var playAreaNode: SCNNode!
     var playArea: SCNNode!
     var playerNode: SCNNode!
     var player: SCNNode!
     var skScene: SKScene!
     var isGameWorldCreated : Bool!
+    var isTouched: Bool!
+    var currentTouchLocation: CGPoint!
     
     let arController = ARController()
     let joystickController = JoystickController()
+    let playerController = PlayerController()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,8 +79,8 @@ class ViewController: UIViewController {
     {
         CreatePlayArea(to: sceneView.scene.rootNode, hit: hit)
         CreatePlayer()
-        joystickController.CreateJoysick(view: sceneView)
-     
+        skScene = joystickController.CreateJoysick(view: sceneView)
+        self.sceneView!.delegate = self
     }
     
     func CreatePlayArea(to rootNode: SCNNode, hit: ARHitTestResult)
@@ -103,6 +105,65 @@ class ViewController: UIViewController {
         
         isGameWorldCreated = true
     }
-}
 
+public func updateJoystick() {
+    
+    if(isTouched == true)
+    {
+        let touchXPoint = currentTouchLocation.x
+        let touchYPoint = sceneView.bounds.size.height - currentTouchLocation.y
+        
+        let middleOfCircleX = joystickController.initPositionX
+        let middleOfCircleY = joystickController.initPositionY
+        let lengthOfX = Float(touchXPoint - middleOfCircleX)
+        let lengthOfY = Float(touchYPoint - middleOfCircleY)
+        let direction = float2(x: lengthOfX, y: lengthOfY)
+        
+        let touchPoint = CGPoint(x: touchXPoint, y: touchYPoint)
+        
+        if joystickController.substrate.contains(touchPoint)
+        {
+            playerController.MovePlayer(moveDirection: direction, player: player)
+            
+            joystickController.innerStick.position.x = touchXPoint
+            joystickController.innerStick.position.y = touchYPoint
+        }
+        else
+        {
+            joystickController.innerStick.position.x = joystickController.initPositionX
+            joystickController.innerStick.position.y = joystickController.initPositionY
+        }
+    }
+    
+    }
+}
+extension ViewController: SCNSceneRendererDelegate {
+    
+    func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval)
+    {
+        updateJoystick()
+    }
+    // store touch in global scope
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        let touch = touches.first!
+        currentTouchLocation = touch.location(in: self.sceneView)
+        isTouched = true
+        
+    }
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first!
+        currentTouchLocation = touch.location(in: self.sceneView)
+        
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        joystickController.innerStick.position.x = joystickController.initPositionX
+        joystickController.innerStick.position.y = joystickController.initPositionY
+        isTouched = false
+    }
+    
+    
+}
 
