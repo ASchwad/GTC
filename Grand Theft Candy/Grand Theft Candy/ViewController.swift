@@ -12,8 +12,18 @@ import SceneKit
 import SpriteKit
 
 class ViewController: UIViewController ,ARSCNViewDelegate{
+    
+    enum ViewState {
+        case readyToStartGame
+        case playing
+    }
+    
+    @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var startGameButton: UIButton!
+    @IBOutlet weak var hintView: UIView!
+    @IBOutlet weak var hintLabel: UILabel!
    
-    @IBOutlet weak var sceneView: ARSCNView!
+    
     
       lazy var skView: SKView = {
         let view = SKView()
@@ -36,6 +46,19 @@ class ViewController: UIViewController ,ARSCNViewDelegate{
     let joystickController = JoystickController()
     let playerController = PlayerController()
     
+    var allowToStartGame = true
+    
+    var planes: [ARAnchor: HorizontalPlane] = [:]
+    var selectedPlane: HorizontalPlane?
+    
+    //setup for initial state
+    var state: ViewState = .readyToStartGame {
+        didSet {
+            updateStates()
+            }
+        }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,16 +77,33 @@ class ViewController: UIViewController ,ARSCNViewDelegate{
     
     @objc func didTapScene(_ gesture: UITapGestureRecognizer)
     {
-            let location = gesture.location(ofTouch: 0,
-                                            in: sceneView)
-            let hit = sceneView.hitTest(location,
-                                        types: .existingPlaneUsingGeometry)
-            
-            if let hit = hit.first
-            {
+        let location = gesture.location(ofTouch: 0,
+                                        in: sceneView)
+        let hit = sceneView.hitTest(location,
+                                    types: .existingPlaneUsingGeometry)
+    
+        if let hit = hit.first{
+            if state == .readyToStartGame {
                 CreateGame(hit: hit)
             }
+            
+        }
+        
     }
+    
+    //wird wahrscheinlich später interessant, wenn man in den bestimmten states was machen will
+    func updateStates() {
+        DispatchQueue.main.async {
+            switch self.state {
+            
+            case .readyToStartGame:
+                print("readyToStarGame");
+            case .playing:
+                print("playing");
+            }
+        }
+    }
+    
     
     func InitializeModels()
     {
@@ -77,10 +117,22 @@ class ViewController: UIViewController ,ARSCNViewDelegate{
     
     func CreateGame(hit: ARHitTestResult)
     {
+        //changed state to playing (CreateGame should only be called once)
+        state = .playing
+        
+        //remove all planes and stop plane detection and debug mode
+        arController.removePlaneNodes()
+        let configuration = ARWorldTrackingConfiguration()
+        configuration.planeDetection = []
+        sceneView.debugOptions = []
+        sceneView.session.run(configuration)
+        
         CreatePlayArea(to: sceneView.scene.rootNode, hit: hit)
         CreatePlayer()
         skScene = joystickController.CreateJoysick(view: sceneView)
         self.sceneView!.delegate = self
+        
+        //diese Reihenfolge lässt wenigstens nicht mehrere Playareas spawnen
     }
     
     func CreatePlayArea(to rootNode: SCNNode, hit: ARHitTestResult)
