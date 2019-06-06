@@ -315,13 +315,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6K5H2MLZCR;
+				DEVELOPMENT_TEAM = 8GT88GYPW6;
 				INFOPLIST_FILE = "Grand Theft Candy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Gruppe02.Grand-Theft-Candy";
+				PRODUCT_BUNDLE_IDENTIFIER = "Gruppe02.Grand-Theft-Candy.Gruppe02.Grand-Theft-Candy12345";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -333,13 +333,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6K5H2MLZCR;
+				DEVELOPMENT_TEAM = 8GT88GYPW6;
 				INFOPLIST_FILE = "Grand Theft Candy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Gruppe02.Grand-Theft-Candy";
+				PRODUCT_BUNDLE_IDENTIFIER = "Gruppe02.Grand-Theft-Candy.Gruppe02.Grand-Theft-Candy12345";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

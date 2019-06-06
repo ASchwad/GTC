@@ -11,7 +11,9 @@ import ARKit
 
 class ARController: NSObject {
     
-    private var horizontalPlanes = [UUID: HorizontalPlane]()
+    public var horizontalPlanes = [UUID: HorizontalPlane]()
+    
+    var planeAnchors: [ARPlaneAnchor] = []
     
     var sceneView: ARSCNView?
     
@@ -42,12 +44,9 @@ extension ARController: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         // we only care about planes
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
+        planeAnchors.append(planeAnchor)
 
         let plane = HorizontalPlane(anchor: planeAnchor)
-        
-        // store a local reference to the plane
-        horizontalPlanes[anchor.identifier] = plane
-        
         node.addChildNode(plane)
     }
     
@@ -60,9 +59,10 @@ extension ARController: ARSCNViewDelegate {
         }
     }
     
-    func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor)
-    {
-        horizontalPlanes.removeValue(forKey: anchor.identifier)
+    func removePlaneNodes() {
+        sceneView?.scene.rootNode.enumerateChildNodes { (node, stop) in
+            node.removeFromParentNode()
+        }
     }
     
 }
