@@ -20,6 +20,7 @@
 		8447DF3022A117C500BF5365 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447DF2F22A117C500BF5365 /* PlayerController.swift */; };
 		8447DF3822A1482D00BF5365 /* JoystickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447DF3722A1482D00BF5365 /* JoystickController.swift */; };
 		847BE2682295C0FB003A1A35 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE2672295C0FB003A1A35 /* Helpers.swift */; };
+		84DEA99422AE535200174057 /* Surface.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 84DEA99322AE535200174057 /* Surface.jpeg */; };
 		D178315922AA65CB00181921 /* decrementItem.scn in Resources */ = {isa = PBXBuildFile; fileRef = D178315822AA65CB00181921 /* decrementItem.scn */; };
 		D178315B22AA65D200181921 /* incrementItem.scn in Resources */ = {isa = PBXBuildFile; fileRef = D178315A22AA65D200181921 /* incrementItem.scn */; };
 /* End PBXBuildFile section */
@@ -40,6 +41,7 @@
 		8447DF2F22A117C500BF5365 /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		8447DF3722A1482D00BF5365 /* JoystickController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickController.swift; sourceTree = "<group>"; };
 		847BE2672295C0FB003A1A35 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		84DEA99322AE535200174057 /* Surface.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Surface.jpeg; sourceTree = "<group>"; };
 		D178315822AA65CB00181921 /* decrementItem.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = decrementItem.scn; sourceTree = "<group>"; };
 		D178315A22AA65D200181921 /* incrementItem.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = incrementItem.scn; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -83,6 +85,7 @@
 				840C704422A0097E008EB80F /* ARController.swift */,
 				840C704322A0097E008EB80F /* gangster.scn */,
 				D178315A22AA65D200181921 /* incrementItem.scn */,
+				84DEA99322AE535200174057 /* Surface.jpeg */,
 				D178315822AA65CB00181921 /* decrementItem.scn */,
 				8447DF2F22A117C500BF5365 /* PlayerController.swift */,
 				840C704522A0097F008EB80F /* HorizontalPlane.swift */,
@@ -155,6 +158,7 @@
 				841BD7F8229579B100B87AF3 /* LaunchScreen.storyboard in Resources */,
 				840C704722A0097F008EB80F /* gangster.scn in Resources */,
 				841BD7F5229579B100B87AF3 /* Assets.xcassets in Resources */,
+				84DEA99422AE535200174057 /* Surface.jpeg in Resources */,
 				D178315922AA65CB00181921 /* decrementItem.scn in Resources */,
 				D178315B22AA65D200181921 /* incrementItem.scn in Resources */,
 				840C704E22A1114E008EB80F /* playarea.scn in Resources */,

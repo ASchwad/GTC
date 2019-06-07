@@ -19,21 +19,21 @@ class ARController: NSObject {
     
     let configuration = ARWorldTrackingConfiguration()
     
-    func initializeARController(to sceneView: ARSCNView) {
+    func InitializeARController(to sceneView: ARSCNView) {
         self.sceneView = sceneView
         self.sceneView!.delegate = self
         self.sceneView?.autoenablesDefaultLighting = true
         
-        startPlaneDetection()
+        StartPlaneDetection()
         configuration.isLightEstimationEnabled = true
     }
     
-    func displayDegubInfo()
+    func ShowDebugHints()
     {
         sceneView?.debugOptions = [ARSCNDebugOptions.showFeaturePoints]
     }
     
-    func startPlaneDetection() {
+    func StartPlaneDetection() {
         configuration.planeDetection = [.horizontal]
         sceneView?.session.run(configuration)
     }
@@ -42,7 +42,6 @@ class ARController: NSObject {
 extension ARController: ARSCNViewDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        // we only care about planes
         guard let planeAnchor = anchor as? ARPlaneAnchor else { return }
         planeAnchors.append(planeAnchor)
 
