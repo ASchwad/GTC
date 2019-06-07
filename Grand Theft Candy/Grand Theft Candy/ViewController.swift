@@ -11,7 +11,7 @@ import ARKit
 import SceneKit
 import SpriteKit
 
-class ViewController: UIViewController ,ARSCNViewDelegate{
+class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDelegate{
     
     enum ViewState {
         case readyToStartGame
@@ -19,28 +19,21 @@ class ViewController: UIViewController ,ARSCNViewDelegate{
     }
     
     @IBOutlet var sceneView: ARSCNView!
-    @IBOutlet weak var startGameButton: UIButton!
-    @IBOutlet weak var hintView: UIView!
-    @IBOutlet weak var hintLabel: UILabel!
-   
-    
-    
-      lazy var skView: SKView = {
-        let view = SKView()
-        view.isMultipleTouchEnabled = true
-        view.backgroundColor = .clear
-        view.isHidden = true
-        return view
-      }()
+    @IBOutlet weak var scoreLabel: UILabel!
     
     var playAreaNode: SCNNode!
     var playArea: SCNNode!
     var playerNode: SCNNode!
     var player: SCNNode!
     var skScene: SKScene!
-    var isGameWorldCreated : Bool!
     var isTouched: Bool!
     var currentTouchLocation: CGPoint!
+    
+    var incItemNode: SCNNode!
+    var incItem: SCNNode!
+    var decItemNode: SCNNode!
+    var decItem: SCNNode!
+    var score = 0
     
     let arController = ARController()
     let joystickController = JoystickController()
@@ -55,8 +48,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate{
     var state: ViewState = .readyToStartGame {
         didSet {
             updateStates()
-            }
         }
+    }
     
     
     override func viewDidLoad() {
@@ -69,19 +62,47 @@ class ViewController: UIViewController ,ARSCNViewDelegate{
         
         UIApplication.shared.isIdleTimerDisabled = true
         
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapScene(_:)))
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTap(_:)))
         view.addGestureRecognizer(tapGesture)
-        sceneView.fillSuperview()
-       
+        sceneView.maximizeView()
+        
+        sceneView.debugOptions = ARSCNDebugOptions.showPhysicsShapes
+        
+        sceneView.scene.physicsWorld.contactDelegate = self
     }
     
-    @objc func didTapScene(_ gesture: UITapGestureRecognizer)
-    {
+    func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+        var contactNode:SCNNode!
+        //Check which of the returned Nodes A and B is the Gangster
+        if contact.nodeA.name == "Gangster"{
+            contactNode = contact.nodeB
+        }else{
+            contactNode = contact.nodeA
+        }
+        //Check Itemtype with predefined categoryBitMask
+        if contactNode.physicsBody?.categoryBitMask == 2{
+            score += 1
+            contactNode.isHidden = true
+            
+            //access label text from other thread
+            // oder mit scene kit text overlay?
+            scoreLabel.text = "Score: \(score)"
+            CreateIncItem()
+            
+        } else if contactNode.physicsBody?.categoryBitMask == 4 {
+            contactNode.isHidden = true
+            score -= 1
+            scoreLabel.text = "Score: \(score)"
+            CreateDecItem()
+        }
+    }
+    
+    @objc func onTap(_ gesture: UITapGestureRecognizer){
         let location = gesture.location(ofTouch: 0,
                                         in: sceneView)
         let hit = sceneView.hitTest(location,
                                     types: .existingPlaneUsingGeometry)
-    
+        
         if let hit = hit.first{
             if state == .readyToStartGame {
                 CreateGame(hit: hit)
@@ -95,7 +116,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate{
     func updateStates() {
         DispatchQueue.main.async {
             switch self.state {
-            
+                
             case .readyToStartGame:
                 print("readyToStarGame");
             case .playing:
@@ -112,7 +133,10 @@ class ViewController: UIViewController ,ARSCNViewDelegate{
         
         let heroScene = SCNScene(named: "gangster.scn")!
         playerNode = heroScene.rootNode.childNode(withName: "The_limited_1", recursively: false)!
-        
+        let incItemScene = SCNScene(named: "incrementItem.scn")!
+        incItemNode = incItemScene.rootNode.childNode(withName: "bonbon", recursively: false)!
+        let decItemScene = SCNScene(named: "decrementItem.scn")!
+        decItemNode = decItemScene.rootNode.childNode(withName: "bonbon", recursively: false)!
     }
     
     func CreateGame(hit: ARHitTestResult)
@@ -124,13 +148,15 @@ class ViewController: UIViewController ,ARSCNViewDelegate{
         arController.removePlaneNodes()
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = []
+        //evtl. auslagern?
         sceneView.debugOptions = []
         sceneView.session.run(configuration)
-        
+        sceneView!.delegate = self
         CreatePlayArea(to: sceneView.scene.rootNode, hit: hit)
         CreatePlayer()
+        CreateIncItem()
+        CreateDecItem()
         skScene = joystickController.CreateJoysick(view: sceneView)
-        self.sceneView!.delegate = self
         
         //diese Reihenfolge lässt wenigstens nicht mehrere Playareas spawnen
     }
@@ -142,6 +168,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate{
         placeNodeOnHit(node: playArea, atHit: hit)
         playArea.position.x = playArea.position.x + 0.3
         playArea.geometry?.firstMaterial?.diffuse.contents  = UIColor.green
+        playArea.scale = SCNVector3(0.5,0.5,0.5)
         rootNode.addChildNode(playArea)
     }
     
@@ -151,42 +178,72 @@ class ViewController: UIViewController ,ARSCNViewDelegate{
         player.position = SCNVector3(0.0, 0.09, 0.0)
         player.eulerAngles = SCNVector3(0, DegreeToRad(degree: 180),0)
         player.scale = SCNVector3(0.00004, 0.00004, 0.00004)
+        
+        //doesnt work
+        //player.geometry = playerNode.geometry?.copy() as? SCNGeometry
+        
+        player.geometry = SCNBox(width: 0.00004, height: 0.00004, length: 0.00004, chamferRadius: 0)
+        
+        player.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: player.geometry!, options: nil))
+        
+        player.physicsBody?.categoryBitMask = 1
+        player.physicsBody?.contactTestBitMask = 2
+        
         playArea.addChildNode(player)
-        playArea.eulerAngles = SCNVector3(DegreeToRad(degree: 360), 0 , 0)
-        playArea.eulerAngles = SCNVector3(0, DegreeToRad(degree: 360) , 0)
-        
-        isGameWorldCreated = true
     }
-
-public func updateJoystick() {
     
-    if(isTouched == true)
-    {
-        let touchXPoint = currentTouchLocation.x
-        let touchYPoint = sceneView.bounds.size.height - currentTouchLocation.y
+    func CreateIncItem() {
+        incItem = incItemNode.clone()
+        incItem.name = "IncItem"
         
-        let middleOfCircleX = joystickController.initPositionX
-        let middleOfCircleY = joystickController.initPositionY
-        let lengthOfX = Float(touchXPoint - middleOfCircleX)
-        let lengthOfY = Float(touchYPoint - middleOfCircleY)
-        let direction = float2(x: lengthOfX, y: lengthOfY)
+        let x = GenerateRandomCoordinateInPlane()
+        let z = GenerateRandomCoordinateInPlane()
+        incItem.position = SCNVector3(x, 0.09, z)
         
-        let touchPoint = CGPoint(x: touchXPoint, y: touchYPoint)
         
-        if joystickController.substrate.contains(touchPoint)
+        playArea.addChildNode(incItem)
+    }
+    
+    func CreateDecItem() {
+        decItem = decItemNode.clone()
+        decItem.name = "DecItem"
+        
+        let x = GenerateRandomCoordinateInPlane()
+        let z = GenerateRandomCoordinateInPlane()
+        decItem.position = SCNVector3(x, 0.04, z)
+        
+        playArea.addChildNode(decItem)
+    }
+    
+    public func updateJoystick() {
+        
+        if(isTouched == true)
         {
-            playerController.MovePlayer(moveDirection: direction, player: player)
+            let touchXPoint = currentTouchLocation.x
+            let touchYPoint = sceneView.bounds.size.height - currentTouchLocation.y
             
-            joystickController.innerStick.position.x = touchXPoint
-            joystickController.innerStick.position.y = touchYPoint
+            let middleOfCircleX = joystickController.initPositionX
+            let middleOfCircleY = joystickController.initPositionY
+            let lengthOfX = Float(touchXPoint - middleOfCircleX)
+            let lengthOfY = Float(touchYPoint - middleOfCircleY)
+            let direction = float2(x: lengthOfX, y: lengthOfY)
+            
+            let touchPoint = CGPoint(x: touchXPoint, y: touchYPoint)
+            
+            if joystickController.substrate.contains(touchPoint)
+            {
+                playerController.MovePlayer(moveDirection: direction, player: player)
+                
+                joystickController.innerStick.position.x = touchXPoint
+                joystickController.innerStick.position.y = touchYPoint
+            }
+            else
+            {
+                joystickController.innerStick.position.x = joystickController.initPositionX
+                joystickController.innerStick.position.y = joystickController.initPositionY
+            }
         }
-        else
-        {
-            joystickController.innerStick.position.x = joystickController.initPositionX
-            joystickController.innerStick.position.y = joystickController.initPositionY
-        }
-    }
-    
+        
     }
 }
 extension ViewController: SCNSceneRendererDelegate {
