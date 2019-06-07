@@ -13,6 +13,12 @@ import ARKit
 
 // Collection of useful methods which have a good chance to be reused
 
+// Generates a random number between -0.44 and 0.44 (adjusted for plane with size of 1,1 and borders)
+public func GenerateRandomCoordinateInPlane() -> Double {
+    let randomNumber = Double.random(in: -0.44...0.44)
+    return randomNumber
+}
+
 // Gets the root node for a given scn (useful for imported models)
 public func GetRootNodeOfScn (scnname: String) -> SCNNode
 {
@@ -48,7 +54,7 @@ public func CreateCircleShape(radius: CGFloat, color: UIColor, lineWidth: CGFloa
 
 extension UIView {
     
-    public func fillSuperview()
+    public func maximizeView()
     {
         translatesAutoresizingMaskIntoConstraints = false
         if let superview = superview {
