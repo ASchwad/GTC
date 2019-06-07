@@ -28,6 +28,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     var skScene: SKScene!
     var isTouched: Bool!
     var currentTouchLocation: CGPoint!
+    var tapGesture: UIGestureRecognizer!
     
     var incItemNode: SCNNode!
     var incItem: SCNNode!
@@ -61,8 +62,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         InitializeModels()
         
         UIApplication.shared.isIdleTimerDisabled = true
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTap(_:)))
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTap(_:)))
         view.addGestureRecognizer(tapGesture)
         sceneView.maximizeView()
         
@@ -156,6 +156,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         CreatePlayer()
         CreateIncItem()
         CreateDecItem()
+        view.removeGestureRecognizer(tapGesture)
         skScene = joystickController.CreateJoysick(view: sceneView)
         
         //diese Reihenfolge lässt wenigstens nicht mehrere Playareas spawnen
