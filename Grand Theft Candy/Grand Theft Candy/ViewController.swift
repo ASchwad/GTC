@@ -56,8 +56,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        arController.initializeARController(to: sceneView)
-        arController.displayDegubInfo()
+        arController.InitializeARController(to: sceneView)
+        arController.ShowDebugHints()
         
         InitializeModels()
         

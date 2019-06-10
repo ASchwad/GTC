@@ -21,6 +21,9 @@ class HorizontalPlane: SCNNode {
 
         let planeNode = SCNNode(geometry: basicPlane)
         planeNode.position = SCNVector3Make(anchor.center.x, 0, anchor.center.z)
+        let planeMaterial = SCNMaterial()
+        planeMaterial.diffuse.contents = "Surface.jpeg"
+        planeNode.geometry!.materials = [planeMaterial]
 
         planeNode.eulerAngles.x = -.pi / 2
         
