@@ -36,6 +36,20 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     var decItem: SCNNode!
     var score = 0
     
+    var isSlow = false
+    var isFast = false
+    
+    // So the reset speed timer knows if it should actually reset the speed (sometimes it shouldnt reset because another speed item was activated meanwhile)
+    var speedItemsCounter = 0
+    var speedItemsReseted = 0
+
+    var fastItemNode: SCNNode!
+    var fastItem: SCNNode!
+    var slowItemNode: SCNNode!
+    var slowItem: SCNNode!
+
+     var speed: float3!
+    
     let arController = ARController()
     let joystickController = JoystickController()
     let playerController = PlayerController()
@@ -68,6 +82,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         
         sceneView.debugOptions = ARSCNDebugOptions.showPhysicsShapes
         
+       speed = playerController.defaultSpeed
         sceneView.scene.physicsWorld.contactDelegate = self
     }
     
@@ -95,7 +110,67 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             scoreLabel.text = "Score: \(score)"
             CreateDecItem()
         }
+        else if contactNode.physicsBody?.categoryBitMask == 6 {
+            speedItemsCounter += 1
+            contactNode.isHidden = true
+            SpeedFast()
+            let timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(ResetSpeed), userInfo: nil, repeats: false)
+            CreateFastItem()
+        }
+        else if contactNode.physicsBody?.categoryBitMask == 7 {
+            speedItemsCounter += 1
+            contactNode.isHidden = true
+            SpeedSlow()
+            let timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(ResetSpeed), userInfo: nil, repeats: false)
+            CreateSlowItem()
+        }
     }
+    
+    func CreateFastItem() {
+        fastItem = fastItemNode.clone()
+        fastItem.name = "FastItem"
+        
+        let x = GenerateRandomCoordinateInPlane()
+        let z = GenerateRandomCoordinateInPlane()
+        fastItem.position = SCNVector3(x, 0.09, z)
+        
+        
+        playArea.addChildNode(fastItem)
+    }
+    func CreateSlowItem() {
+        slowItem = slowItemNode.clone()
+        slowItem.name = "SlowItem"
+        
+        let x = GenerateRandomCoordinateInPlane()
+        let z = GenerateRandomCoordinateInPlane()
+        slowItem.position = SCNVector3(x, 0.09, z)
+        
+        
+        playArea.addChildNode(slowItem)
+    }
+
+    
+    @objc func ResetSpeed(){
+        speedItemsReseted += 1
+        
+        // so only the last called reset timer of a speed item actually resets the speed
+        if(speedItemsReseted == speedItemsCounter){
+            speed = playerController.defaultSpeed
+            isSlow = false
+        }
+    }
+    
+    func SpeedFast(){
+        speed = playerController.fastSpeed
+        isFast = true
+    }
+    
+    func SpeedSlow(){
+        
+        isSlow = true
+        speed = playerController.slowSpeed
+    }
+
     
     @objc func onTap(_ gesture: UITapGestureRecognizer){
         let location = gesture.location(ofTouch: 0,
@@ -137,6 +212,12 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         incItemNode = incItemScene.rootNode.childNode(withName: "bonbon", recursively: false)!
         let decItemScene = SCNScene(named: "decrementItem.scn")!
         decItemNode = decItemScene.rootNode.childNode(withName: "bonbon", recursively: false)!
+        
+        let fastItemScene = SCNScene(named: "fastItem.scn")!
+        fastItemNode = fastItemScene.rootNode.childNode(withName: "bonbon", recursively: false)!
+        let slowItemScene = SCNScene(named: "slowItem.scn")!
+        slowItemNode = slowItemScene.rootNode.childNode(withName: "bonbon", recursively: false)!
+
     }
     
     func CreateGame(hit: ARHitTestResult)
@@ -156,6 +237,9 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         CreatePlayer()
         CreateIncItem()
         CreateDecItem()
+        CreateFastItem()
+        CreateSlowItem()
+
         view.removeGestureRecognizer(tapGesture)
         skScene = joystickController.CreateJoysick(view: sceneView)
         
@@ -233,7 +317,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             
             if joystickController.substrate.contains(touchPoint)
             {
-                playerController.MovePlayer(moveDirection: direction, player: player)
+                playerController.MovePlayer(moveDirection: direction, player: player, speed: speed)
                 
                 joystickController.innerStick.position.x = touchXPoint
                 joystickController.innerStick.position.y = touchYPoint
