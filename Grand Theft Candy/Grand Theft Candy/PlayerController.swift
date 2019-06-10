@@ -11,6 +11,10 @@ import SpriteKit
 
 final class PlayerController {
     
+    let defaultSpeed: float3 = float3 (0.003)
+    let fastSpeed: float3 = float3 (0.007)
+    let slowSpeed = float3 (0.001)
+
     init()
     {
 
@@ -26,7 +30,7 @@ final class PlayerController {
         player.runAction(action)
     }
     
-    public func MovePlayer(moveDirection: float2, player: SCNNode)
+    public func MovePlayer(moveDirection: float2, player: SCNNode, speed: float3)
     {
         let normalizedDirection = normalize(moveDirection)
         let lookAngle = atan2(normalizedDirection.x, -normalizedDirection.y)
@@ -36,7 +40,7 @@ final class PlayerController {
         let finalDirection = float3(x: normalizedDirection.x, y: 0, z: -normalizedDirection.y)
         
         let currentPosition = float3(player.position)
-        player.position = SCNVector3(currentPosition + finalDirection * 0.002)
+        player.position = SCNVector3(currentPosition + finalDirection * speed)
     }
 
     required init?(coder aDecoder: NSCoder) {

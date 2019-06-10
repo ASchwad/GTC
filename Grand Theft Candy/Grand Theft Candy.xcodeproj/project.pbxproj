@@ -21,6 +21,8 @@
 		8447DF3822A1482D00BF5365 /* JoystickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447DF3722A1482D00BF5365 /* JoystickController.swift */; };
 		847BE2682295C0FB003A1A35 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE2672295C0FB003A1A35 /* Helpers.swift */; };
 		84DEA99422AE535200174057 /* Surface.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 84DEA99322AE535200174057 /* Surface.jpeg */; };
+		84DEA99E22AE972E00174057 /* fastItem.scn in Resources */ = {isa = PBXBuildFile; fileRef = 84DEA99D22AE972E00174057 /* fastItem.scn */; };
+		84DEA9A022AE973400174057 /* slowItem.scn in Resources */ = {isa = PBXBuildFile; fileRef = 84DEA99F22AE973400174057 /* slowItem.scn */; };
 		D178315922AA65CB00181921 /* decrementItem.scn in Resources */ = {isa = PBXBuildFile; fileRef = D178315822AA65CB00181921 /* decrementItem.scn */; };
 		D178315B22AA65D200181921 /* incrementItem.scn in Resources */ = {isa = PBXBuildFile; fileRef = D178315A22AA65D200181921 /* incrementItem.scn */; };
 /* End PBXBuildFile section */
@@ -42,6 +44,8 @@
 		8447DF3722A1482D00BF5365 /* JoystickController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickController.swift; sourceTree = "<group>"; };
 		847BE2672295C0FB003A1A35 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		84DEA99322AE535200174057 /* Surface.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Surface.jpeg; sourceTree = "<group>"; };
+		84DEA99D22AE972E00174057 /* fastItem.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = fastItem.scn; sourceTree = "<group>"; };
+		84DEA99F22AE973400174057 /* slowItem.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = slowItem.scn; sourceTree = "<group>"; };
 		D178315822AA65CB00181921 /* decrementItem.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = decrementItem.scn; sourceTree = "<group>"; };
 		D178315A22AA65D200181921 /* incrementItem.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = incrementItem.scn; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -87,6 +91,8 @@
 				D178315A22AA65D200181921 /* incrementItem.scn */,
 				84DEA99322AE535200174057 /* Surface.jpeg */,
 				D178315822AA65CB00181921 /* decrementItem.scn */,
+				84DEA99F22AE973400174057 /* slowItem.scn */,
+				84DEA99D22AE972E00174057 /* fastItem.scn */,
 				8447DF2F22A117C500BF5365 /* PlayerController.swift */,
 				840C704522A0097F008EB80F /* HorizontalPlane.swift */,
 				841BD7F4229579B100B87AF3 /* Assets.xcassets */,
@@ -155,7 +161,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84DEA9A022AE973400174057 /* slowItem.scn in Resources */,
 				841BD7F8229579B100B87AF3 /* LaunchScreen.storyboard in Resources */,
+				84DEA99E22AE972E00174057 /* fastItem.scn in Resources */,
 				840C704722A0097F008EB80F /* gangster.scn in Resources */,
 				841BD7F5229579B100B87AF3 /* Assets.xcassets in Resources */,
 				84DEA99422AE535200174057 /* Surface.jpeg in Resources */,
