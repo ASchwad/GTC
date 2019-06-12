@@ -25,9 +25,9 @@
 		84DEA9A022AE973400174057 /* slowItem.scn in Resources */ = {isa = PBXBuildFile; fileRef = 84DEA99F22AE973400174057 /* slowItem.scn */; };
 		D178315922AA65CB00181921 /* decrementItem.scn in Resources */ = {isa = PBXBuildFile; fileRef = D178315822AA65CB00181921 /* decrementItem.scn */; };
 		D178315B22AA65D200181921 /* incrementItem.scn in Resources */ = {isa = PBXBuildFile; fileRef = D178315A22AA65D200181921 /* incrementItem.scn */; };
+		D1B7D6C722B168890044D362 /* GTC Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D1B7D6C622B168880044D362 /* GTC Logo.png */; };
 		D1C4D78522B147480019CF12 /* StartMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C4D78422B147470019CF12 /* StartMenuController.swift */; };
 		D1C4D79222B149DD0019CF12 /* gta_sanandreas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D1C4D79022B149D40019CF12 /* gta_sanandreas.mp3 */; };
-		D1C4D79A22B14A730019CF12 /* GTC Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D1C4D79922B14A5C0019CF12 /* GTC Logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,9 +51,9 @@
 		84DEA99F22AE973400174057 /* slowItem.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = slowItem.scn; sourceTree = "<group>"; };
 		D178315822AA65CB00181921 /* decrementItem.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = decrementItem.scn; sourceTree = "<group>"; };
 		D178315A22AA65D200181921 /* incrementItem.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = incrementItem.scn; sourceTree = "<group>"; };
+		D1B7D6C622B168880044D362 /* GTC Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GTC Logo.png"; sourceTree = "<group>"; };
 		D1C4D78422B147470019CF12 /* StartMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMenuController.swift; sourceTree = "<group>"; };
 		D1C4D79022B149D40019CF12 /* gta_sanandreas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gta_sanandreas.mp3; sourceTree = "<group>"; };
-		D1C4D79922B14A5C0019CF12 /* GTC Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GTC Logo.png"; path = "../../../Grand Theft Candy/Grand Theft Candy/GTC Logo.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +125,7 @@
 		D1C4D79422B14A070019CF12 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				D1C4D79922B14A5C0019CF12 /* GTC Logo.png */,
+				D1B7D6C622B168880044D362 /* GTC Logo.png */,
 				84DEA99322AE535200174057 /* Surface.jpeg */,
 				D1C4D79022B149D40019CF12 /* gta_sanandreas.mp3 */,
 			);
@@ -202,12 +202,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1C4D79A22B14A730019CF12 /* GTC Logo.png in Resources */,
 				D1C4D79222B149DD0019CF12 /* gta_sanandreas.mp3 in Resources */,
 				84DEA9A022AE973400174057 /* slowItem.scn in Resources */,
 				841BD7F8229579B100B87AF3 /* LaunchScreen.storyboard in Resources */,
 				84DEA99E22AE972E00174057 /* fastItem.scn in Resources */,
 				840C704722A0097F008EB80F /* gangster.scn in Resources */,
+				D1B7D6C722B168890044D362 /* GTC Logo.png in Resources */,
 				841BD7F5229579B100B87AF3 /* Assets.xcassets in Resources */,
 				84DEA99422AE535200174057 /* Surface.jpeg in Resources */,
 				D178315922AA65CB00181921 /* decrementItem.scn in Resources */,
