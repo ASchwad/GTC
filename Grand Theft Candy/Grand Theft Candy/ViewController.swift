@@ -97,7 +97,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         //Check Itemtype with predefined categoryBitMask
         if contactNode.physicsBody?.categoryBitMask == 2{
             score += 1
-            contactNode.isHidden = true
+            contactNode.removeFromParentNode()
             
             //access label text from other thread
             // oder mit scene kit text overlay?
@@ -105,24 +105,28 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             CreateIncItem()
             
         } else if contactNode.physicsBody?.categoryBitMask == 4 {
-            contactNode.isHidden = true
+            contactNode.removeFromParentNode()
             score -= 1
             scoreLabel.text = "Score: \(score)"
             CreateDecItem()
         }
         else if contactNode.physicsBody?.categoryBitMask == 8 {
             speedItemsCounter += 1
-            contactNode.isHidden = true
+            contactNode.removeFromParentNode()
             SpeedFast()
             let timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(ResetSpeed), userInfo: nil, repeats: false)
             CreateFastItem()
         }
         else if contactNode.physicsBody?.categoryBitMask == 16 {
             speedItemsCounter += 1
-            contactNode.isHidden = true
+            contactNode.removeFromParentNode()
             SpeedSlow()
             let timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(ResetSpeed), userInfo: nil, repeats: false)
             CreateSlowItem()
+        }
+        else if contactNode.physicsBody?.categoryBitMask == 32 {
+            //change game state to game over and summary screen here
+            print("Contact")
         }
     }
     
@@ -254,6 +258,15 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         playArea.name = "Floor"
         placeNodeOnHit(node: playArea, atHit: hit)
         playArea.position.x = playArea.position.x + 0.3
+        
+        let box = SCNNode()
+        box.geometry = SCNBox(width: 0.01, height: 0.1, length: 1, chamferRadius: 0)
+        //iterate through childnodes and give each border of playarea a box as physicsbody and properties for the collision detection
+        playArea.enumerateChildNodes { (node, stop) in
+            node.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(geometry: box.geometry!, options: nil))
+            node.physicsBody?.categoryBitMask = 32
+            node.physicsBody?.contactTestBitMask = 1
+        }
         playArea.geometry?.firstMaterial?.diffuse.contents  = UIColor.green
         playArea.scale = SCNVector3(0.5,0.5,0.5)
         rootNode.addChildNode(playArea)
@@ -266,15 +279,9 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         player.eulerAngles = SCNVector3(0, DegreeToRad(degree: 180),0)
         player.scale = SCNVector3(0.00004, 0.00004, 0.00004)
         
-        //doesnt work
-        //player.geometry = playerNode.geometry?.copy() as? SCNGeometry
-        
         player.geometry = SCNBox(width: 0.00004, height: 0.00004, length: 0.00004, chamferRadius: 0)
-        
         player.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: player.geometry!, options: nil))
-        
         player.physicsBody?.categoryBitMask = 1
-        player.physicsBody?.contactTestBitMask = 2
         
         playArea.addChildNode(player)
     }
