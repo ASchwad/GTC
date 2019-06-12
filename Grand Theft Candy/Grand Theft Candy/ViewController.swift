@@ -16,6 +16,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     enum ViewState {
         case readyToStartGame
         case playing
+        case gameOver
     }
     
     @IBOutlet var sceneView: ARSCNView!
@@ -47,12 +48,17 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     var fastItem: SCNNode!
     var slowItemNode: SCNNode!
     var slowItem: SCNNode!
+    
+    var police: SCNNode!
+    var policeNode: SCNNode!
+    var enemyReady = true
 
      var speed: float3!
     
     let arController = ARController()
     let joystickController = JoystickController()
     let playerController = PlayerController()
+    let enemyController = EnemyController()
     
     var allowToStartGame = true
     
@@ -128,6 +134,10 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             //change game state to game over and summary screen here
             print("Contact")
         }
+        else if contactNode.physicsBody?.categoryBitMask == 64 {
+            state = .gameOver
+            contactNode.removeFromParentNode()
+        }
     }
     
     func CreateFastItem() {
@@ -151,6 +161,21 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         
         
         playArea.addChildNode(slowItem)
+    }
+    
+    func CreatePolice() {
+        police = policeNode.clone()
+        police.name = "Police"
+        
+        police.position = SCNVector3(-0.3, 0.09, 0.2)
+        
+        playArea.addChildNode(police)
+        
+        if(enemyReady == true){
+            enemyController.enemyConstantMoveForward(enemy: police)
+            enemyReady = false
+        }
+
     }
 
     
@@ -197,9 +222,11 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             switch self.state {
                 
             case .readyToStartGame:
-                print("readyToStarGame");
+                print("readyToStarGame")
             case .playing:
-                print("playing");
+                print("playing")
+            case .gameOver:
+                print("gameOver")
             }
         }
     }
@@ -221,6 +248,9 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         fastItemNode = fastItemScene.rootNode.childNode(withName: "bonbon", recursively: false)!
         let slowItemScene = SCNScene(named: "slowItem.scn")!
         slowItemNode = slowItemScene.rootNode.childNode(withName: "bonbon", recursively: false)!
+        
+        let policeScene = SCNScene(named: "police.scn")!
+        policeNode = policeScene.rootNode.childNode(withName: "police", recursively: false)!
 
     }
     
@@ -243,6 +273,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         CreateDecItem()
         CreateFastItem()
         CreateSlowItem()
+        CreatePolice()
         
         scoreLabel.isHidden = false
 
