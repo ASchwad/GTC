@@ -81,8 +81,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         sceneView.maximizeView()
         
         sceneView.debugOptions = ARSCNDebugOptions.showPhysicsShapes
-        
-       speed = playerController.defaultSpeed
+        scoreLabel.isHidden = true
+        speed = playerController.defaultSpeed
         sceneView.scene.physicsWorld.contactDelegate = self
     }
     
@@ -110,14 +110,14 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             scoreLabel.text = "Score: \(score)"
             CreateDecItem()
         }
-        else if contactNode.physicsBody?.categoryBitMask == 6 {
+        else if contactNode.physicsBody?.categoryBitMask == 8 {
             speedItemsCounter += 1
             contactNode.isHidden = true
             SpeedFast()
             let timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(ResetSpeed), userInfo: nil, repeats: false)
             CreateFastItem()
         }
-        else if contactNode.physicsBody?.categoryBitMask == 7 {
+        else if contactNode.physicsBody?.categoryBitMask == 16 {
             speedItemsCounter += 1
             contactNode.isHidden = true
             SpeedSlow()
@@ -230,7 +230,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         let configuration = ARWorldTrackingConfiguration()
         configuration.planeDetection = []
         //evtl. auslagern?
-        sceneView.debugOptions = []
+        //sceneView.debugOptions = []
         sceneView.session.run(configuration)
         sceneView!.delegate = self
         CreatePlayArea(to: sceneView.scene.rootNode, hit: hit)
@@ -239,6 +239,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         CreateDecItem()
         CreateFastItem()
         CreateSlowItem()
+        
+        scoreLabel.isHidden = false
 
         view.removeGestureRecognizer(tapGesture)
         skScene = joystickController.CreateJoysick(view: sceneView)
@@ -295,7 +297,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         
         let x = GenerateRandomCoordinateInPlane()
         let z = GenerateRandomCoordinateInPlane()
-        decItem.position = SCNVector3(x, 0.04, z)
+        decItem.position = SCNVector3(x, 0.09, z)
         
         playArea.addChildNode(decItem)
     }
