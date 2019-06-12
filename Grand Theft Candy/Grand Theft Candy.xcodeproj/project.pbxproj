@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		23852BEE22B1805700D46FF6 /* EnemyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23852BED22B1805600D46FF6 /* EnemyController.swift */; };
+		23852BF022B1823200D46FF6 /* police.scn in Resources */ = {isa = PBXBuildFile; fileRef = 23852BEF22B1823200D46FF6 /* police.scn */; };
 		840C704722A0097F008EB80F /* gangster.scn in Resources */ = {isa = PBXBuildFile; fileRef = 840C704322A0097E008EB80F /* gangster.scn */; };
 		840C704822A0097F008EB80F /* ARController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840C704422A0097E008EB80F /* ARController.swift */; };
 		840C704922A0097F008EB80F /* HorizontalPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840C704522A0097F008EB80F /* HorizontalPlane.swift */; };
@@ -31,6 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		23852BED22B1805600D46FF6 /* EnemyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyController.swift; sourceTree = "<group>"; };
+		23852BEF22B1823200D46FF6 /* police.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = police.scn; sourceTree = "<group>"; };
 		840C704322A0097E008EB80F /* gangster.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = gangster.scn; sourceTree = "<group>"; };
 		840C704422A0097E008EB80F /* ARController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARController.swift; sourceTree = "<group>"; };
 		840C704522A0097F008EB80F /* HorizontalPlane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalPlane.swift; sourceTree = "<group>"; };
@@ -112,6 +116,7 @@
 		D1C4D79322B149E60019CF12 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				23852BEF22B1823200D46FF6 /* police.scn */,
 				840C704D22A1114D008EB80F /* playarea.scn */,
 				840C704322A0097E008EB80F /* gangster.scn */,
 				D178315A22AA65D200181921 /* incrementItem.scn */,
@@ -135,6 +140,7 @@
 		D1C4D79622B14A1A0019CF12 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				23852BED22B1805600D46FF6 /* EnemyController.swift */,
 				840C704B22A00996008EB80F /* ViewController.swift */,
 				D1C4D78422B147470019CF12 /* StartMenuController.swift */,
 				840C704422A0097E008EB80F /* ARController.swift */,
@@ -211,6 +217,7 @@
 				841BD7F5229579B100B87AF3 /* Assets.xcassets in Resources */,
 				84DEA99422AE535200174057 /* Surface.jpeg in Resources */,
 				D178315922AA65CB00181921 /* decrementItem.scn in Resources */,
+				23852BF022B1823200D46FF6 /* police.scn in Resources */,
 				D178315B22AA65D200181921 /* incrementItem.scn in Resources */,
 				840C704E22A1114E008EB80F /* playarea.scn in Resources */,
 				841BD7F0229579B000B87AF3 /* Main.storyboard in Resources */,
@@ -226,6 +233,7 @@
 			files = (
 				841BD7F3229579B000B87AF3 /* Grand_Theft_Candy.xcdatamodeld in Sources */,
 				841BD7EB229579B000B87AF3 /* AppDelegate.swift in Sources */,
+				23852BEE22B1805700D46FF6 /* EnemyController.swift in Sources */,
 				847BE2682295C0FB003A1A35 /* Helpers.swift in Sources */,
 				840C704C22A00997008EB80F /* ViewController.swift in Sources */,
 				D1C4D78522B147480019CF12 /* StartMenuController.swift in Sources */,
@@ -379,13 +387,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LYJ5G48484;
+				DEVELOPMENT_TEAM = 8GT88GYPW6;
 				INFOPLIST_FILE = "Grand Theft Candy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = nw.grandtheftcandy546546465asdfs;
+				PRODUCT_BUNDLE_IDENTIFIER = de.GrandTheftCandy12345;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -397,13 +405,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = LYJ5G48484;
+				DEVELOPMENT_TEAM = 8GT88GYPW6;
 				INFOPLIST_FILE = "Grand Theft Candy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = nw.grandtheftcandy546546465asdfs;
+				PRODUCT_BUNDLE_IDENTIFIER = de.GrandTheftCandy12345;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
