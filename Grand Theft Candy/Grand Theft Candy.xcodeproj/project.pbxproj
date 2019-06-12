@@ -25,6 +25,9 @@
 		84DEA9A022AE973400174057 /* slowItem.scn in Resources */ = {isa = PBXBuildFile; fileRef = 84DEA99F22AE973400174057 /* slowItem.scn */; };
 		D178315922AA65CB00181921 /* decrementItem.scn in Resources */ = {isa = PBXBuildFile; fileRef = D178315822AA65CB00181921 /* decrementItem.scn */; };
 		D178315B22AA65D200181921 /* incrementItem.scn in Resources */ = {isa = PBXBuildFile; fileRef = D178315A22AA65D200181921 /* incrementItem.scn */; };
+		D1C4D78522B147480019CF12 /* StartMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C4D78422B147470019CF12 /* StartMenuController.swift */; };
+		D1C4D79222B149DD0019CF12 /* gta_sanandreas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D1C4D79022B149D40019CF12 /* gta_sanandreas.mp3 */; };
+		D1C4D79A22B14A730019CF12 /* GTC Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D1C4D79922B14A5C0019CF12 /* GTC Logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,9 @@
 		84DEA99F22AE973400174057 /* slowItem.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = slowItem.scn; sourceTree = "<group>"; };
 		D178315822AA65CB00181921 /* decrementItem.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = decrementItem.scn; sourceTree = "<group>"; };
 		D178315A22AA65D200181921 /* incrementItem.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = incrementItem.scn; sourceTree = "<group>"; };
+		D1C4D78422B147470019CF12 /* StartMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMenuController.swift; sourceTree = "<group>"; };
+		D1C4D79022B149D40019CF12 /* gta_sanandreas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gta_sanandreas.mp3; sourceTree = "<group>"; };
+		D1C4D79922B14A5C0019CF12 /* GTC Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "GTC Logo.png"; path = "../../../Grand Theft Candy/Grand Theft Candy/GTC Logo.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,7 @@
 			children = (
 				841BD7E9229579B000B87AF3 /* Grand Theft Candy */,
 				841BD7E8229579B000B87AF3 /* Products */,
+				D1C4D78122B145CC0019CF12 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -80,27 +87,61 @@
 		841BD7E9229579B000B87AF3 /* Grand Theft Candy */ = {
 			isa = PBXGroup;
 			children = (
+				D1C4D79622B14A1A0019CF12 /* Controller */,
+				D1C4D79322B149E60019CF12 /* Scenes */,
 				841BD7EA229579B000B87AF3 /* AppDelegate.swift */,
 				847BE2672295C0FB003A1A35 /* Helpers.swift */,
-				840C704B22A00996008EB80F /* ViewController.swift */,
-				8447DF3722A1482D00BF5365 /* JoystickController.swift */,
-				841BD7EE229579B000B87AF3 /* Main.storyboard */,
-				840C704D22A1114D008EB80F /* playarea.scn */,
-				840C704422A0097E008EB80F /* ARController.swift */,
-				840C704322A0097E008EB80F /* gangster.scn */,
-				D178315A22AA65D200181921 /* incrementItem.scn */,
-				84DEA99322AE535200174057 /* Surface.jpeg */,
-				D178315822AA65CB00181921 /* decrementItem.scn */,
-				84DEA99F22AE973400174057 /* slowItem.scn */,
-				84DEA99D22AE972E00174057 /* fastItem.scn */,
-				8447DF2F22A117C500BF5365 /* PlayerController.swift */,
 				840C704522A0097F008EB80F /* HorizontalPlane.swift */,
-				841BD7F4229579B100B87AF3 /* Assets.xcassets */,
+				841BD7EE229579B000B87AF3 /* Main.storyboard */,
 				841BD7F6229579B100B87AF3 /* LaunchScreen.storyboard */,
+				D1C4D79422B14A070019CF12 /* Assets */,
+				841BD7F4229579B100B87AF3 /* Assets.xcassets */,
 				841BD7F9229579B100B87AF3 /* Info.plist */,
 				841BD7F1229579B000B87AF3 /* Grand_Theft_Candy.xcdatamodeld */,
 			);
 			path = "Grand Theft Candy";
+			sourceTree = "<group>";
+		};
+		D1C4D78122B145CC0019CF12 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D1C4D79322B149E60019CF12 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				840C704D22A1114D008EB80F /* playarea.scn */,
+				840C704322A0097E008EB80F /* gangster.scn */,
+				D178315A22AA65D200181921 /* incrementItem.scn */,
+				D178315822AA65CB00181921 /* decrementItem.scn */,
+				84DEA99F22AE973400174057 /* slowItem.scn */,
+				84DEA99D22AE972E00174057 /* fastItem.scn */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		D1C4D79422B14A070019CF12 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				D1C4D79922B14A5C0019CF12 /* GTC Logo.png */,
+				84DEA99322AE535200174057 /* Surface.jpeg */,
+				D1C4D79022B149D40019CF12 /* gta_sanandreas.mp3 */,
+			);
+			name = Assets;
+			sourceTree = "<group>";
+		};
+		D1C4D79622B14A1A0019CF12 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				840C704B22A00996008EB80F /* ViewController.swift */,
+				D1C4D78422B147470019CF12 /* StartMenuController.swift */,
+				840C704422A0097E008EB80F /* ARController.swift */,
+				8447DF3722A1482D00BF5365 /* JoystickController.swift */,
+				8447DF2F22A117C500BF5365 /* PlayerController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -161,6 +202,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1C4D79A22B14A730019CF12 /* GTC Logo.png in Resources */,
+				D1C4D79222B149DD0019CF12 /* gta_sanandreas.mp3 in Resources */,
 				84DEA9A022AE973400174057 /* slowItem.scn in Resources */,
 				841BD7F8229579B100B87AF3 /* LaunchScreen.storyboard in Resources */,
 				84DEA99E22AE972E00174057 /* fastItem.scn in Resources */,
@@ -185,6 +228,7 @@
 				841BD7EB229579B000B87AF3 /* AppDelegate.swift in Sources */,
 				847BE2682295C0FB003A1A35 /* Helpers.swift in Sources */,
 				840C704C22A00997008EB80F /* ViewController.swift in Sources */,
+				D1C4D78522B147480019CF12 /* StartMenuController.swift in Sources */,
 				8447DF3022A117C500BF5365 /* PlayerController.swift in Sources */,
 				840C704922A0097F008EB80F /* HorizontalPlane.swift in Sources */,
 				840C704822A0097F008EB80F /* ARController.swift in Sources */,
@@ -335,13 +379,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6K5H2MLZCR;
+				DEVELOPMENT_TEAM = LYJ5G48484;
 				INFOPLIST_FILE = "Grand Theft Candy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = nw.grandtheftcandy546546465;
+				PRODUCT_BUNDLE_IDENTIFIER = nw.grandtheftcandy546546465asdfs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -353,13 +397,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6K5H2MLZCR;
+				DEVELOPMENT_TEAM = LYJ5G48484;
 				INFOPLIST_FILE = "Grand Theft Candy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = nw.grandtheftcandy546546465;
+				PRODUCT_BUNDLE_IDENTIFIER = nw.grandtheftcandy546546465asdfs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
