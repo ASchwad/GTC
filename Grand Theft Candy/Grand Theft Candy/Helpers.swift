@@ -32,13 +32,14 @@ public func DegreeToRad (degree: Float) -> Float
     return Float(Double.pi/180) * degree
 }
 
-public func placeNodeOnHit(node: SCNNode, atHit hit: ARHitTestResult)
+public func placeNodeOnHit(node: SCNNode, atHit hit: ARHitTestResult, sceneView: ARSCNView)
 {
-    node.transform = SCNMatrix4(hit.anchor!.transform)
+    let rotate = simd_float4x4(SCNMatrix4MakeRotation(sceneView.session.currentFrame!.camera.eulerAngles.y, 0, 1, 0))
+    let rotateTransform = simd_mul(hit.worldTransform, rotate)
     
-    
-    let position = SCNVector3Make(hit.worldTransform.columns.3.x + node.geometry!.boundingBox.min.z, hit.worldTransform.columns.3.y, hit.worldTransform.columns.3.z)
-    node.position = position
+    node.transform =  SCNMatrix4(m11: rotateTransform.columns.0.x, m12: rotateTransform.columns.0.y, m13: rotateTransform.columns.0.z, m14: rotateTransform.columns.0.w, m21: rotateTransform.columns.1.x, m22: rotateTransform.columns.1.y, m23: rotateTransform.columns.1.z, m24: rotateTransform.columns.1.w, m31: rotateTransform.columns.2.x, m32: rotateTransform.columns.2.y, m33: rotateTransform.columns.2.z, m34: rotateTransform.columns.2.w, m41: rotateTransform.columns.3.x, m42: rotateTransform.columns.3.y, m43: rotateTransform.columns.3.z, m44: rotateTransform.columns.3.w)
+   
+  
 }
 
 // Creates a circle (as SKSShapeNode) for overlays with given properties
