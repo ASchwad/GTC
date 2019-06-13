@@ -7,8 +7,10 @@
 //
 
 import SceneKit
+import Foundation
 
 var shouldContinueToMove = true
+var isCycleCompleted = false
 
 final class EnemyController {
     
@@ -16,27 +18,67 @@ final class EnemyController {
         
     }
     
-    func enemyConstantMoveForward(enemy: SCNNode) {
+    func MoveToFirstPoint(enemy: SCNNode) {
         //let currentLocation = enemy.position
         let forwardX = 0.5
-        let moveAction = SCNAction.moveBy(x: CGFloat(forwardX), y: 0, z: 0, duration: 1)
+        if(isCycleCompleted == true)
+        {
+            let rotateAction = SCNAction.rotate(by: CGFloat(DegreeToRad(degree: 90)), around: SCNVector3(0,1,0), duration: 0.3)
+            enemy.runAction(rotateAction)
+            isCycleCompleted = false
+         
+        }
+        let moveAction = SCNAction.moveBy(x: CGFloat(forwardX), y: 0, z: 0, duration: 2)
         enemy.runAction(moveAction, completionHandler: {
             if shouldContinueToMove { // Configure your `Bool` to check whether to continue to move your node or not.
-                enemyConstantMoveBack(enemy: enemy)
+                MoveToSecondPoint(enemy: enemy)
             }
         })
         
-        func enemyConstantMoveBack(enemy: SCNNode) {
+        func MoveToSecondPoint(enemy: SCNNode) {
             //let currentLocation = enemy.position
-            let backX = -0.5
-            let moveAction = SCNAction.moveBy(x: CGFloat(backX), y: 0, z: 0, duration: 1)
+            let pointZ
+                = -0.5
+            let rotateAction = SCNAction.rotate(by: CGFloat(DegreeToRad(degree: 90)), around: SCNVector3(0,1,0), duration: 0.3)
+            enemy.runAction(rotateAction)
+            let moveAction = SCNAction.moveBy(x: 0, y: 0, z: CGFloat(pointZ), duration: 2)
             enemy.runAction(moveAction, completionHandler: {
                 if shouldContinueToMove { // Configure your `Bool` to check whether to continue to move your node or not.
-                    self.enemyConstantMoveForward(enemy: enemy)
+                    MoveToThirdPoint(enemy: enemy)
                 }
             })
             
         }
+        
+        func MoveToThirdPoint(enemy: SCNNode) {
+            //let currentLocation = enemy.position
+            let backX = -0.5
+            let rotateAction = SCNAction.rotate(by: CGFloat(DegreeToRad(degree: 90)), around: SCNVector3(0,1,0), duration: 0.3)
+            enemy.runAction(rotateAction)
+            let moveAction = SCNAction.moveBy(x: CGFloat(backX), y: 0, z: 0, duration: 2)
+            enemy.runAction(moveAction, completionHandler: {
+                if shouldContinueToMove { // Configure your `Bool` to check whether to continue to move your node or not.
+                   MoveToFourthPoint(enemy: enemy)
+                }
+            })
+        }
+        
+        func MoveToFourthPoint(enemy: SCNNode) {
+            let backZ = 0.5
+            let moveAction = SCNAction.moveBy(x: 0, y: 0, z: CGFloat(backZ), duration: 2)
+            let rotateAction = SCNAction.rotate(by: CGFloat(DegreeToRad(degree: 90)), around: SCNVector3(0,1,0), duration: 0.3)
+            enemy.runAction(rotateAction)
+            enemy.runAction(moveAction, completionHandler: {
+                if shouldContinueToMove { // Configure your `Bool` to check whether to continue to move your node or not.
+                    isCycleCompleted = true
+                    self.MoveToFirstPoint(enemy: enemy)
+                    
+                }
+            })
+        }
+            
+        
     }
 }
+
 

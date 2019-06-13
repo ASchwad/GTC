@@ -15,7 +15,7 @@ import ARKit
 
 // Generates a random number between -0.44 and 0.44 (adjusted for plane with size of 1,1 and borders)
 public func GenerateRandomCoordinateInPlane() -> Double {
-    let randomNumber = Double.random(in: -0.44...0.44)
+    let randomNumber = Double.random(in: -0.4...0.4)
     return randomNumber
 }
 

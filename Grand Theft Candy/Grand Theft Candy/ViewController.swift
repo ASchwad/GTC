@@ -167,12 +167,12 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         police = policeNode.clone()
         police.name = "Police"
         
-        police.position = SCNVector3(-0.3, 0.09, 0.2)
+        police.position = SCNVector3(-0.3, 0.09, 0.4)
         
         playArea.addChildNode(police)
         
         if(enemyReady == true){
-            enemyController.enemyConstantMoveForward(enemy: police)
+            enemyController.MoveToFirstPoint(enemy: police)
             enemyReady = false
         }
 
