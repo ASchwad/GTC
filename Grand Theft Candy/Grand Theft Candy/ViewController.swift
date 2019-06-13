@@ -287,8 +287,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     {
         playArea = playAreaNode.clone()
         playArea.name = "Floor"
-        placeNodeOnHit(node: playArea, atHit: hit)
-        playArea.position.x = playArea.position.x + 0.3
+        placeNodeOnHit(node: playArea, atHit: hit, sceneView: sceneView)
         
         let box = SCNNode()
         box.geometry = SCNBox(width: 0.01, height: 0.1, length: 1, chamferRadius: 0)
@@ -300,6 +299,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         }
         playArea.geometry?.firstMaterial?.diffuse.contents  = UIColor.green
         playArea.scale = SCNVector3(0.5,0.5,0.5)
+      
+        
         rootNode.addChildNode(playArea)
     }
     
