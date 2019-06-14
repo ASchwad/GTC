@@ -131,12 +131,25 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             CreateSlowItem()
         }
         else if contactNode.physicsBody?.categoryBitMask == 32 {
-            //change game state to game over and summary screen here
-            print("Contact")
+            if(state != .gameOver){
+                self.performSegue(withIdentifier: "GameOver", sender: Any?.self)
+                state = .gameOver
+            }
         }
         else if contactNode.physicsBody?.categoryBitMask == 64 {
-            state = .gameOver
-            contactNode.removeFromParentNode()
+            if(state != .gameOver){
+                self.performSegue(withIdentifier: "GameOver", sender: Any?.self)
+                state = .gameOver
+            }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.destination is GameOverController
+        {
+            let vc = segue.destination as? GameOverController
+            vc?.score = score
         }
     }
     
@@ -167,6 +180,11 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         police = policeNode.clone()
         police.name = "Police"
         
+        police.position = SCNVector3(-0.3, 0.09, 0.4)
+        let box = SCNBox(width: 0.06, height: 0.06, length: 0.06, chamferRadius: 0)
+        police.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(geometry: box, options: nil))
+        police.physicsBody?.categoryBitMask = 64
+        police.physicsBody?.contactTestBitMask = 1
         police.position = SCNVector3(-0.3, 0.09, 0.4)
         
         playArea.addChildNode(police)

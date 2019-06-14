@@ -28,6 +28,7 @@
 		D178315922AA65CB00181921 /* decrementItem.scn in Resources */ = {isa = PBXBuildFile; fileRef = D178315822AA65CB00181921 /* decrementItem.scn */; };
 		D178315B22AA65D200181921 /* incrementItem.scn in Resources */ = {isa = PBXBuildFile; fileRef = D178315A22AA65D200181921 /* incrementItem.scn */; };
 		D1B7D6C722B168890044D362 /* GTC Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D1B7D6C622B168880044D362 /* GTC Logo.png */; };
+		D1B7D6CB22B2718B0044D362 /* GameOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B7D6CA22B2718B0044D362 /* GameOverController.swift */; };
 		D1C4D78522B147480019CF12 /* StartMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C4D78422B147470019CF12 /* StartMenuController.swift */; };
 		D1C4D79222B149DD0019CF12 /* gta_sanandreas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D1C4D79022B149D40019CF12 /* gta_sanandreas.mp3 */; };
 /* End PBXBuildFile section */
@@ -56,6 +57,7 @@
 		D178315822AA65CB00181921 /* decrementItem.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = decrementItem.scn; sourceTree = "<group>"; };
 		D178315A22AA65D200181921 /* incrementItem.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = incrementItem.scn; sourceTree = "<group>"; };
 		D1B7D6C622B168880044D362 /* GTC Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GTC Logo.png"; sourceTree = "<group>"; };
+		D1B7D6CA22B2718B0044D362 /* GameOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverController.swift; sourceTree = "<group>"; };
 		D1C4D78422B147470019CF12 /* StartMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMenuController.swift; sourceTree = "<group>"; };
 		D1C4D79022B149D40019CF12 /* gta_sanandreas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gta_sanandreas.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -140,6 +142,7 @@
 		D1C4D79622B14A1A0019CF12 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D1B7D6CA22B2718B0044D362 /* GameOverController.swift */,
 				23852BED22B1805600D46FF6 /* EnemyController.swift */,
 				840C704B22A00996008EB80F /* ViewController.swift */,
 				D1C4D78422B147470019CF12 /* StartMenuController.swift */,
@@ -233,6 +236,7 @@
 			files = (
 				841BD7F3229579B000B87AF3 /* Grand_Theft_Candy.xcdatamodeld in Sources */,
 				841BD7EB229579B000B87AF3 /* AppDelegate.swift in Sources */,
+				D1B7D6CB22B2718B0044D362 /* GameOverController.swift in Sources */,
 				23852BEE22B1805700D46FF6 /* EnemyController.swift in Sources */,
 				847BE2682295C0FB003A1A35 /* Helpers.swift in Sources */,
 				840C704C22A00997008EB80F /* ViewController.swift in Sources */,
@@ -387,13 +391,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8GT88GYPW6;
+				DEVELOPMENT_TEAM = LYJ5G48484;
 				INFOPLIST_FILE = "Grand Theft Candy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.GrandTheftCandy12345;
+				PRODUCT_BUNDLE_IDENTIFIER = nw.grandtheftcandy546546465asdfs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -405,13 +409,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8GT88GYPW6;
+				DEVELOPMENT_TEAM = LYJ5G48484;
 				INFOPLIST_FILE = "Grand Theft Candy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.GrandTheftCandy12345;
+				PRODUCT_BUNDLE_IDENTIFIER = nw.grandtheftcandy546546465asdfs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
