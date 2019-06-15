@@ -257,8 +257,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         
         let heroScene = SCNScene(named: "gangster.scn")!
         playerNode = heroScene.rootNode.childNode(withName: "The_limited_1", recursively: false)!
-        let incItemScene = SCNScene(named: "incrementItem.scn")!
-        incItemNode = incItemScene.rootNode.childNode(withName: "bonbon", recursively: false)!
+        let incItemScene = SCNScene(named: "candyCane.scn")!
+        incItemNode = incItemScene.rootNode.childNode(withName: "candyCane", recursively: false)!
         let decItemScene = SCNScene(named: "decrementItem.scn")!
         decItemNode = decItemScene.rootNode.childNode(withName: "bonbon", recursively: false)!
         
