@@ -168,6 +168,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         slowItem = slowItemNode.clone()
         slowItem.name = "SlowItem"
         
+        
         let x = GenerateRandomCoordinateInPlane()
         let z = GenerateRandomCoordinateInPlane()
         slowItem.position = SCNVector3(x, 0.09, z)
@@ -257,15 +258,15 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         
         let heroScene = SCNScene(named: "gangster.scn")!
         playerNode = heroScene.rootNode.childNode(withName: "The_limited_1", recursively: false)!
-        let incItemScene = SCNScene(named: "incrementItem.scn")!
-        incItemNode = incItemScene.rootNode.childNode(withName: "bonbon", recursively: false)!
-        let decItemScene = SCNScene(named: "decrementItem.scn")!
-        decItemNode = decItemScene.rootNode.childNode(withName: "bonbon", recursively: false)!
+        let incItemScene = SCNScene(named: "candyCane.scn")!
+        incItemNode = incItemScene.rootNode.childNode(withName: "candyCane", recursively: false)!
+        let decItemScene = SCNScene(named: "broccoli.scn")!
+        decItemNode = decItemScene.rootNode.childNode(withName: "broccoli", recursively: false)!
         
-        let fastItemScene = SCNScene(named: "fastItem.scn")!
-        fastItemNode = fastItemScene.rootNode.childNode(withName: "bonbon", recursively: false)!
-        let slowItemScene = SCNScene(named: "slowItem.scn")!
-        slowItemNode = slowItemScene.rootNode.childNode(withName: "bonbon", recursively: false)!
+        let fastItemScene = SCNScene(named: "lightningBolt.scn")!
+        fastItemNode = fastItemScene.rootNode.childNode(withName: "lightningBolt", recursively: false)!
+        let slowItemScene = SCNScene(named: "snowFlake.scn")!
+        slowItemNode = slowItemScene.rootNode.childNode(withName: "snowFlake", recursively: false)!
         
         let policeScene = SCNScene(named: "police.scn")!
         policeNode = policeScene.rootNode.childNode(withName: "police", recursively: false)!
