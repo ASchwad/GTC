@@ -1,0 +1,6 @@
+framework module Pods_Grand_Theft_Candy {
+  umbrella header "Pods-Grand Theft Candy-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -28,6 +28,9 @@
 		8447DF3822A1482D00BF5365 /* JoystickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447DF3722A1482D00BF5365 /* JoystickController.swift */; };
 		847BE2682295C0FB003A1A35 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE2672295C0FB003A1A35 /* Helpers.swift */; };
 		84DEA99422AE535200174057 /* Surface.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 84DEA99322AE535200174057 /* Surface.jpeg */; };
+		ACCF252F5D04EAFF8B09691F /* Pods_Grand_Theft_Candy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9305D77D1DA2A52C35372408 /* Pods_Grand_Theft_Candy.framework */; };
+		D15C90ED22B8EBB500E129FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D15C90EC22B8EBB500E129FE /* GoogleService-Info.plist */; };
+		D15C90EF22B8EFE600E129FE /* HighscoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15C90EE22B8EFE600E129FE /* HighscoreController.swift */; };
 		D1B7D6C722B168890044D362 /* GTC Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D1B7D6C622B168880044D362 /* GTC Logo.png */; };
 		D1B7D6CB22B2718B0044D362 /* GameOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B7D6CA22B2718B0044D362 /* GameOverController.swift */; };
 		D1C4D78522B147480019CF12 /* StartMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C4D78422B147470019CF12 /* StartMenuController.swift */; };
@@ -58,6 +61,11 @@
 		8447DF3722A1482D00BF5365 /* JoystickController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickController.swift; sourceTree = "<group>"; };
 		847BE2672295C0FB003A1A35 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		84DEA99322AE535200174057 /* Surface.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Surface.jpeg; sourceTree = "<group>"; };
+		9305D77D1DA2A52C35372408 /* Pods_Grand_Theft_Candy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grand_Theft_Candy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B71E8B7922BF160A55849235 /* Pods-Grand Theft Candy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grand Theft Candy.release.xcconfig"; path = "Target Support Files/Pods-Grand Theft Candy/Pods-Grand Theft Candy.release.xcconfig"; sourceTree = "<group>"; };
+		C064F787F583BB874A41C6E3 /* Pods-Grand Theft Candy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grand Theft Candy.debug.xcconfig"; path = "Target Support Files/Pods-Grand Theft Candy/Pods-Grand Theft Candy.debug.xcconfig"; sourceTree = "<group>"; };
+		D15C90EC22B8EBB500E129FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D15C90EE22B8EFE600E129FE /* HighscoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighscoreController.swift; sourceTree = "<group>"; };
 		D1B7D6C622B168880044D362 /* GTC Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GTC Logo.png"; sourceTree = "<group>"; };
 		D1B7D6CA22B2718B0044D362 /* GameOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverController.swift; sourceTree = "<group>"; };
 		D1C4D78422B147470019CF12 /* StartMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMenuController.swift; sourceTree = "<group>"; };
@@ -69,18 +77,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACCF252F5D04EAFF8B09691F /* Pods_Grand_Theft_Candy.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4CB652783B9C8242D7901079 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C064F787F583BB874A41C6E3 /* Pods-Grand Theft Candy.debug.xcconfig */,
+				B71E8B7922BF160A55849235 /* Pods-Grand Theft Candy.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		841BD7DE229579B000B87AF3 = {
 			isa = PBXGroup;
 			children = (
 				841BD7E9229579B000B87AF3 /* Grand Theft Candy */,
 				841BD7E8229579B000B87AF3 /* Products */,
 				D1C4D78122B145CC0019CF12 /* Frameworks */,
+				4CB652783B9C8242D7901079 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -106,6 +125,7 @@
 				841BD7F4229579B100B87AF3 /* Assets.xcassets */,
 				841BD7F9229579B100B87AF3 /* Info.plist */,
 				841BD7F1229579B000B87AF3 /* Grand_Theft_Candy.xcdatamodeld */,
+				D15C90EC22B8EBB500E129FE /* GoogleService-Info.plist */,
 			);
 			path = "Grand Theft Candy";
 			sourceTree = "<group>";
@@ -113,6 +133,7 @@
 		D1C4D78122B145CC0019CF12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9305D77D1DA2A52C35372408 /* Pods_Grand_Theft_Candy.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -120,7 +141,6 @@
 		D1C4D79322B149E60019CF12 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-
 				239A693B22B65666009B5753 /* snowFlake.scn */,
 				233C095722B5B01C002451C0 /* snowFlake.scn */,
 				233C094F22B5A743002451C0 /* lightningBolt.scn */,
@@ -146,13 +166,14 @@
 		D1C4D79622B14A1A0019CF12 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D1B7D6CA22B2718B0044D362 /* GameOverController.swift */,
+				D1C4D78422B147470019CF12 /* StartMenuController.swift */,
 				23852BED22B1805600D46FF6 /* EnemyController.swift */,
 				840C704B22A00996008EB80F /* ViewController.swift */,
-				D1C4D78422B147470019CF12 /* StartMenuController.swift */,
 				840C704422A0097E008EB80F /* ARController.swift */,
 				8447DF3722A1482D00BF5365 /* JoystickController.swift */,
 				8447DF2F22A117C500BF5365 /* PlayerController.swift */,
+				D1B7D6CA22B2718B0044D362 /* GameOverController.swift */,
+				D15C90EE22B8EFE600E129FE /* HighscoreController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -164,9 +185,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 841BD7FC229579B100B87AF3 /* Build configuration list for PBXNativeTarget "Grand Theft Candy" */;
 			buildPhases = (
+				68FF7D9CD5A0A514ED6B28B2 /* [CP] Check Pods Manifest.lock */,
 				841BD7E3229579B000B87AF3 /* Sources */,
 				841BD7E4229579B000B87AF3 /* Frameworks */,
 				841BD7E5229579B000B87AF3 /* Resources */,
+				29EA1033B784ECC188615662 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -217,12 +240,12 @@
 			files = (
 				D1C4D79222B149DD0019CF12 /* gta_sanandreas.mp3 in Resources */,
 				2358F5BD22B521DB005A2250 /* broccoli.scn in Resources */,
+				D15C90ED22B8EBB500E129FE /* GoogleService-Info.plist in Resources */,
 				841BD7F8229579B100B87AF3 /* LaunchScreen.storyboard in Resources */,
 				840C704722A0097F008EB80F /* gangster.scn in Resources */,
 				D1B7D6C722B168890044D362 /* GTC Logo.png in Resources */,
 				841BD7F5229579B100B87AF3 /* Assets.xcassets in Resources */,
 				233C095022B5A773002451C0 /* lightningBolt.scn in Resources */,
-
 				233C095822B5B0D2002451C0 /* snowFlake.scn in Resources */,
 				84DEA99422AE535200174057 /* Surface.jpeg in Resources */,
 				23852BF022B1823200D46FF6 /* police.scn in Resources */,
@@ -235,6 +258,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		29EA1033B784ECC188615662 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Grand Theft Candy/Pods-Grand Theft Candy-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Grand Theft Candy/Pods-Grand Theft Candy-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Grand Theft Candy/Pods-Grand Theft Candy-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		68FF7D9CD5A0A514ED6B28B2 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Grand Theft Candy-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		841BD7E3229579B000B87AF3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -244,6 +309,7 @@
 				841BD7EB229579B000B87AF3 /* AppDelegate.swift in Sources */,
 				D1B7D6CB22B2718B0044D362 /* GameOverController.swift in Sources */,
 				23852BEE22B1805700D46FF6 /* EnemyController.swift in Sources */,
+				D15C90EF22B8EFE600E129FE /* HighscoreController.swift in Sources */,
 				847BE2682295C0FB003A1A35 /* Helpers.swift in Sources */,
 				840C704C22A00997008EB80F /* ViewController.swift in Sources */,
 				D1C4D78522B147480019CF12 /* StartMenuController.swift in Sources */,
@@ -394,16 +460,17 @@
 		};
 		841BD7FD229579B100B87AF3 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C064F787F583BB874A41C6E3 /* Pods-Grand Theft Candy.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8GT88GYPW6;
+				DEVELOPMENT_TEAM = LYJ5G48484;
 				INFOPLIST_FILE = "Grand Theft Candy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.GrandTheftCandy12345;
+				PRODUCT_BUNDLE_IDENTIFIER = nw.grandtheftcandy546546465asdfs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -412,16 +479,17 @@
 		};
 		841BD7FE229579B100B87AF3 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B71E8B7922BF160A55849235 /* Pods-Grand Theft Candy.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 8GT88GYPW6;
+				DEVELOPMENT_TEAM = LYJ5G48484;
 				INFOPLIST_FILE = "Grand Theft Candy/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = de.GrandTheftCandy12345;
+				PRODUCT_BUNDLE_IDENTIFIER = nw.grandtheftcandy546546465asdfs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
