@@ -156,6 +156,12 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     func CreateFastItem() {
         fastItem = fastItemNode.clone()
         fastItem.name = "FastItem"
+        fastItem.scale = SCNVector3(0.0002, 0.0002, 0.0002)
+        
+        let fastItemBodyShape = SCNPhysicsShape(geometry: SCNBox(width: 0.0002, height: 0.0002, length: 0.0002, chamferRadius: 0), options: [SCNPhysicsShape.Option.type: SCNPhysicsShape.ShapeType.boundingBox])
+        fastItem.physicsBody = SCNPhysicsBody(type: .static, shape: fastItemBodyShape)
+        fastItem.physicsBody?.categoryBitMask = 8
+        fastItem.physicsBody?.contactTestBitMask = 1
         
         let x = GenerateRandomCoordinateInPlane()
         let z = GenerateRandomCoordinateInPlane()
@@ -167,7 +173,12 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     func CreateSlowItem() {
         slowItem = slowItemNode.clone()
         slowItem.name = "SlowItem"
+        slowItem.scale = SCNVector3(0.02, 0.02, 0.02)
         
+        let slowItemBodyShape = SCNPhysicsShape(geometry: SCNBox(width: 0.02, height: 0.02, length: 0.02, chamferRadius: 0), options: [SCNPhysicsShape.Option.type: SCNPhysicsShape.ShapeType.boundingBox])
+        slowItem.physicsBody = SCNPhysicsBody(type: .static, shape: slowItemBodyShape)
+        slowItem.physicsBody?.categoryBitMask = 16
+        slowItem.physicsBody?.contactTestBitMask = 1
         
         let x = GenerateRandomCoordinateInPlane()
         let z = GenerateRandomCoordinateInPlane()
@@ -340,6 +351,12 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     func CreateIncItem() {
         incItem = incItemNode.clone()
         incItem.name = "IncItem"
+        incItem.scale = SCNVector3(0.0008, 0.0008, 0.0008)
+        
+        let incItemBodyShape = SCNPhysicsShape(geometry: SCNBox(width: 0.0008, height: 0.0008, length: 0.0008, chamferRadius: 0), options: [SCNPhysicsShape.Option.type: SCNPhysicsShape.ShapeType.boundingBox])
+        incItem.physicsBody = SCNPhysicsBody(type: .static, shape: incItemBodyShape)
+        incItem.physicsBody?.categoryBitMask = 2
+        incItem.physicsBody?.contactTestBitMask = 1
         
         let x = GenerateRandomCoordinateInPlane()
         let z = GenerateRandomCoordinateInPlane()
@@ -352,6 +369,12 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     func CreateDecItem() {
         decItem = decItemNode.clone()
         decItem.name = "DecItem"
+        decItem.scale = SCNVector3(0.02, 0.02, 0.02)
+        
+        let decItemBodyShape = SCNPhysicsShape(geometry: SCNBox(width: 0.02, height: 0.02, length: 0.02, chamferRadius: 0), options: [SCNPhysicsShape.Option.type: SCNPhysicsShape.ShapeType.boundingBox])
+        decItem.physicsBody = SCNPhysicsBody(type: .static, shape: decItemBodyShape)
+        decItem.physicsBody?.categoryBitMask = 4
+        decItem.physicsBody?.contactTestBitMask = 1
         
         let x = GenerateRandomCoordinateInPlane()
         let z = GenerateRandomCoordinateInPlane()
