@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		233C095022B5A773002451C0 /* lightningBolt.scn in Resources */ = {isa = PBXBuildFile; fileRef = 233C094F22B5A743002451C0 /* lightningBolt.scn */; };
-		233C095822B5B0D2002451C0 /* snowFlake.scn in Resources */ = {isa = PBXBuildFile; fileRef = 233C095722B5B01C002451C0 /* snowFlake.scn */; };
 		2358F5BD22B521DB005A2250 /* broccoli.scn in Resources */ = {isa = PBXBuildFile; fileRef = 2358F5BC22B51F7F005A2250 /* broccoli.scn */; };
 		2358F5E022B57376005A2250 /* candyCane.scn in Resources */ = {isa = PBXBuildFile; fileRef = 2358F5DE22B572D8005A2250 /* candyCane.scn */; };
 		23852BEE22B1805700D46FF6 /* EnemyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23852BED22B1805600D46FF6 /* EnemyController.swift */; };
@@ -39,7 +38,6 @@
 
 /* Begin PBXFileReference section */
 		233C094F22B5A743002451C0 /* lightningBolt.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = lightningBolt.scn; sourceTree = "<group>"; };
-		233C095722B5B01C002451C0 /* snowFlake.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = snowFlake.scn; sourceTree = "<group>"; };
 		2358F5BC22B51F7F005A2250 /* broccoli.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = broccoli.scn; sourceTree = "<group>"; };
 		2358F5DE22B572D8005A2250 /* candyCane.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = candyCane.scn; sourceTree = "<group>"; };
 		23852BED22B1805600D46FF6 /* EnemyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyController.swift; sourceTree = "<group>"; };
@@ -142,7 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				239A693B22B65666009B5753 /* snowFlake.scn */,
-				233C095722B5B01C002451C0 /* snowFlake.scn */,
 				233C094F22B5A743002451C0 /* lightningBolt.scn */,
 				2358F5DE22B572D8005A2250 /* candyCane.scn */,
 				2358F5BC22B51F7F005A2250 /* broccoli.scn */,
@@ -246,7 +243,6 @@
 				D1B7D6C722B168890044D362 /* GTC Logo.png in Resources */,
 				841BD7F5229579B100B87AF3 /* Assets.xcassets in Resources */,
 				233C095022B5A773002451C0 /* lightningBolt.scn in Resources */,
-				233C095822B5B0D2002451C0 /* snowFlake.scn in Resources */,
 				84DEA99422AE535200174057 /* Surface.jpeg in Resources */,
 				23852BF022B1823200D46FF6 /* police.scn in Resources */,
 				840C704E22A1114E008EB80F /* playarea.scn in Resources */,
