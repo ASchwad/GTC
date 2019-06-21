@@ -22,6 +22,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var scoreLabel: UILabel!
     
+    @IBOutlet weak var placeBombButton: UIButton!
     var playAreaNode: SCNNode!
     var playArea: SCNNode!
     var playerNode: SCNNode!
@@ -35,6 +36,14 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     var incItem: SCNNode!
     var decItemNode: SCNNode!
     var decItem: SCNNode!
+    
+    var bombItemNode: SCNNode!
+    var bombItem: SCNNode!
+    var hotBombNode: SCNNode!
+    var hotBomb: SCNNode!
+    var bombCount = 0
+
+    
     var score = 0
     
     var isSlow = false
@@ -80,7 +89,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         arController.ShowDebugHints()
         
         InitializeModels()
-        
+       placeBombButton.isHidden = true
         UIApplication.shared.isIdleTimerDisabled = true
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTap(_:)))
         view.addGestureRecognizer(tapGesture)
@@ -90,16 +99,22 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         scoreLabel.isHidden = true
         speed = playerController.defaultSpeed
         sceneView.scene.physicsWorld.contactDelegate = self
+        sceneView.isMultipleTouchEnabled = true
     }
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
-        var contactNode:SCNNode!
-        //Check which of the returned Nodes A and B is the Gangster
-        if contact.nodeA.name == "Gangster"{
-            contactNode = contact.nodeB
-        }else{
-            contactNode = contact.nodeA
-        }
+       print (contact.nodeA.name! + "   " + contact.nodeB.name!)
+        if (contact.nodeA.name == "Gangster" || contact.nodeB.name == "Gangster" )
+        {
+            var contactNode:SCNNode!
+            
+            //Check which of the returned Nodes A and B is the Gangster
+            if contact.nodeA.name == "Gangster"{
+                contactNode = contact.nodeB
+            }else{
+                contactNode = contact.nodeA
+            }
+            
         //Check Itemtype with predefined categoryBitMask
         if contactNode.physicsBody?.categoryBitMask == 2{
             score += 1
@@ -142,6 +157,39 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
                 state = .gameOver
             }
         }
+        else if contactNode.physicsBody?.categoryBitMask == 128 {
+            PickUpBomb()
+            contactNode.removeFromParentNode()
+            CreateBombItem()
+        }
+        }
+        
+        if (contact.nodeA.name == "Police" && contact.nodeB.name == "HotBomb" )
+        {
+            var contactNode:SCNNode!
+            var policeNode:SCNNode!
+            //Check which of the returned Nodes A and B is the Gangster
+            if contact.nodeA.name == "Police"{
+                contactNode = contact.nodeB
+                policeNode = contact.nodeA
+            }else{
+                contactNode = contact.nodeA
+                policeNode = contact.nodeB
+            }
+                DestroyPolice(police: policeNode)
+                contactNode.removeFromParentNode()
+            
+        }
+        
+    }
+    
+    func DestroyPolice (police: SCNNode!)
+    {
+        police.removeFromParentNode()
+        score += 5
+        scoreLabel.text = "Score: \(score)"
+        
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -165,7 +213,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         
         let x = GenerateRandomCoordinateInPlane()
         let z = GenerateRandomCoordinateInPlane()
-        fastItem.position = SCNVector3(x, 0.09, z)
+        fastItem.position = SCNVector3(x, 0.03, z)
         
         
         playArea.addChildNode(fastItem)
@@ -182,7 +230,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         
         let x = GenerateRandomCoordinateInPlane()
         let z = GenerateRandomCoordinateInPlane()
-        slowItem.position = SCNVector3(x, 0.09, z)
+        slowItem.position = SCNVector3(x, 0.03, z)
         
         
         playArea.addChildNode(slowItem)
@@ -192,12 +240,11 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         police = policeNode.clone()
         police.name = "Police"
         
-        police.position = SCNVector3(-0.3, 0.09, 0.4)
         let box = SCNBox(width: 0.06, height: 0.06, length: 0.06, chamferRadius: 0)
         police.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(geometry: box, options: nil))
         police.physicsBody?.categoryBitMask = 64
-        police.physicsBody?.contactTestBitMask = 1
-        police.position = SCNVector3(-0.3, 0.09, 0.4)
+        police.physicsBody?.contactTestBitMask = 1 
+        police.position = SCNVector3(-0.3, 0.04, 0.4)
         
         playArea.addChildNode(police)
         
@@ -261,6 +308,14 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         }
     }
     
+    func InitializePlacBombButton()
+    {
+        let color = UIColor.black
+        placeBombButton.isHidden = false
+        placeBombButton.backgroundColor = color
+        placeBombButton.alpha = 0.5
+    
+    }
     
     func InitializeModels()
     {
@@ -278,6 +333,11 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         fastItemNode = fastItemScene.rootNode.childNode(withName: "lightningBolt", recursively: false)!
         let slowItemScene = SCNScene(named: "snowFlake.scn")!
         slowItemNode = slowItemScene.rootNode.childNode(withName: "snowFlake", recursively: false)!
+        
+        let bombItemScene = SCNScene(named: "bombItem.scn")!
+        bombItemNode = bombItemScene.rootNode.childNode(withName: "bonbon", recursively: false)!
+        
+      
         
         let policeScene = SCNScene(named: "police.scn")!
         policeNode = policeScene.rootNode.childNode(withName: "police", recursively: false)!
@@ -303,7 +363,10 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         CreateDecItem()
         CreateFastItem()
         CreateSlowItem()
+        CreateBombItem()
+    
         CreatePolice()
+        InitializePlacBombButton()
         
         scoreLabel.isHidden = false
 
@@ -360,11 +423,31 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         
         let x = GenerateRandomCoordinateInPlane()
         let z = GenerateRandomCoordinateInPlane()
-        incItem.position = SCNVector3(x, 0.09, z)
+        incItem.position = SCNVector3(x, 0.02, z)
         
         
         playArea.addChildNode(incItem)
     }
+    
+    func CreateBombItem() {
+        bombItem = bombItemNode.clone()
+        bombItem.name = "BombItem"
+       
+        
+        let incItemBodyShape = SCNPhysicsShape(geometry: SCNBox(width: 0.0008, height: 0.0008, length: 0.0008, chamferRadius: 0), options: [SCNPhysicsShape.Option.type: SCNPhysicsShape.ShapeType.boundingBox])
+        bombItem.physicsBody = SCNPhysicsBody(type: .static, shape: incItemBodyShape)
+        bombItem.physicsBody?.categoryBitMask = 128
+        bombItem.physicsBody?.contactTestBitMask = 1
+        
+        let x = GenerateRandomCoordinateInPlane()
+        let z = GenerateRandomCoordinateInPlane()
+        bombItem.position = SCNVector3(x, 0.03, z)
+        
+        
+        playArea.addChildNode(bombItem)
+    }
+    
+
     
     func CreateDecItem() {
         decItem = decItemNode.clone()
@@ -378,7 +461,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         
         let x = GenerateRandomCoordinateInPlane()
         let z = GenerateRandomCoordinateInPlane()
-        decItem.position = SCNVector3(x, 0.09, z)
+        decItem.position = SCNVector3(x, 0.02, z)
         
         playArea.addChildNode(decItem)
     }
@@ -407,9 +490,44 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             }
             else
             {
-                joystickController.innerStick.position.x = joystickController.initPositionX
-                joystickController.innerStick.position.y = joystickController.initPositionY
+                    joystickController.innerStick.position.x = joystickController.initPositionX
+                    joystickController.innerStick.position.y = joystickController.initPositionY
+               
             }
+        }
+        
+    }
+    
+    // bomb logic
+    
+    func PickUpBomb ()
+    {
+       bombCount+=1
+       BombUIUpdate()
+    }
+    
+    func PlaceBomb()
+    {
+        HotBomb(placePosition: player.position, playArea: playArea)
+        bombCount-=1
+        BombUIUpdate()
+    }
+    
+    @IBAction func OnPlaceBombPressed(_ sender: Any) {
+        if(bombCount > 0){
+            PlaceBomb()
+        }
+    }
+
+    func BombUIUpdate()
+    {
+        if(bombCount <= 0 && placeBombButton.alpha >= 0.5){
+            placeBombButton.alpha = 0.5
+            placeBombButton.setTitle(String(0), for: .normal)
+        }
+        else{
+            placeBombButton.alpha = 1.0
+            placeBombButton.setTitle(String(bombCount), for: .normal)
         }
         
     }
@@ -422,23 +540,24 @@ extension ViewController: SCNSceneRendererDelegate {
     }
     // store touch in global scope
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-        let touch = touches.first!
-        currentTouchLocation = touch.location(in: self.sceneView)
-        isTouched = true
-        
+            let touch = touches.first!
+            currentTouchLocation = touch.location(in: self.sceneView)
+            isTouched = true
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
         currentTouchLocation = touch.location(in: self.sceneView)
         
+        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        joystickController.innerStick.position.x = joystickController.initPositionX
-        joystickController.innerStick.position.y = joystickController.initPositionY
-        isTouched = false
+            joystickController.innerStick.position.x = joystickController.initPositionX
+            joystickController.innerStick.position.y = joystickController.initPositionY
+            isTouched = false
+        
+
     }
     
     
