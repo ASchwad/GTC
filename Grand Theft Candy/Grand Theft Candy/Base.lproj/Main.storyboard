@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hgW-Om-R22">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="20" width="667" height="355"/>
                             </arscnView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UUU-9Q-2ir">
                                 <rect key="frame" x="287" y="20" width="93" height="33"/>
@@ -35,6 +35,13 @@
                                     <segue destination="KTB-nt-HEf" kind="show" identifier="GameOver" animates="NO" id="Xnd-YV-1UN"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjV-ci-0kX">
+                                <rect key="frame" x="553" y="292" width="94" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="OnPlaceBombPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ds4-Lx-7SI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -47,6 +54,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="placeBombButton" destination="cjV-ci-0kX" id="zwH-l9-zeQ"/>
                         <outlet property="sceneView" destination="hgW-Om-R22" id="JUH-1B-o61"/>
                         <outlet property="scoreLabel" destination="UUU-9Q-2ir" id="INK-qM-uH4"/>
                     </connections>
