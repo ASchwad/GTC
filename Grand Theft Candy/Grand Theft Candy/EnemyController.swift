@@ -8,8 +8,12 @@
 
 import SceneKit
 import Foundation
+import QuartzCore
+import ARKit
 
 var shouldContinueToMove = true
+var explodingPolice: SCNNode!
+
 var isCycleCompleted = false
 
 final class EnemyController {
@@ -31,9 +35,9 @@ final class EnemyController {
         let moveAction = SCNAction.moveBy(x: CGFloat(forwardX), y: 0, z: 0, duration: 2)
         enemy.runAction(moveAction, completionHandler: {
             if shouldContinueToMove { // Configure your `Bool` to check whether to continue to move your node or not.
-                MoveToSecondPoint(enemy: enemy)
+                self.MoveToSecondPoint(enemy: enemy)
             }
-        })
+        }) }
         
         func MoveToSecondPoint(enemy: SCNNode) {
             //let currentLocation = enemy.position
@@ -44,7 +48,7 @@ final class EnemyController {
             let moveAction = SCNAction.moveBy(x: 0, y: 0, z: CGFloat(pointZ), duration: 2)
             enemy.runAction(moveAction, completionHandler: {
                 if shouldContinueToMove { // Configure your `Bool` to check whether to continue to move your node or not.
-                    MoveToThirdPoint(enemy: enemy)
+                    self.MoveToThirdPoint(enemy: enemy)
                 }
             })
             
@@ -58,7 +62,7 @@ final class EnemyController {
             let moveAction = SCNAction.moveBy(x: CGFloat(backX), y: 0, z: 0, duration: 2)
             enemy.runAction(moveAction, completionHandler: {
                 if shouldContinueToMove { // Configure your `Bool` to check whether to continue to move your node or not.
-                   MoveToFourthPoint(enemy: enemy)
+                   self.MoveToFourthPoint(enemy: enemy)
                 }
             })
         }
@@ -76,9 +80,28 @@ final class EnemyController {
                 }
             })
         }
-            
+        
+    @objc func DestroyPoliceNode(){
+        
+        explodingPolice.removeFromParentNode()
         
     }
+        
+        func DestroyPolice (police: SCNNode!)
+        {
+            
+            
+            let move = SCNAction.moveBy(x: 0.1, y: 1, z: 0.1, duration: 0.5)
+            let rotation = SCNAction.rotate(by: CGFloat(DegreeToRad(degree: 360)), around: SCNVector3(1,0,0), duration: 0.2)
+            let rotationTwo = SCNAction.rotate(by: CGFloat(DegreeToRad(degree: 360)), around: SCNVector3(0,1,0), duration: 0.2)
+            
+            police.runAction(move)
+            police.runAction(rotation)
+            police.runAction(rotationTwo)
+            explodingPolice = police
+            let timer = Timer.scheduledTimer(timeInterval: 0.2, target: self, selector: #selector(DestroyPoliceNode), userInfo: nil, repeats: false)
+        }
+        
+   
 }
-
 

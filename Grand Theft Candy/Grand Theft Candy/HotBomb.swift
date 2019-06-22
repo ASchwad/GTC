@@ -14,6 +14,8 @@ class HotBomb {
     var isDestroyed: Bool = false
     var hotBombNode: SCNNode!
     
+    var explosionNode: SCNNode!
+    
     init(placePosition: SCNVector3, playArea: SCNNode)
     {
         let hotBombScene = SCNScene(named: "hotBomb.scn")!
@@ -44,9 +46,5 @@ class HotBomb {
             isDestroyed = true
         }
        
-    }
-    
-    
-    
-    
+    }    
 }
