@@ -23,13 +23,16 @@
 		841BD7F3229579B000B87AF3 /* Grand_Theft_Candy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 841BD7F1229579B000B87AF3 /* Grand_Theft_Candy.xcdatamodeld */; };
 		841BD7F5229579B100B87AF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 841BD7F4229579B100B87AF3 /* Assets.xcassets */; };
 		841BD7F8229579B100B87AF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841BD7F6229579B100B87AF3 /* LaunchScreen.storyboard */; };
+		842B849E22BF961B006EE548 /* hotBombScene.scn in Resources */ = {isa = PBXBuildFile; fileRef = 842B849D22BF961B006EE548 /* hotBombScene.scn */; };
 		8447DF3022A117C500BF5365 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447DF2F22A117C500BF5365 /* PlayerController.swift */; };
 		8447DF3822A1482D00BF5365 /* JoystickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447DF3722A1482D00BF5365 /* JoystickController.swift */; };
 		847BE2682295C0FB003A1A35 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE2672295C0FB003A1A35 /* Helpers.swift */; };
-		84B451ED22BCAD4F006F0AA0 /* bombItem.scn in Resources */ = {isa = PBXBuildFile; fileRef = 84B451EB22BCAD4F006F0AA0 /* bombItem.scn */; };
-		84B451EE22BCAD4F006F0AA0 /* hotBomb.scn in Resources */ = {isa = PBXBuildFile; fileRef = 84B451EC22BCAD4F006F0AA0 /* hotBomb.scn */; };
+		84A20AD322BFA19800602CA9 /* bombItemScene.scn in Resources */ = {isa = PBXBuildFile; fileRef = 84A20AD222BFA19800602CA9 /* bombItemScene.scn */; };
 		84B451F022BCCC76006F0AA0 /* HotBomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B451EF22BCCC76006F0AA0 /* HotBomb.swift */; };
 		84DEA99422AE535200174057 /* Surface.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 84DEA99322AE535200174057 /* Surface.jpeg */; };
+		84EF71E922BCF3E7007520D5 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EF71E722BCF3E7007520D5 /* spark.png */; };
+		84EF71EC22BCF5D2007520D5 /* explosionParticles.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 84EF71EB22BCF5D2007520D5 /* explosionParticles.scnp */; };
+		84EF71EE22BF6F92007520D5 /* BombController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF71ED22BF6F92007520D5 /* BombController.swift */; };
 		ACCF252F5D04EAFF8B09691F /* Pods_Grand_Theft_Candy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9305D77D1DA2A52C35372408 /* Pods_Grand_Theft_Candy.framework */; };
 		D15C90ED22B8EBB500E129FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D15C90EC22B8EBB500E129FE /* GoogleService-Info.plist */; };
 		D15C90EF22B8EFE600E129FE /* HighscoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15C90EE22B8EFE600E129FE /* HighscoreController.swift */; };
@@ -58,13 +61,16 @@
 		841BD7F4229579B100B87AF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		841BD7F7229579B100B87AF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		841BD7F9229579B100B87AF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		842B849D22BF961B006EE548 /* hotBombScene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = hotBombScene.scn; sourceTree = "<group>"; };
 		8447DF2F22A117C500BF5365 /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		8447DF3722A1482D00BF5365 /* JoystickController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickController.swift; sourceTree = "<group>"; };
 		847BE2672295C0FB003A1A35 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		84B451EB22BCAD4F006F0AA0 /* bombItem.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = bombItem.scn; sourceTree = "<group>"; };
-		84B451EC22BCAD4F006F0AA0 /* hotBomb.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = hotBomb.scn; sourceTree = "<group>"; };
+		84A20AD222BFA19800602CA9 /* bombItemScene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = bombItemScene.scn; sourceTree = "<group>"; };
 		84B451EF22BCCC76006F0AA0 /* HotBomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotBomb.swift; sourceTree = "<group>"; };
 		84DEA99322AE535200174057 /* Surface.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Surface.jpeg; sourceTree = "<group>"; };
+		84EF71E722BCF3E7007520D5 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
+		84EF71EB22BCF5D2007520D5 /* explosionParticles.scnp */ = {isa = PBXFileReference; lastKnownFileType = file.scp; path = explosionParticles.scnp; sourceTree = "<group>"; };
+		84EF71ED22BF6F92007520D5 /* BombController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BombController.swift; sourceTree = "<group>"; };
 		9305D77D1DA2A52C35372408 /* Pods_Grand_Theft_Candy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grand_Theft_Candy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71E8B7922BF160A55849235 /* Pods-Grand Theft Candy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grand Theft Candy.release.xcconfig"; path = "Target Support Files/Pods-Grand Theft Candy/Pods-Grand Theft Candy.release.xcconfig"; sourceTree = "<group>"; };
 		C064F787F583BB874A41C6E3 /* Pods-Grand Theft Candy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grand Theft Candy.debug.xcconfig"; path = "Target Support Files/Pods-Grand Theft Candy/Pods-Grand Theft Candy.debug.xcconfig"; sourceTree = "<group>"; };
@@ -118,6 +124,7 @@
 		841BD7E9229579B000B87AF3 /* Grand Theft Candy */ = {
 			isa = PBXGroup;
 			children = (
+				84EF71E622BCF3CD007520D5 /* Particle */,
 				D1C4D79622B14A1A0019CF12 /* Controller */,
 				D1C4D79322B149E60019CF12 /* Scenes */,
 				841BD7EA229579B000B87AF3 /* AppDelegate.swift */,
@@ -135,6 +142,15 @@
 			path = "Grand Theft Candy";
 			sourceTree = "<group>";
 		};
+		84EF71E622BCF3CD007520D5 /* Particle */ = {
+			isa = PBXGroup;
+			children = (
+				84EF71EB22BCF5D2007520D5 /* explosionParticles.scnp */,
+				84EF71E722BCF3E7007520D5 /* spark.png */,
+			);
+			name = Particle;
+			sourceTree = "<group>";
+		};
 		D1C4D78122B145CC0019CF12 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,8 +162,6 @@
 		D1C4D79322B149E60019CF12 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				84B451EB22BCAD4F006F0AA0 /* bombItem.scn */,
-				84B451EC22BCAD4F006F0AA0 /* hotBomb.scn */,
 				239A693B22B65666009B5753 /* snowFlake.scn */,
 				233C094F22B5A743002451C0 /* lightningBolt.scn */,
 				2358F5DE22B572D8005A2250 /* candyCane.scn */,
@@ -155,6 +169,8 @@
 				23852BEF22B1823200D46FF6 /* police.scn */,
 				840C704D22A1114D008EB80F /* playarea.scn */,
 				840C704322A0097E008EB80F /* gangster.scn */,
+				84A20AD222BFA19800602CA9 /* bombItemScene.scn */,
+				842B849D22BF961B006EE548 /* hotBombScene.scn */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -180,6 +196,7 @@
 				8447DF2F22A117C500BF5365 /* PlayerController.swift */,
 				D1B7D6CA22B2718B0044D362 /* GameOverController.swift */,
 				D15C90EE22B8EFE600E129FE /* HighscoreController.swift */,
+				84EF71ED22BF6F92007520D5 /* BombController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -244,15 +261,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842B849E22BF961B006EE548 /* hotBombScene.scn in Resources */,
 				D1C4D79222B149DD0019CF12 /* gta_sanandreas.mp3 in Resources */,
+				84EF71EC22BCF5D2007520D5 /* explosionParticles.scnp in Resources */,
 				2358F5BD22B521DB005A2250 /* broccoli.scn in Resources */,
 				D15C90ED22B8EBB500E129FE /* GoogleService-Info.plist in Resources */,
 				841BD7F8229579B100B87AF3 /* LaunchScreen.storyboard in Resources */,
-				84B451ED22BCAD4F006F0AA0 /* bombItem.scn in Resources */,
+				84A20AD322BFA19800602CA9 /* bombItemScene.scn in Resources */,
 				840C704722A0097F008EB80F /* gangster.scn in Resources */,
 				D1B7D6C722B168890044D362 /* GTC Logo.png in Resources */,
 				841BD7F5229579B100B87AF3 /* Assets.xcassets in Resources */,
-				84B451EE22BCAD4F006F0AA0 /* hotBomb.scn in Resources */,
 				233C095022B5A773002451C0 /* lightningBolt.scn in Resources */,
 				84DEA99422AE535200174057 /* Surface.jpeg in Resources */,
 				23852BF022B1823200D46FF6 /* police.scn in Resources */,
@@ -260,6 +278,7 @@
 				239A693C22B65666009B5753 /* snowFlake.scn in Resources */,
 				841BD7F0229579B000B87AF3 /* Main.storyboard in Resources */,
 				2358F5E022B57376005A2250 /* candyCane.scn in Resources */,
+				84EF71E922BCF3E7007520D5 /* spark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +334,7 @@
 				84B451F022BCCC76006F0AA0 /* HotBomb.swift in Sources */,
 				841BD7F3229579B000B87AF3 /* Grand_Theft_Candy.xcdatamodeld in Sources */,
 				841BD7EB229579B000B87AF3 /* AppDelegate.swift in Sources */,
+				84EF71EE22BF6F92007520D5 /* BombController.swift in Sources */,
 				D1B7D6CB22B2718B0044D362 /* GameOverController.swift in Sources */,
 				23852BEE22B1805700D46FF6 /* EnemyController.swift in Sources */,
 				D15C90EF22B8EFE600E129FE /* HighscoreController.swift in Sources */,
