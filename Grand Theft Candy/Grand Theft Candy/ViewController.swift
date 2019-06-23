@@ -60,6 +60,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     
     var police: SCNNode!
     var policeNode: SCNNode!
+    var explodingPolice: SCNNode!
+    
     var enemyReady = true
 
      var speed: float3!
@@ -68,6 +70,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     let joystickController = JoystickController()
     let playerController = PlayerController()
     let enemyController = EnemyController()
+    let bombController = BombController()
     
     var allowToStartGame = true
     
@@ -101,6 +104,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         sceneView.scene.physicsWorld.contactDelegate = self
         sceneView.isMultipleTouchEnabled = true
     }
+    
+    
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
        print (contact.nodeA.name! + "   " + contact.nodeB.name!)
@@ -176,21 +181,19 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
                 contactNode = contact.nodeA
                 policeNode = contact.nodeB
             }
-                DestroyPolice(police: policeNode)
-                contactNode.removeFromParentNode()
+            score += 5
+            scoreLabel.text = "Score: \(score)"
+            
+            CreatePolice()
+            bombController.PerformExplosion(contactNode: contactNode, playArea: playArea)
+            enemyController.DestroyPolice(police: policeNode)
+            
+            contactNode.removeFromParentNode()
             
         }
         
     }
-    
-    func DestroyPolice (police: SCNNode!)
-    {
-        police.removeFromParentNode()
-        score += 5
-        scoreLabel.text = "Score: \(score)"
-        
-        
-    }
+
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
@@ -248,12 +251,12 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         
         playArea.addChildNode(police)
         
-        if(enemyReady == true){
+      
             enemyController.MoveToFirstPoint(enemy: police)
-            enemyReady = false
+  
         }
 
-    }
+    
 
     
     @objc func ResetSpeed(){
@@ -502,8 +505,11 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     
     func PickUpBomb ()
     {
-       bombCount+=1
-       BombUIUpdate()
+        if (bombCount <= 5){
+            bombCount+=1
+            BombUIUpdate()
+        }
+     
     }
     
     func PlaceBomb()
