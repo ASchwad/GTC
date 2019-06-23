@@ -23,11 +23,11 @@
 		841BD7F3229579B000B87AF3 /* Grand_Theft_Candy.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 841BD7F1229579B000B87AF3 /* Grand_Theft_Candy.xcdatamodeld */; };
 		841BD7F5229579B100B87AF3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 841BD7F4229579B100B87AF3 /* Assets.xcassets */; };
 		841BD7F8229579B100B87AF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 841BD7F6229579B100B87AF3 /* LaunchScreen.storyboard */; };
+		842B849E22BF961B006EE548 /* hotBombScene.scn in Resources */ = {isa = PBXBuildFile; fileRef = 842B849D22BF961B006EE548 /* hotBombScene.scn */; };
 		8447DF3022A117C500BF5365 /* PlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447DF2F22A117C500BF5365 /* PlayerController.swift */; };
 		8447DF3822A1482D00BF5365 /* JoystickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447DF3722A1482D00BF5365 /* JoystickController.swift */; };
 		847BE2682295C0FB003A1A35 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE2672295C0FB003A1A35 /* Helpers.swift */; };
-		84B451ED22BCAD4F006F0AA0 /* bombItem.scn in Resources */ = {isa = PBXBuildFile; fileRef = 84B451EB22BCAD4F006F0AA0 /* bombItem.scn */; };
-		84B451EE22BCAD4F006F0AA0 /* hotBomb.scn in Resources */ = {isa = PBXBuildFile; fileRef = 84B451EC22BCAD4F006F0AA0 /* hotBomb.scn */; };
+		84A20AD322BFA19800602CA9 /* bombItemScene.scn in Resources */ = {isa = PBXBuildFile; fileRef = 84A20AD222BFA19800602CA9 /* bombItemScene.scn */; };
 		84B451F022BCCC76006F0AA0 /* HotBomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B451EF22BCCC76006F0AA0 /* HotBomb.swift */; };
 		84DEA99422AE535200174057 /* Surface.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 84DEA99322AE535200174057 /* Surface.jpeg */; };
 		84EF71E922BCF3E7007520D5 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EF71E722BCF3E7007520D5 /* spark.png */; };
@@ -61,11 +61,11 @@
 		841BD7F4229579B100B87AF3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		841BD7F7229579B100B87AF3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		841BD7F9229579B100B87AF3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		842B849D22BF961B006EE548 /* hotBombScene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = hotBombScene.scn; sourceTree = "<group>"; };
 		8447DF2F22A117C500BF5365 /* PlayerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerController.swift; sourceTree = "<group>"; };
 		8447DF3722A1482D00BF5365 /* JoystickController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickController.swift; sourceTree = "<group>"; };
 		847BE2672295C0FB003A1A35 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		84B451EB22BCAD4F006F0AA0 /* bombItem.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = bombItem.scn; sourceTree = "<group>"; };
-		84B451EC22BCAD4F006F0AA0 /* hotBomb.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = hotBomb.scn; sourceTree = "<group>"; };
+		84A20AD222BFA19800602CA9 /* bombItemScene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = bombItemScene.scn; sourceTree = "<group>"; };
 		84B451EF22BCCC76006F0AA0 /* HotBomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotBomb.swift; sourceTree = "<group>"; };
 		84DEA99322AE535200174057 /* Surface.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Surface.jpeg; sourceTree = "<group>"; };
 		84EF71E722BCF3E7007520D5 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
@@ -162,8 +162,6 @@
 		D1C4D79322B149E60019CF12 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				84B451EB22BCAD4F006F0AA0 /* bombItem.scn */,
-				84B451EC22BCAD4F006F0AA0 /* hotBomb.scn */,
 				239A693B22B65666009B5753 /* snowFlake.scn */,
 				233C094F22B5A743002451C0 /* lightningBolt.scn */,
 				2358F5DE22B572D8005A2250 /* candyCane.scn */,
@@ -171,6 +169,8 @@
 				23852BEF22B1823200D46FF6 /* police.scn */,
 				840C704D22A1114D008EB80F /* playarea.scn */,
 				840C704322A0097E008EB80F /* gangster.scn */,
+				84A20AD222BFA19800602CA9 /* bombItemScene.scn */,
+				842B849D22BF961B006EE548 /* hotBombScene.scn */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -261,16 +261,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842B849E22BF961B006EE548 /* hotBombScene.scn in Resources */,
 				D1C4D79222B149DD0019CF12 /* gta_sanandreas.mp3 in Resources */,
 				84EF71EC22BCF5D2007520D5 /* explosionParticles.scnp in Resources */,
 				2358F5BD22B521DB005A2250 /* broccoli.scn in Resources */,
 				D15C90ED22B8EBB500E129FE /* GoogleService-Info.plist in Resources */,
 				841BD7F8229579B100B87AF3 /* LaunchScreen.storyboard in Resources */,
-				84B451ED22BCAD4F006F0AA0 /* bombItem.scn in Resources */,
+				84A20AD322BFA19800602CA9 /* bombItemScene.scn in Resources */,
 				840C704722A0097F008EB80F /* gangster.scn in Resources */,
 				D1B7D6C722B168890044D362 /* GTC Logo.png in Resources */,
 				841BD7F5229579B100B87AF3 /* Assets.xcassets in Resources */,
-				84B451EE22BCAD4F006F0AA0 /* hotBomb.scn in Resources */,
 				233C095022B5A773002451C0 /* lightningBolt.scn in Resources */,
 				84DEA99422AE535200174057 /* Surface.jpeg in Resources */,
 				23852BF022B1823200D46FF6 /* police.scn in Resources */,

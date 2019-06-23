@@ -18,10 +18,11 @@ class HotBomb {
     
     init(placePosition: SCNVector3, playArea: SCNNode)
     {
-        let hotBombScene = SCNScene(named: "hotBomb.scn")!
-         hotBombNode = hotBombScene.rootNode.childNode(withName: "bonbon", recursively: false)!
+        let hotBombScene = SCNScene(named: "hotBombScene.scn")!
+         hotBombNode = hotBombScene.rootNode.childNode(withName: "Bomb", recursively: false)!
         hotBombNode.name = "HotBomb"
-        
+        hotBombNode.scale = SCNVector3(0.25, 0.25, 0.25)
+        hotBombNode.eulerAngles = SCNVector3(DegreeToRad(degree: -90), 0, 0)
         
         let incItemBodyShape = SCNPhysicsShape(geometry: SCNBox(width: 0.0008, height: 0.0008, length: 0.0008, chamferRadius: 0), options: [SCNPhysicsShape.Option.type: SCNPhysicsShape.ShapeType.boundingBox])
         hotBombNode.physicsBody = SCNPhysicsBody(type: .static, shape: incItemBodyShape)
@@ -32,6 +33,7 @@ class HotBomb {
         
         hotBombNode.position = placePosition
         hotBombNode.position.y = 0.03
+        hotBombNode.highlightNodeWithFrequence(1, materialIndex: 1)
         playArea.addChildNode(hotBombNode)
     }
     

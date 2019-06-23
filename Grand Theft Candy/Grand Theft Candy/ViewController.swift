@@ -337,8 +337,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         let slowItemScene = SCNScene(named: "snowFlake.scn")!
         slowItemNode = slowItemScene.rootNode.childNode(withName: "snowFlake", recursively: false)!
         
-        let bombItemScene = SCNScene(named: "bombItem.scn")!
-        bombItemNode = bombItemScene.rootNode.childNode(withName: "bonbon", recursively: false)!
+        let bombItemScene = SCNScene(named: "bombItemScene.scn")!
+        bombItemNode = bombItemScene.rootNode.childNode(withName: "Bomb", recursively: false)!
         
       
         
@@ -445,7 +445,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         let x = GenerateRandomCoordinateInPlane()
         let z = GenerateRandomCoordinateInPlane()
         bombItem.position = SCNVector3(x, 0.03, z)
-        
+        bombItem.scale = SCNVector3(0.2, 0.2, 0.2)
+        bombItem.eulerAngles = SCNVector3(DegreeToRad(degree: -90), 0, 0)
         
         playArea.addChildNode(bombItem)
     }

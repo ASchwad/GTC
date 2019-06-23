@@ -69,3 +69,30 @@ extension UIView {
 
 
 
+extension SCNNode{
+    
+    func highlightNodeWithFrequence(_ duration: TimeInterval, materialIndex: Int){
+
+        let highlightAction = SCNAction.customAction(duration: duration) { (node, elapsedTime) in
+            
+            let color = UIColor(red: elapsedTime/CGFloat(duration), green: 0, blue: 0, alpha: 1)
+            let currentMaterial = self.geometry?.materials[materialIndex]
+            currentMaterial?.emission.contents = color
+            
+        }
+
+        let unHighlightAction = SCNAction.customAction(duration: duration) { (node, elapsedTime) in
+            let color = UIColor(red: CGFloat(1) - elapsedTime/CGFloat(duration), green: 0, blue: 0, alpha: 1)
+            let currentMaterial = self.geometry?.materials[materialIndex]
+            currentMaterial?.emission.contents = color
+            
+        }
+        
+
+        let pulseSequence = SCNAction.sequence([highlightAction, unHighlightAction])
+        
+        let infiniteLoop = SCNAction.repeatForever(pulseSequence)
+
+        self.runAction(infiniteLoop)
+}
+}
