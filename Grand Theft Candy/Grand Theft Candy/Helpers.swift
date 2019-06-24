@@ -32,6 +32,22 @@ public func DegreeToRad (degree: Float) -> Float
     return Float(Double.pi/180) * degree
 }
 
+public func ClampNumber (value: CGFloat, lowerBound: CGFloat, upperBound: CGFloat) -> CGFloat
+{
+    if (value > upperBound)
+    {
+        return upperBound
+    }
+    else if (value < lowerBound)
+    {
+        return lowerBound
+    }
+    else
+    {
+        return value
+    }
+}
+
 public func placeNodeOnHit(node: SCNNode, atHit hit: ARHitTestResult, sceneView: ARSCNView)
 {
     let rotate = simd_float4x4(SCNMatrix4MakeRotation(sceneView.session.currentFrame!.camera.eulerAngles.y, 0, 1, 0))

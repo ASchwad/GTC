@@ -19,6 +19,10 @@ class JoystickController
     var innerStickY = 0
     var initPositionX : CGFloat = 0
     var initPositionY : CGFloat = 0
+    var maxXValue : CGFloat = 0
+    var maxYValue : CGFloat = 0
+    var minXValue : CGFloat = 0
+    var minYValue : CGFloat = 0
     
     func CreateJoysick(view: ARSCNView) -> SKScene
     {
@@ -31,12 +35,21 @@ class JoystickController
         
         initPositionX = substrate.frame.size.width / 2 + 20
         initPositionY = substrate.frame.size.height / 2 + 20
+        
+        maxXValue = initPositionX + 60
+        maxYValue = initPositionY + 55
+        
+        minXValue = initPositionX - 60
+        minYValue = initPositionY - 55
+        
         substrate.position.x = initPositionX
         substrate.position.y = initPositionY
         
         innerStick = CreateCircleShape(radius: 30, color: .black, lineWidth: 3.0)
         innerStick.position.x = innerStick.frame.size.width / 2 + 55
+    
         innerStick.position.y = innerStick.frame.size.height / 2 + 55
+       
         innerStick.fillColor = .black
         
         skScene.addChild(substrate)
@@ -47,5 +60,15 @@ class JoystickController
         return skScene
     }
     
+    func SnapBackJoystick ()
+    {
+        innerStick.position.x = initPositionX
+        innerStick.position.y = initPositionY
+    }
     
+    func SetJoystickPosition (xPosition: CGFloat, yPosition: CGFloat)
+    {
+        innerStick.position.x  = xPosition
+        innerStick.position.y  = yPosition
+    }
 }

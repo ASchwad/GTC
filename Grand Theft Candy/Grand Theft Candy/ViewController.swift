@@ -29,6 +29,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     var player: SCNNode!
     var skScene: SKScene!
     var isTouched: Bool!
+    var isValidTouch = false
     var currentTouchLocation: CGPoint!
     var tapGesture: UIGestureRecognizer!
     
@@ -474,8 +475,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         
         if(isTouched == true)
         {
-            let touchXPoint = currentTouchLocation.x
-            let touchYPoint = sceneView.bounds.size.height - currentTouchLocation.y
+            var touchXPoint = currentTouchLocation.x
+            var touchYPoint = sceneView.bounds.size.height - currentTouchLocation.y
             
             let middleOfCircleX = joystickController.initPositionX
             let middleOfCircleY = joystickController.initPositionY
@@ -485,21 +486,14 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             
             let touchPoint = CGPoint(x: touchXPoint, y: touchYPoint)
             
-            if joystickController.substrate.contains(touchPoint)
-            {
-                playerController.MovePlayer(moveDirection: direction, player: player, speed: speed)
+             playerController.MovePlayer(moveDirection: direction, player: player, speed: speed)
                 
-                joystickController.innerStick.position.x = touchXPoint
-                joystickController.innerStick.position.y = touchYPoint
-            }
-            else
-            {
-                    joystickController.innerStick.position.x = joystickController.initPositionX
-                    joystickController.innerStick.position.y = joystickController.initPositionY
-               
-            }
+             touchXPoint = ClampNumber(value: touchXPoint, lowerBound: joystickController.minXValue, upperBound: joystickController.maxXValue)
+                
+               touchYPoint = ClampNumber(value: touchYPoint, lowerBound: joystickController.minYValue, upperBound: joystickController.maxYValue)
+                
+            joystickController.SetJoystickPosition(xPosition: touchXPoint, yPosition: touchYPoint)
         }
-        
     }
     
     // bomb logic
@@ -510,7 +504,6 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             bombCount+=1
             BombUIUpdate()
         }
-     
     }
     
     func PlaceBomb()
@@ -543,12 +536,31 @@ extension ViewController: SCNSceneRendererDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval)
     {
-        updateJoystick()
+        if(isValidTouch)
+        {
+             updateJoystick()
+        }
+       
     }
     // store touch in global scope
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
             let touch = touches.first!
             currentTouchLocation = touch.location(in: self.sceneView)
+        
+        var touchXPoint = currentTouchLocation.x
+        var touchYPoint = sceneView.bounds.size.height - currentTouchLocation.y
+        
+        let touchPoint = CGPoint(x: touchXPoint, y: touchYPoint)
+       
+        if joystickController.substrate.contains(touchPoint)
+        {
+            isValidTouch = true
+        }
+        
+        else
+        {
+            isValidTouch = false
+        }
             isTouched = true
     }
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -560,11 +572,9 @@ extension ViewController: SCNSceneRendererDelegate {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-            joystickController.innerStick.position.x = joystickController.initPositionX
-            joystickController.innerStick.position.y = joystickController.initPositionY
+            joystickController.SnapBackJoystick()
             isTouched = false
-        
-
+            isValidTouch = false
     }
     
     
