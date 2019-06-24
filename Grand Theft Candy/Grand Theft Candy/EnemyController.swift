@@ -89,8 +89,6 @@ final class EnemyController {
         
         func DestroyPolice (police: SCNNode!)
         {
-            
-            
             let move = SCNAction.moveBy(x: 0.1, y: 1, z: 0.1, duration: 0.5)
             let rotation = SCNAction.rotate(by: CGFloat(DegreeToRad(degree: 360)), around: SCNVector3(1,0,0), duration: 0.2)
             let rotationTwo = SCNAction.rotate(by: CGFloat(DegreeToRad(degree: 360)), around: SCNVector3(0,1,0), duration: 0.2)
