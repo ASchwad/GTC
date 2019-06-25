@@ -33,13 +33,6 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     var currentTouchLocation: CGPoint!
     var tapGesture: UIGestureRecognizer!
     
-    var incItemNode: SCNNode!
-    var incItem: SCNNode!
-    var decItemNode: SCNNode!
-    var decItem: SCNNode!
-    
-    var bombItemNode: SCNNode!
-    var bombItem: SCNNode!
     var hotBombNode: SCNNode!
     var hotBomb: SCNNode!
     var bombCount = 0
@@ -54,10 +47,6 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     var speedItemsCounter = 0
     var speedItemsReseted = 0
 
-    var fastItemNode: SCNNode!
-    var fastItem: SCNNode!
-    var slowItemNode: SCNNode!
-    var slowItem: SCNNode!
     
     var police: SCNNode!
     var policeNode: SCNNode!
@@ -65,13 +54,14 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     
     var enemyReady = true
 
-     var speed: float3!
+    var speed: float3!
     
     let arController = ARController()
     let joystickController = JoystickController()
     let playerController = PlayerController()
     let enemyController = EnemyController()
     let bombController = BombController()
+    let itemController = ItemController()
     
     var allowToStartGame = true
     
@@ -92,8 +82,9 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         arController.InitializeARController(to: sceneView)
         arController.ShowDebugHints()
         
+        itemController.InitializeItems()
         InitializeModels()
-       placeBombButton.isHidden = true
+        placeBombButton.isHidden = true
         UIApplication.shared.isIdleTimerDisabled = true
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTap(_:)))
         view.addGestureRecognizer(tapGesture)
@@ -109,7 +100,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
-       print (contact.nodeA.name! + "   " + contact.nodeB.name!)
+        print (contact.nodeA.name! + "   " + contact.nodeB.name!)
         if (contact.nodeA.name == "Gangster" || contact.nodeB.name == "Gangster" )
         {
             var contactNode:SCNNode!
@@ -121,53 +112,49 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
                 contactNode = contact.nodeA
             }
             
-        //Check Itemtype with predefined categoryBitMask
-        if contactNode.physicsBody?.categoryBitMask == 2{
-            score += 1
-            contactNode.removeFromParentNode()
-            
-            //access label text from other thread
-            // oder mit scene kit text overlay?
-            scoreLabel.text = "Score: \(score)"
-            CreateIncItem()
-            
-        } else if contactNode.physicsBody?.categoryBitMask == 4 {
-            contactNode.removeFromParentNode()
-            score -= 1
-            scoreLabel.text = "Score: \(score)"
-            CreateDecItem()
-        }
-        else if contactNode.physicsBody?.categoryBitMask == 8 {
-            speedItemsCounter += 1
-            contactNode.removeFromParentNode()
-            SpeedFast()
-            let timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(ResetSpeed), userInfo: nil, repeats: false)
-            CreateFastItem()
-        }
-        else if contactNode.physicsBody?.categoryBitMask == 16 {
-            speedItemsCounter += 1
-            contactNode.removeFromParentNode()
-            SpeedSlow()
-            let timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(ResetSpeed), userInfo: nil, repeats: false)
-            CreateSlowItem()
-        }
-        else if contactNode.physicsBody?.categoryBitMask == 32 {
-            if(state != .gameOver){
-                self.performSegue(withIdentifier: "GameOver", sender: Any?.self)
-                state = .gameOver
+            //Check Itemtype with predefined categoryBitMask
+            if contactNode.physicsBody?.categoryBitMask == 2{
+                score += 2
+                contactNode.removeFromParentNode()
+                
+                //access label text from other thread
+                // oder mit scene kit text overlay?
+                scoreLabel.text = "Score: \(score)"
+                itemController.CreateIncItem(playArea: playArea)
+                
+            } else if contactNode.physicsBody?.categoryBitMask == 4 {
+                contactNode.removeFromParentNode()
+                score -= 10
+                scoreLabel.text = "Score: \(score)"
             }
-        }
-        else if contactNode.physicsBody?.categoryBitMask == 64 {
-            if(state != .gameOver){
-                self.performSegue(withIdentifier: "GameOver", sender: Any?.self)
-                state = .gameOver
+            else if contactNode.physicsBody?.categoryBitMask == 8 {
+                speedItemsCounter += 1
+                contactNode.removeFromParentNode()
+                SpeedFast()
+                let timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(ResetSpeed), userInfo: nil, repeats: false)
             }
-        }
-        else if contactNode.physicsBody?.categoryBitMask == 128 {
-            PickUpBomb()
-            contactNode.removeFromParentNode()
-            CreateBombItem()
-        }
+            else if contactNode.physicsBody?.categoryBitMask == 16 {
+                speedItemsCounter += 1
+                contactNode.removeFromParentNode()
+                SpeedSlow()
+                let timer = Timer.scheduledTimer(timeInterval: 4.0, target: self, selector: #selector(ResetSpeed), userInfo: nil, repeats: false)
+            }
+            else if contactNode.physicsBody?.categoryBitMask == 32 {
+                if(state != .gameOver){
+                    self.performSegue(withIdentifier: "GameOver", sender: Any?.self)
+                    state = .gameOver
+                }
+            }
+            else if contactNode.physicsBody?.categoryBitMask == 64 {
+                if(state != .gameOver){
+                    self.performSegue(withIdentifier: "GameOver", sender: Any?.self)
+                    state = .gameOver
+                }
+            }
+            else if contactNode.physicsBody?.categoryBitMask == 128 {
+                PickUpBomb()
+                contactNode.removeFromParentNode()
+            }
         }
         
         if (contact.nodeA.name == "Police" && contact.nodeB.name == "HotBomb" )
@@ -194,6 +181,16 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         }
         
     }
+    
+    func InitializeModels(){
+        let floorScene = SCNScene(named: "playarea.scn")!
+        playAreaNode = floorScene.rootNode.childNode(withName: "floor", recursively: false)!
+        
+        let heroScene = SCNScene(named: "gangster.scn")!
+        playerNode = heroScene.rootNode.childNode(withName: "The_limited_1", recursively: false)!
+        let policeScene = SCNScene(named: "police.scn")!
+        policeNode = policeScene.rootNode.childNode(withName: "police", recursively: false)!
+    }
 
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
@@ -203,41 +200,6 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             let vc = segue.destination as? GameOverController
             vc?.score = score
         }
-    }
-    
-    func CreateFastItem() {
-        fastItem = fastItemNode.clone()
-        fastItem.name = "FastItem"
-        fastItem.scale = SCNVector3(0.0002, 0.0002, 0.0002)
-        
-        let fastItemBodyShape = SCNPhysicsShape(geometry: SCNBox(width: 0.0002, height: 0.0002, length: 0.0002, chamferRadius: 0), options: [SCNPhysicsShape.Option.type: SCNPhysicsShape.ShapeType.boundingBox])
-        fastItem.physicsBody = SCNPhysicsBody(type: .static, shape: fastItemBodyShape)
-        fastItem.physicsBody?.categoryBitMask = 8
-        fastItem.physicsBody?.contactTestBitMask = 1
-        
-        let x = GenerateRandomCoordinateInPlane()
-        let z = GenerateRandomCoordinateInPlane()
-        fastItem.position = SCNVector3(x, 0.03, z)
-        
-        
-        playArea.addChildNode(fastItem)
-    }
-    func CreateSlowItem() {
-        slowItem = slowItemNode.clone()
-        slowItem.name = "SlowItem"
-        slowItem.scale = SCNVector3(0.02, 0.02, 0.02)
-        
-        let slowItemBodyShape = SCNPhysicsShape(geometry: SCNBox(width: 0.02, height: 0.02, length: 0.02, chamferRadius: 0), options: [SCNPhysicsShape.Option.type: SCNPhysicsShape.ShapeType.boundingBox])
-        slowItem.physicsBody = SCNPhysicsBody(type: .static, shape: slowItemBodyShape)
-        slowItem.physicsBody?.categoryBitMask = 16
-        slowItem.physicsBody?.contactTestBitMask = 1
-        
-        let x = GenerateRandomCoordinateInPlane()
-        let z = GenerateRandomCoordinateInPlane()
-        slowItem.position = SCNVector3(x, 0.03, z)
-        
-        
-        playArea.addChildNode(slowItem)
     }
     
     func CreatePolice() {
@@ -251,11 +213,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         police.position = SCNVector3(-0.3, 0.04, 0.4)
         
         playArea.addChildNode(police)
-        
-      
-            enemyController.MoveToFirstPoint(enemy: police)
-  
-        }
+        enemyController.MoveToFirstPoint(enemy: police)
+    }
 
     
 
@@ -312,7 +271,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         }
     }
     
-    func InitializePlacBombButton()
+    func InitializePlaceBombButton()
     {
         let color = UIColor.black
         placeBombButton.isHidden = false
@@ -321,32 +280,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     
     }
     
-    func InitializeModels()
-    {
-        let floorScene = SCNScene(named: "playarea.scn")!
-        playAreaNode = floorScene.rootNode.childNode(withName: "floor", recursively: false)!
-        
-        let heroScene = SCNScene(named: "gangster.scn")!
-        playerNode = heroScene.rootNode.childNode(withName: "The_limited_1", recursively: false)!
-        let incItemScene = SCNScene(named: "candyCane.scn")!
-        incItemNode = incItemScene.rootNode.childNode(withName: "candyCane", recursively: false)!
-        let decItemScene = SCNScene(named: "broccoli.scn")!
-        decItemNode = decItemScene.rootNode.childNode(withName: "broccoli", recursively: false)!
-        
-        let fastItemScene = SCNScene(named: "lightningBolt.scn")!
-        fastItemNode = fastItemScene.rootNode.childNode(withName: "lightningBolt", recursively: false)!
-        let slowItemScene = SCNScene(named: "snowFlake.scn")!
-        slowItemNode = slowItemScene.rootNode.childNode(withName: "snowFlake", recursively: false)!
-        
-        let bombItemScene = SCNScene(named: "bombItemScene.scn")!
-        bombItemNode = bombItemScene.rootNode.childNode(withName: "Bomb", recursively: false)!
-        
-      
-        
-        let policeScene = SCNScene(named: "police.scn")!
-        policeNode = policeScene.rootNode.childNode(withName: "police", recursively: false)!
-
-    }
+    
     
     func CreateGame(hit: ARHitTestResult)
     {
@@ -363,21 +297,22 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         sceneView!.delegate = self
         CreatePlayArea(to: sceneView.scene.rootNode, hit: hit)
         CreatePlayer()
-        CreateIncItem()
-        CreateDecItem()
-        CreateFastItem()
-        CreateSlowItem()
-        CreateBombItem()
-    
+        //Spawn continously increment items
+        itemController.CreateIncItem(playArea: playArea)
+        //Timer to spawn Items
+        let timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(CreateItemSpawner), userInfo: nil, repeats: true)
+        
         CreatePolice()
-        InitializePlacBombButton()
+        InitializePlaceBombButton()
         
         scoreLabel.isHidden = false
 
         view.removeGestureRecognizer(tapGesture)
         skScene = joystickController.CreateJoysick(view: sceneView)
-        
-        //diese Reihenfolge lässt wenigstens nicht mehrere Playareas spawnen
+    }
+    
+    @objc func CreateItemSpawner(){
+        itemController.RandomItem(playArea: playArea)
     }
     
     func CreatePlayArea(to rootNode: SCNNode, hit: ARHitTestResult)
@@ -415,62 +350,6 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         playArea.addChildNode(player)
     }
     
-    func CreateIncItem() {
-        incItem = incItemNode.clone()
-        incItem.name = "IncItem"
-        incItem.scale = SCNVector3(0.0008, 0.0008, 0.0008)
-        
-        let incItemBodyShape = SCNPhysicsShape(geometry: SCNBox(width: 0.0008, height: 0.0008, length: 0.0008, chamferRadius: 0), options: [SCNPhysicsShape.Option.type: SCNPhysicsShape.ShapeType.boundingBox])
-        incItem.physicsBody = SCNPhysicsBody(type: .static, shape: incItemBodyShape)
-        incItem.physicsBody?.categoryBitMask = 2
-        incItem.physicsBody?.contactTestBitMask = 1
-        
-        let x = GenerateRandomCoordinateInPlane()
-        let z = GenerateRandomCoordinateInPlane()
-        incItem.position = SCNVector3(x, 0.02, z)
-        
-        
-        playArea.addChildNode(incItem)
-    }
-    
-    func CreateBombItem() {
-        bombItem = bombItemNode.clone()
-        bombItem.name = "BombItem"
-       
-        
-        let incItemBodyShape = SCNPhysicsShape(geometry: SCNBox(width: 0.0008, height: 0.0008, length: 0.0008, chamferRadius: 0), options: [SCNPhysicsShape.Option.type: SCNPhysicsShape.ShapeType.boundingBox])
-        bombItem.physicsBody = SCNPhysicsBody(type: .static, shape: incItemBodyShape)
-        bombItem.physicsBody?.categoryBitMask = 128
-        bombItem.physicsBody?.contactTestBitMask = 1
-        
-        let x = GenerateRandomCoordinateInPlane()
-        let z = GenerateRandomCoordinateInPlane()
-        bombItem.position = SCNVector3(x, 0.03, z)
-        bombItem.scale = SCNVector3(0.2, 0.2, 0.2)
-        bombItem.eulerAngles = SCNVector3(DegreeToRad(degree: -90), 0, 0)
-        
-        playArea.addChildNode(bombItem)
-    }
-    
-
-    
-    func CreateDecItem() {
-        decItem = decItemNode.clone()
-        decItem.name = "DecItem"
-        decItem.scale = SCNVector3(0.02, 0.02, 0.02)
-        
-        let decItemBodyShape = SCNPhysicsShape(geometry: SCNBox(width: 0.02, height: 0.02, length: 0.02, chamferRadius: 0), options: [SCNPhysicsShape.Option.type: SCNPhysicsShape.ShapeType.boundingBox])
-        decItem.physicsBody = SCNPhysicsBody(type: .static, shape: decItemBodyShape)
-        decItem.physicsBody?.categoryBitMask = 4
-        decItem.physicsBody?.contactTestBitMask = 1
-        
-        let x = GenerateRandomCoordinateInPlane()
-        let z = GenerateRandomCoordinateInPlane()
-        decItem.position = SCNVector3(x, 0.02, z)
-        
-        playArea.addChildNode(decItem)
-    }
-    
     public func updateJoystick() {
         
         if(isTouched == true)
@@ -486,11 +365,11 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             
             let touchPoint = CGPoint(x: touchXPoint, y: touchYPoint)
             
-             playerController.MovePlayer(moveDirection: direction, player: player, speed: speed)
+            playerController.MovePlayer(moveDirection: direction, player: player, speed: speed)
                 
-             touchXPoint = ClampNumber(value: touchXPoint, lowerBound: joystickController.minXValue, upperBound: joystickController.maxXValue)
+            touchXPoint = ClampNumber(value: touchXPoint, lowerBound: joystickController.minXValue, upperBound: joystickController.maxXValue)
                 
-               touchYPoint = ClampNumber(value: touchYPoint, lowerBound: joystickController.minYValue, upperBound: joystickController.maxYValue)
+            touchYPoint = ClampNumber(value: touchYPoint, lowerBound: joystickController.minYValue, upperBound: joystickController.maxYValue)
                 
             joystickController.SetJoystickPosition(xPosition: touchXPoint, yPosition: touchYPoint)
         }

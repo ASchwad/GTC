@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>888758410332-kh2foj2skd0cn07j0rqpuhhi0k1lb3mn.apps.googleusercontent.com</string>
+	<string>888758410332-goocctm0ies39gcqrvbusfc351ff8vfu.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.888758410332-kh2foj2skd0cn07j0rqpuhhi0k1lb3mn</string>
+	<string>com.googleusercontent.apps.888758410332-goocctm0ies39gcqrvbusfc351ff8vfu</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDOaUzHWOK0CyGYC9cj0Zb2jFKMETHEgz8</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>nw.grandtheftcandy546546465asdfs</string>
+	<string>grandtheftcandy</string>
 	<key>PROJECT_ID</key>
 	<string>grandtheftcandy-7b525</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,7 +29,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:888758410332:ios:6722630ba79fee9b</string>
+	<string>1:888758410332:ios:b4409ef5270aa9ea</string>
 	<key>DATABASE_URL</key>
 	<string>https://grandtheftcandy-7b525.firebaseio.com</string>
 </dict>
