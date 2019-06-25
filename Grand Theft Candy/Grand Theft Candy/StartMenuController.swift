@@ -27,6 +27,10 @@ class StartMenuController: UIViewController {
         
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        audioPlayer.setVolume(0, fadeDuration: 2)
+    }
+    
     @IBAction func onClick(_ sender: UIButton) {
         // fades down volume, can be stopped aswell - but feels to abrupt
         // TODO: await a callback to stop music after fade
