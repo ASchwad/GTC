@@ -10,11 +10,11 @@ import Foundation
 import ARKit
 
 class HotBomb {
-    
+    var explosionNode: SCNNode!
     var isDestroyed: Bool = false
     var hotBombNode: SCNNode!
-    
-    var explosionNode: SCNNode!
+     var playAreaNode: SCNNode!
+
     
     init(placePosition: SCNVector3, playArea: SCNNode)
     {
@@ -34,6 +34,7 @@ class HotBomb {
         hotBombNode.position = placePosition
         hotBombNode.position.y = 0.03
         hotBombNode.highlightNodeWithFrequence(1, materialIndex: 1)
+        playAreaNode = playArea
         playArea.addChildNode(hotBombNode)
     }
     
@@ -42,11 +43,32 @@ class HotBomb {
     }
     
     @objc func Destroy(){
+            if(hotBombNode.parent != nil)
+            {
+                hotBombNode.removeFromParentNode()
+                SelfExplosion()
+            }
+        }
+    
         
-        if(isDestroyed == false){
-            hotBombNode.removeFromParentNode()
-            isDestroyed = true
+        func SelfExplosion() {
+            let explosion =
+                SCNParticleSystem(named: "explosionParticles.scnp", inDirectory:
+                    nil)!
+            
+            explosionNode = SCNNode()
+            explosionNode.transform = hotBombNode.transform
+            explosionNode.scale = SCNVector3(0.01, 0.01, 0.01)
+            explosion.particleSize = 0.004
+            
+            playAreaNode.addChildNode(explosionNode)
+            explosionNode.addParticleSystem(explosion)
+            
+            let timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(DestroyParticleSystem), userInfo: nil, repeats: false)
         }
        
-    }    
+        @objc func DestroyParticleSystem()
+        {
+            explosionNode.removeFromParentNode()
+        }
 }
