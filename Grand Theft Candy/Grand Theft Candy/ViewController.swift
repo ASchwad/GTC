@@ -80,8 +80,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         super.viewDidLoad()
         
         arController.InitializeARController(to: sceneView)
-        arController.ShowDebugHints()
-        
+    
         itemController.InitializeItems()
         InitializeModels()
         placeBombButton.isHidden = true
@@ -96,8 +95,6 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         sceneView.scene.physicsWorld.contactDelegate = self
         sceneView.isMultipleTouchEnabled = true
     }
-    
-    
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
         print (contact.nodeA.name! + "   " + contact.nodeB.name!)
