@@ -157,7 +157,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             }
         }
         
-        if (contact.nodeA.name == "Police" && contact.nodeB.name == "HotBomb" )
+         if (contact.nodeA.name == "Police" && contact.nodeB.name == "HotBomb" || contact.nodeA.name == "HotBomb" && contact.nodeB.name == "Police")
         {
             var contactNode:SCNNode!
             var policeNode:SCNNode!
