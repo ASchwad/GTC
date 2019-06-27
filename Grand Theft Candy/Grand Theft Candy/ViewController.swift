@@ -47,13 +47,6 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     var speedItemsCounter = 0
     var speedItemsReseted = 0
 
-    
-    var police: SCNNode!
-    var policeNode: SCNNode!
-    var explodingPolice: SCNNode!
-    
-    var enemyReady = true
-
     var speed: float3!
     
     let arController = ARController()
@@ -80,6 +73,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         super.viewDidLoad()
         
         arController.InitializeARController(to: sceneView)
+        
+        enemyController.InitializeEnemy()
     
         itemController.InitializeItems()
         InitializeModels()
@@ -154,22 +149,33 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             }
         }
         
-         if (contact.nodeA.name == "Police" && contact.nodeB.name == "HotBomb" || contact.nodeA.name == "HotBomb" && contact.nodeB.name == "Police")
+         if ((contact.nodeA.name == "PoliceWithCirclePattern" || contact.nodeA.name == "PoliceWithDiagonalPattern" || contact.nodeA.name == "PoliceWithZigZagPattern") && contact.nodeB.name == "HotBomb" || contact.nodeA.name == "HotBomb" && (contact.nodeA.name == "PoliceWithCirclePattern" || contact.nodeA.name == "PoliceWithDiagonalPattern" || contact.nodeA.name == "PoliceWithZigZagPattern"))
         {
             var contactNode:SCNNode!
             var policeNode:SCNNode!
             //Check which of the returned Nodes A and B is the Gangster
-            if contact.nodeA.name == "Police"{
+            if contact.nodeA.name == "PoliceWithCirclePattern"{
                 contactNode = contact.nodeB
                 policeNode = contact.nodeA
-            }else{
+                enemyController.setEnemiesWithCirclePattern(number: -1)
+            }
+            else if(contact.nodeA.name == "PoliceWithDiagonalPattern") {
+                contactNode = contact.nodeB
+                policeNode = contact.nodeA
+                enemyController.setEnemiesWithDiagonalPattern(number: -1)
+            }
+            else if(contact.nodeA.name == "PoliceWithZigZagPattern") {
+                contactNode = contact.nodeB
+                policeNode = contact.nodeA
+                enemyController.setEnemiesWithZigZagPattern(number: -1)
+            }
+            else{
                 contactNode = contact.nodeA
                 policeNode = contact.nodeB
             }
             score += 5
             scoreLabel.text = "Score: \(score)"
             
-            CreatePolice()
             bombController.PerformExplosion(contactNode: contactNode, playArea: playArea)
             enemyController.DestroyPolice(police: policeNode)
             
@@ -185,8 +191,6 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         
         let heroScene = SCNScene(named: "gangster.scn")!
         playerNode = heroScene.rootNode.childNode(withName: "The_limited_1", recursively: false)!
-        let policeScene = SCNScene(named: "police.scn")!
-        policeNode = policeScene.rootNode.childNode(withName: "police", recursively: false)!
     }
 
     
@@ -198,22 +202,6 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             vc?.score = score
         }
     }
-    
-    func CreatePolice() {
-        police = policeNode.clone()
-        police.name = "Police"
-        
-        let box = SCNBox(width: 0.06, height: 0.06, length: 0.06, chamferRadius: 0)
-        police.physicsBody = SCNPhysicsBody(type: .static, shape: SCNPhysicsShape(geometry: box, options: nil))
-        police.physicsBody?.categoryBitMask = 64
-        police.physicsBody?.contactTestBitMask = 1 
-        police.position = SCNVector3(-0.3, 0.04, 0.4)
-        
-        playArea.addChildNode(police)
-        enemyController.MoveToFirstPoint(enemy: police)
-    }
-
-    
 
     
     @objc func ResetSpeed(){
@@ -298,8 +286,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         itemController.CreateIncItem(playArea: playArea)
         //Timer to spawn Items
         let timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(CreateItemSpawner), userInfo: nil, repeats: true)
+        let timerForEnemy = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(CreateEnemySpawner), userInfo: nil, repeats: true)
         
-        CreatePolice()
         InitializePlaceBombButton()
         
         scoreLabel.isHidden = false
@@ -311,6 +299,12 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     @objc func CreateItemSpawner(){
         itemController.RandomItem(playArea: playArea)
     }
+    
+    @objc func CreateEnemySpawner(){
+        enemyController.CreateEnemies(playArea: playArea, score: score)
+    }
+    
+
     
     func CreatePlayArea(to rootNode: SCNNode, hit: ARHitTestResult)
     {
