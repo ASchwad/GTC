@@ -24,12 +24,37 @@ var timerForZag = 0
 var police: SCNNode!
 var policeNode: SCNNode!
 
-var enemiesOnPlayArea = 0
-var enemiesWithCirclePattern = 0
-var enemiesWithDiagonalPattern = 0
-var enemiesWithZigZagPattern = 0
-
 final class EnemyController {
+    var _enemiesWithCirclePattern: Int = 0
+    var _enemiesWithDiagonalPattern: Int = 0
+    var _enemiesWithZigZagPattern: Int = 0
+    
+    var enemiesWithCirclePattern: Int {
+        get {
+            return self._enemiesWithCirclePattern
+        }
+        set(newValue) {
+            self._enemiesWithCirclePattern = newValue
+        }
+    }
+    
+    var enemiesWithDiagonalPattern: Int {
+        get {
+            return self._enemiesWithDiagonalPattern
+        }
+        set(newValue) {
+            self._enemiesWithDiagonalPattern = newValue
+        }
+    }
+    
+    var enemiesWithZigZagPattern: Int {
+        get {
+            return self._enemiesWithZigZagPattern
+        }
+        set(newValue) {
+            self._enemiesWithZigZagPattern = newValue
+        }
+    }
     
     //circle pattern
     func MoveInCircle(enemy: SCNNode) {
@@ -229,8 +254,7 @@ final class EnemyController {
         playArea.addChildNode(police)
         
         MoveInCircle(enemy: police)
-        enemiesOnPlayArea = enemiesOnPlayArea + 1
-        enemiesWithCirclePattern = enemiesWithCirclePattern + 1
+        self.enemiesWithCirclePattern = self.enemiesWithCirclePattern + 1
         
     }
     
@@ -248,8 +272,7 @@ final class EnemyController {
         playArea.addChildNode(police)
         
         MoveDiagonal(enemy: police)
-        enemiesOnPlayArea = enemiesOnPlayArea + 1
-        enemiesWithDiagonalPattern = enemiesWithDiagonalPattern + 1
+        self.enemiesWithDiagonalPattern = self.enemiesWithDiagonalPattern + 1
         
     }
     
@@ -266,24 +289,24 @@ final class EnemyController {
         playArea.addChildNode(police)
         
         MoveZigZag(enemy: police)
-        enemiesOnPlayArea = enemiesOnPlayArea + 1
-        enemiesWithZigZagPattern = enemiesWithZigZagPattern + 1
+        self.enemiesWithZigZagPattern = self.enemiesWithZigZagPattern + 1
         
     }
     
     @objc func CreateEnemies(playArea: SCNNode, score: Int) {
-        if(score >= 5 && enemiesWithCirclePattern < 1) {
+        if(score >= 5 && self.enemiesWithCirclePattern < 1) {
             CreatePoliceWithCirclePattern(playArea: playArea)
         }
-        if(score >= 10 && enemiesWithDiagonalPattern < 1) {
+        if(score >= 10 && self.enemiesWithDiagonalPattern < 1) {
             CreatePoliceWithDiagonalPattern(playArea: playArea)
         }
-        if(score >= 15 && enemiesWithZigZagPattern < 1) {
+        if(score >= 15 && self.enemiesWithZigZagPattern < 1) {
             CreatePoliceWithZigZagPattern(playArea: playArea)
         }
     }
     
-    func getEnemiesWithCirclePattern() -> Int {
+    
+    /*func getEnemiesWithCirclePattern() -> Int {
         return enemiesWithCirclePattern
     }
     
@@ -296,16 +319,16 @@ final class EnemyController {
     }
     
     func setEnemiesWithCirclePattern(number: Int) {
-        enemiesWithCirclePattern += number
+        enemiesWithCirclePattern = number
     }
     
     func setEnemiesWithDiagonalPattern(number: Int) {
-        enemiesWithDiagonalPattern += number
+        enemiesWithDiagonalPattern = number
     }
     
     func setEnemiesWithZigZagPattern(number: Int) {
-        enemiesWithZigZagPattern += number
-    }
+        enemiesWithZigZagPattern = number
+    }*/
     
     @objc func DestroyPoliceNode(){
         

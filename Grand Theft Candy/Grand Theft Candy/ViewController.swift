@@ -134,12 +134,19 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             else if contactNode.physicsBody?.categoryBitMask == 32 {
                 if(state != .gameOver){
                     self.performSegue(withIdentifier: "GameOver", sender: Any?.self)
+                    enemyController.enemiesWithZigZagPattern = 0
+                    enemyController.enemiesWithDiagonalPattern = 0
+                    enemyController.enemiesWithCirclePattern = 0
                     state = .gameOver
+                    
                 }
             }
             else if contactNode.physicsBody?.categoryBitMask == 64 {
                 if(state != .gameOver){
                     self.performSegue(withIdentifier: "GameOver", sender: Any?.self)
+                    enemyController.enemiesWithZigZagPattern = 0
+                    enemyController.enemiesWithDiagonalPattern = 0
+                    enemyController.enemiesWithCirclePattern = 0
                     state = .gameOver
                 }
             }
@@ -157,17 +164,17 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             if contact.nodeA.name == "PoliceWithCirclePattern"{
                 contactNode = contact.nodeB
                 policeNode = contact.nodeA
-                enemyController.setEnemiesWithCirclePattern(number: -1)
+                enemyController.enemiesWithCirclePattern = enemyController.enemiesWithCirclePattern-1
             }
             else if(contact.nodeA.name == "PoliceWithDiagonalPattern") {
                 contactNode = contact.nodeB
                 policeNode = contact.nodeA
-                enemyController.setEnemiesWithDiagonalPattern(number: -1)
+                enemyController.enemiesWithDiagonalPattern = enemyController.enemiesWithDiagonalPattern-1
             }
             else if(contact.nodeA.name == "PoliceWithZigZagPattern") {
                 contactNode = contact.nodeB
                 policeNode = contact.nodeA
-                enemyController.setEnemiesWithZigZagPattern(number: -1)
+                enemyController.enemiesWithZigZagPattern = enemyController.enemiesWithZigZagPattern-1
             }
             else{
                 contactNode = contact.nodeA
