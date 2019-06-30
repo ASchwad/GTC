@@ -19,6 +19,8 @@ class ItemController {
     var decItem: SCNNode!
     var bombItemNode: SCNNode!
     var bombItem: SCNNode!
+    var starItemNode : SCNNode!
+    var starItem : SCNNode!
     
     func InitializeItems()
     {
@@ -34,6 +36,9 @@ class ItemController {
         
         let bombItemScene = SCNScene(named: "bombItemScene.scn")!
         bombItemNode = bombItemScene.rootNode.childNode(withName: "Bomb", recursively: false)!
+        
+        let starItemScene = SCNScene(named: "facestar.scn")!
+        starItemNode = starItemScene.rootNode.childNode(withName: "Mesh", recursively: false)!
     }
     
     @objc func RandomItem(playArea: SCNNode!){
@@ -42,6 +47,8 @@ class ItemController {
         if(number <= 20){
             //bombe
             CreateBombItem(playArea: playArea)
+            // stern, 20% W'keit?
+            CreateStarItem(playArea: playArea)
         }else if(number<=50){
             //speed
             CreateFastItem(playArea: playArea)
@@ -52,7 +59,7 @@ class ItemController {
             //Dec Item
             CreateDecItem(playArea: playArea)
         }else{
-            //Stern?
+            
         }
     }
     
@@ -144,6 +151,27 @@ class ItemController {
         
         playArea.addChildNode(bombItem)
         removeNodeFromPlayArea(playArea: playArea, uuid: uuid)
+    }
+    
+    func CreateStarItem(playArea: SCNNode!) {
+        starItem = starItemNode.clone()
+        let uuid = UUID().uuidString
+        starItem.name = uuid
+        
+        starItem.scale = SCNVector3(0.02, 0.02, 0.02)
+        
+        let starItemBodyShape = SCNPhysicsShape(geometry: SCNBox(width: 0.02, height: 0.02, length: 0.02, chamferRadius: 0), options: [SCNPhysicsShape.Option.type: SCNPhysicsShape.ShapeType.boundingBox])
+        starItem.physicsBody = SCNPhysicsBody(type: .static, shape: starItemBodyShape)
+        
+        starItem.physicsBody?.categoryBitMask = 256
+        starItem.physicsBody?.contactTestBitMask = 1
+        
+        giveNodeRandomCoordinatesInPlane(node: starItem)
+        
+        starItem.runAction(SCNAction.rotateBy(x: 0, y: 15, z: 0, duration: 20))
+        playArea.addChildNode(starItem)
+        removeNodeFromPlayArea(playArea: playArea, uuid: uuid)
+        
     }
     
     func giveNodeRandomCoordinatesInPlane(node: SCNNode){

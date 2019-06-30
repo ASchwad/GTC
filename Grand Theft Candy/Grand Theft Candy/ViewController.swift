@@ -42,6 +42,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     
     var isSlow = false
     var isFast = false
+    var playerIsInvincible = false
     
     // So the reset speed timer knows if it should actually reset the speed (sometimes it shouldnt reset because another speed item was activated meanwhile)
     var speedItemsCounter = 0
@@ -142,17 +143,41 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
                 }
             }
             else if contactNode.physicsBody?.categoryBitMask == 64 {
-                if(state != .gameOver){
+                if(state != .gameOver && !playerIsInvincible){
                     self.performSegue(withIdentifier: "GameOver", sender: Any?.self)
                     enemyController.enemiesWithZigZagPattern = 0
                     enemyController.enemiesWithDiagonalPattern = 0
                     enemyController.enemiesWithCirclePattern = 0
                     state = .gameOver
                 }
+                if (playerIsInvincible) {
+                    // zerstöre polizei
+                    bombController.PerformExplosion(contactNode: contactNode, playArea: playArea)
+                    enemyController.DestroyPolice(police: contactNode)
+                    
+                    contactNode.removeFromParentNode()
+                }
             }
             else if contactNode.physicsBody?.categoryBitMask == 128 {
                 PickUpBomb()
                 contactNode.removeFromParentNode()
+            }
+            else if contactNode.physicsBody?.categoryBitMask == 256 {
+                contactNode.physicsBody = nil // seperat removed, weil sonst die Funktion mehrmals aufgerufen wird
+                contactNode.removeFromParentNode()
+                
+                playerIsInvincible = true
+                
+                // material heißt Mat.3 (Head und Body benutzen das selbe, deswegen ändert sich auch Farbe der beiden)
+                // Spieler wird blau^^
+                let oldContents = player.childNode(withName: "Head-1", recursively: false)?.geometry?.firstMaterial?.diffuse.contents
+                player.childNode(withName: "Head-1", recursively: false)?.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+                
+                let delay = 3 // seconds of invincibilty
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(delay)) {
+                    self.playerIsInvincible = false
+                    self.player.childNode(withName: "Head-1", recursively: false)?.geometry?.firstMaterial?.diffuse.contents = oldContents
+                }
             }
         }
         

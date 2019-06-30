@@ -28,6 +28,7 @@
 		8447DF3822A1482D00BF5365 /* JoystickController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8447DF3722A1482D00BF5365 /* JoystickController.swift */; };
 		847BE2682295C0FB003A1A35 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 847BE2672295C0FB003A1A35 /* Helpers.swift */; };
 		84A20AD322BFA19800602CA9 /* bombItemScene.scn in Resources */ = {isa = PBXBuildFile; fileRef = 84A20AD222BFA19800602CA9 /* bombItemScene.scn */; };
+		84AABEEF22C786850006F688 /* facestar.scn in Resources */ = {isa = PBXBuildFile; fileRef = 84AABEEE22C786850006F688 /* facestar.scn */; };
 		84B451F022BCCC76006F0AA0 /* HotBomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84B451EF22BCCC76006F0AA0 /* HotBomb.swift */; };
 		84DEA99422AE535200174057 /* Surface.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 84DEA99322AE535200174057 /* Surface.jpeg */; };
 		84EF71E922BCF3E7007520D5 /* spark.png in Resources */ = {isa = PBXBuildFile; fileRef = 84EF71E722BCF3E7007520D5 /* spark.png */; };
@@ -67,6 +68,7 @@
 		8447DF3722A1482D00BF5365 /* JoystickController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoystickController.swift; sourceTree = "<group>"; };
 		847BE2672295C0FB003A1A35 /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		84A20AD222BFA19800602CA9 /* bombItemScene.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = bombItemScene.scn; sourceTree = "<group>"; };
+		84AABEEE22C786850006F688 /* facestar.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = facestar.scn; sourceTree = "<group>"; };
 		84B451EF22BCCC76006F0AA0 /* HotBomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotBomb.swift; sourceTree = "<group>"; };
 		84DEA99322AE535200174057 /* Surface.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Surface.jpeg; sourceTree = "<group>"; };
 		84EF71E722BCF3E7007520D5 /* spark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spark.png; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 		D1C4D79322B149E60019CF12 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				84AABEEE22C786850006F688 /* facestar.scn */,
 				239A693B22B65666009B5753 /* snowFlake.scn */,
 				233C094F22B5A743002451C0 /* lightningBolt.scn */,
 				2358F5DE22B572D8005A2250 /* candyCane.scn */,
@@ -266,6 +269,7 @@
 			files = (
 				842B849E22BF961B006EE548 /* hotBombScene.scn in Resources */,
 				D1C4D79222B149DD0019CF12 /* gta_sanandreas.mp3 in Resources */,
+				84AABEEF22C786850006F688 /* facestar.scn in Resources */,
 				84EF71EC22BCF5D2007520D5 /* explosionParticles.scnp in Resources */,
 				2358F5BD22B521DB005A2250 /* broccoli.scn in Resources */,
 				841BD7F8229579B100B87AF3 /* LaunchScreen.storyboard in Resources */,
