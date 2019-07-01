@@ -29,6 +29,14 @@ final class EnemyController {
     var _enemiesWithDiagonalPattern: Int = 0
     var _enemiesWithZigZagPattern: Int = 0
     
+    var _multiplicatorForCircle = 1.0
+    var _multiplicatorForDiagonal = 1.0
+    var _multiplicatorForZigZag = 1.0
+    
+    var firstEnemyWithCirclePattern = true
+    var firstEnemyWithDiagonalPattern = true
+    var firstEnemyWithZigZagPattern = true
+    
     var enemiesWithCirclePattern: Int {
         get {
             return self._enemiesWithCirclePattern
@@ -57,7 +65,7 @@ final class EnemyController {
     }
     
     //circle pattern
-    func MoveInCircle(enemy: SCNNode) {
+    @objc func MoveInCircle(enemy: SCNNode, duration: Double) {
         
         func MoveToFirstPoint() {
             let forwardX = 0.5
@@ -68,7 +76,7 @@ final class EnemyController {
                 isCycleCompleted = false
                 
             }
-            let moveAction = SCNAction.moveBy(x: CGFloat(forwardX), y: 0, z: 0, duration: 2)
+            let moveAction = SCNAction.moveBy(x: CGFloat(forwardX), y: 0, z: 0, duration: duration)
             enemy.runAction(moveAction, completionHandler: {
                 if shouldContinueToMove { // Configure your `Bool` to check whether to continue to move your node or not.
                     MoveToSecondPoint()
@@ -80,7 +88,7 @@ final class EnemyController {
                 = -0.5
             let rotateAction = SCNAction.rotate(by: CGFloat(DegreeToRad(degree: 90)), around: SCNVector3(0,1,0), duration: 0.3)
             enemy.runAction(rotateAction)
-            let moveAction = SCNAction.moveBy(x: 0, y: 0, z: CGFloat(pointZ), duration: 2)
+            let moveAction = SCNAction.moveBy(x: 0, y: 0, z: CGFloat(pointZ), duration: duration)
             enemy.runAction(moveAction, completionHandler: {
                 if shouldContinueToMove { // Configure your `Bool` to check whether to continue to move your node or not.
                     MoveToThirdPoint()
@@ -94,7 +102,7 @@ final class EnemyController {
             let backX = -0.5
             let rotateAction = SCNAction.rotate(by: CGFloat(DegreeToRad(degree: 90)), around: SCNVector3(0,1,0), duration: 0.3)
             enemy.runAction(rotateAction)
-            let moveAction = SCNAction.moveBy(x: CGFloat(backX), y: 0, z: 0, duration: 2)
+            let moveAction = SCNAction.moveBy(x: CGFloat(backX), y: 0, z: 0, duration: duration)
             enemy.runAction(moveAction, completionHandler: {
                 if shouldContinueToMove { // Configure your `Bool` to check whether to continue to move your node or not.
                     MoveToFourthPoint()
@@ -104,7 +112,7 @@ final class EnemyController {
         
         func MoveToFourthPoint() {
             let backZ = 0.5
-            let moveAction = SCNAction.moveBy(x: 0, y: 0, z: CGFloat(backZ), duration: 2)
+            let moveAction = SCNAction.moveBy(x: 0, y: 0, z: CGFloat(backZ), duration: duration)
             let rotateAction = SCNAction.rotate(by: CGFloat(DegreeToRad(degree: 90)), around: SCNVector3(0,1,0), duration: 0.3)
             enemy.runAction(rotateAction)
             enemy.runAction(moveAction, completionHandler: {
@@ -116,13 +124,15 @@ final class EnemyController {
             })
         }
         
-        MoveToFirstPoint()
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (nil) in
+            MoveToFirstPoint()
+        }
         
         
     }
     
     //diagonal-pattern
-    func MoveDiagonal(enemy: SCNNode) {
+    func MoveDiagonal(enemy: SCNNode, duration: Double) {
         
         func MoveToFirstCorner() {
             let forwardZ = -0.7
@@ -132,7 +142,7 @@ final class EnemyController {
                 enemy.runAction(rotateAction)
                 firstLineCompleted = false
             }
-            let moveAction = SCNAction.moveBy(x: CGFloat(forwardX), y: 0, z: CGFloat(forwardZ), duration: 9)
+            let moveAction = SCNAction.moveBy(x: CGFloat(forwardX), y: 0, z: CGFloat(forwardZ), duration: duration)
             enemy.runAction(moveAction, completionHandler: {
                 if shouldContinueToMove { // Configure your `Bool` to check whether to
                     MoveToSecondCorner()
@@ -144,7 +154,7 @@ final class EnemyController {
             let forwardX = -0.7
             let rotateAction = SCNAction.rotate(by: CGFloat(DegreeToRad(degree: 180)), around: SCNVector3(0,1,0), duration: 0.3)
             enemy.runAction(rotateAction)
-            let moveAction = SCNAction.moveBy(x: CGFloat(forwardX), y: 0, z: CGFloat(forwardZ), duration: 9)
+            let moveAction = SCNAction.moveBy(x: CGFloat(forwardX), y: 0, z: CGFloat(forwardZ), duration: duration)
             enemy.runAction(moveAction, completionHandler: {
                 if shouldContinueToMove { // Configure your `Bool` to check whether to continue to move your node or not.
                     firstLineCompleted = true
@@ -153,12 +163,14 @@ final class EnemyController {
                 }
             }) }
         
-        MoveToFirstCorner()
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (nil) in
+            MoveToFirstCorner()
+        }
         
     }
     
     //zigZag-pattern
-    func MoveZigZag(enemy: SCNNode) {
+    func MoveZigZag(enemy: SCNNode, duration: Double) {
         
         func MoveZig() {
             let forwardX = 0.2
@@ -167,7 +179,7 @@ final class EnemyController {
                 enemy.runAction(rotateAction)
                 isZigCompleted = false
             }
-            let moveAction = SCNAction.moveBy(x: CGFloat(forwardX), y: 0, z: 0, duration: 2)
+            let moveAction = SCNAction.moveBy(x: CGFloat(forwardX), y: 0, z: 0, duration: duration)
             enemy.runAction(moveAction, completionHandler: {
                 MoveDown()
             })
@@ -176,7 +188,7 @@ final class EnemyController {
                 let pointZ = 0.2
                 let rotateAction = SCNAction.rotate(by: CGFloat(DegreeToRad(degree: -90)), around: SCNVector3(0,1,0), duration: 0.3)
                 enemy.runAction(rotateAction)
-                let moveAction = SCNAction.moveBy(x: 0, y: 0, z: CGFloat(pointZ), duration: 2)
+                let moveAction = SCNAction.moveBy(x: 0, y: 0, z: CGFloat(pointZ), duration: duration)
                 enemy.runAction(moveAction, completionHandler: {
                     if shouldContinueToMove { // Configure your `Bool` to check whether to continue to move your node or not.
                         isZigCompleted = true
@@ -203,16 +215,17 @@ final class EnemyController {
                 enemy.runAction(rotateAction)
                 isZagCompleted = false
             }
-            let moveAction = SCNAction.moveBy(x: CGFloat(backX), y: 0, z: 0, duration: 2)
+            let moveAction = SCNAction.moveBy(x: CGFloat(backX), y: 0, z: 0, duration: duration)
             enemy.runAction(moveAction, completionHandler: {
                 MoveUp()
             })
+            
             func MoveUp() {
                 let pointZ = -0.27
                 let rotateAction = SCNAction.rotate(by: CGFloat(DegreeToRad(degree: -90)), around: SCNVector3(0,1,0), duration: 0.3)
                 enemy.runAction(rotateAction)
                 
-                let moveAction = SCNAction.moveBy(x: 0, y: 0, z: CGFloat(pointZ), duration: 2)
+                let moveAction = SCNAction.moveBy(x: 0, y: 0, z: CGFloat(pointZ), duration: duration)
                 enemy.runAction(moveAction, completionHandler: {
                     if shouldContinueToMove { // Configure your `Bool` to check whether to continue to move your node or not.
                         isZagCompleted = true
@@ -232,7 +245,9 @@ final class EnemyController {
             }
         }
         
-        MoveZig()
+        Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { (nil) in
+            MoveZig()
+        }
         
     }
     
@@ -253,8 +268,7 @@ final class EnemyController {
         
         playArea.addChildNode(police)
         
-        MoveInCircle(enemy: police)
-        self.enemiesWithCirclePattern = self.enemiesWithCirclePattern + 1
+        MoveInCircle(enemy: police, duration: 2 * self._multiplicatorForCircle)
         
     }
     
@@ -271,8 +285,7 @@ final class EnemyController {
         
         playArea.addChildNode(police)
         
-        MoveDiagonal(enemy: police)
-        self.enemiesWithDiagonalPattern = self.enemiesWithDiagonalPattern + 1
+        MoveDiagonal(enemy: police, duration: 9 * self._multiplicatorForDiagonal)
         
     }
     
@@ -288,47 +301,67 @@ final class EnemyController {
         
         playArea.addChildNode(police)
         
-        MoveZigZag(enemy: police)
-        self.enemiesWithZigZagPattern = self.enemiesWithZigZagPattern + 1
+        MoveZigZag(enemy: police, duration: 2 * self._multiplicatorForZigZag)
+        
         
     }
     
     @objc func CreateEnemies(playArea: SCNNode, score: Int) {
-        if(score >= 5 && self.enemiesWithCirclePattern < 1) {
+        if(score >= 5 && self.enemiesWithCirclePattern < 1 && firstEnemyWithCirclePattern) {
             CreatePoliceWithCirclePattern(playArea: playArea)
+            if(self._multiplicatorForCircle >= 0.1) {
+                self._multiplicatorForCircle = self._multiplicatorForCircle - 0.1
+            }
+            self.enemiesWithCirclePattern = self.enemiesWithCirclePattern + 1
+            firstEnemyWithCirclePattern = false
         }
-        if(score >= 10 && self.enemiesWithDiagonalPattern < 1) {
+        else if(score >= 15 && self.enemiesWithDiagonalPattern < 1) {
             CreatePoliceWithDiagonalPattern(playArea: playArea)
+            if(self._multiplicatorForDiagonal >= 0.1) {
+                self._multiplicatorForDiagonal = self._multiplicatorForDiagonal - 0.1
+            }
+            self.enemiesWithDiagonalPattern = self.enemiesWithDiagonalPattern + 1
         }
-        if(score >= 15 && self.enemiesWithZigZagPattern < 1) {
+        else if(score >= 25 && self.enemiesWithZigZagPattern < 1) {
             CreatePoliceWithZigZagPattern(playArea: playArea)
+            if(self._multiplicatorForZigZag >= 0.1) {
+                self._multiplicatorForZigZag = self._multiplicatorForZigZag - 0.1
+            }
+            self.enemiesWithZigZagPattern = self.enemiesWithZigZagPattern + 1
         }
+        else if(score >= 5 && self.enemiesWithCirclePattern < 1 && !firstEnemyWithCirclePattern) {
+            Timer.scheduledTimer(withTimeInterval: 6.0, repeats: false) { (nil) in
+                self.CreatePoliceWithCirclePattern(playArea: playArea)
+            }
+            if(self._multiplicatorForCircle >= 0.1) {
+                self._multiplicatorForCircle = self._multiplicatorForCircle - 0.1
+            }
+            self.enemiesWithCirclePattern = self.enemiesWithCirclePattern + 1
+        }
+        
+        else if(score >= 15 && self.enemiesWithDiagonalPattern < 1 && !firstEnemyWithDiagonalPattern) {
+            Timer.scheduledTimer(withTimeInterval: 6.0, repeats: false) { (nil) in
+                self.CreatePoliceWithDiagonalPattern(playArea: playArea)
+            }
+            if(self._multiplicatorForDiagonal >= 0.1) {
+                self._multiplicatorForDiagonal = self._multiplicatorForDiagonal - 0.1
+            }
+            self.enemiesWithDiagonalPattern = self.enemiesWithDiagonalPattern + 1
+        }
+        
+        else if(score >= 25 && self.enemiesWithZigZagPattern < 1 && !firstEnemyWithZigZagPattern) {
+            Timer.scheduledTimer(withTimeInterval: 6.0, repeats: false) { (nil) in
+                self.CreatePoliceWithZigZagPattern(playArea: playArea)
+            }
+            if(self._multiplicatorForZigZag >= 0.1) {
+                self._multiplicatorForZigZag = self._multiplicatorForZigZag - 0.1
+            }
+            self.enemiesWithZigZagPattern = self.enemiesWithZigZagPattern + 1
+        }
+
+       
     }
     
-    
-    /*func getEnemiesWithCirclePattern() -> Int {
-        return enemiesWithCirclePattern
-    }
-    
-    func getEnemiesWithDiagonalPattern() -> Int {
-        return enemiesWithDiagonalPattern
-    }
-    
-    func getEnemiesWithZigZagPattern() -> Int {
-        return enemiesWithZigZagPattern
-    }
-    
-    func setEnemiesWithCirclePattern(number: Int) {
-        enemiesWithCirclePattern = number
-    }
-    
-    func setEnemiesWithDiagonalPattern(number: Int) {
-        enemiesWithDiagonalPattern = number
-    }
-    
-    func setEnemiesWithZigZagPattern(number: Int) {
-        enemiesWithZigZagPattern = number
-    }*/
     
     @objc func DestroyPoliceNode(){
         
