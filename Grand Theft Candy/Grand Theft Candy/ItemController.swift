@@ -181,13 +181,35 @@ class ItemController {
     }
     
     func removeNodeFromPlayArea(playArea: SCNNode, uuid: String){
-        DispatchQueue.main.asyncAfter(deadline: .now() + 8.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5.0) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+                playArea.enumerateChildNodes{ (node, stop) in
+                    if(node.name == uuid){
+                        node.removeFromParentNode()
+                    }
+                }
+            }
             playArea.enumerateChildNodes{ (node, stop) in
                 if(node.name == uuid){
-                    node.removeFromParentNode()
+                    self.highlightNodeBeforeDeletion(0.15, node: node)
                 }
             }
         }
+    }
+    
+    func highlightNodeBeforeDeletion(_ duration: TimeInterval, node: SCNNode){
+        let highlightAction = SCNAction.customAction(duration: duration) { (node, elapsedTime) in
+            node.isHidden = true
+        }
+        
+        let unHighlightAction = SCNAction.customAction(duration: duration) { (node, elapsedTime) in
+            node.isHidden = false
+        }
+        
+        let pulseSequence = SCNAction.sequence([highlightAction, unHighlightAction])
+        let infiniteLoop = SCNAction.repeatForever(pulseSequence)
+        
+        node.runAction(infiniteLoop)
     }
 
 }
