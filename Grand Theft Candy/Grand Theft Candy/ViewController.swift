@@ -25,6 +25,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     @IBOutlet weak var placeBombButton: UIButton!
     var playAreaNode: SCNNode!
     var playArea: SCNNode!
+    var decorationNode: SCNNode!
+    var decoration: SCNNode!
     var playerNode: SCNNode!
     var player: SCNNode!
     var skScene: SKScene!
@@ -85,7 +87,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         view.addGestureRecognizer(tapGesture)
         sceneView.maximizeView()
         
-        sceneView.debugOptions = ARSCNDebugOptions.showPhysicsShapes
+        //sceneView.debugOptions = ARSCNDebugOptions.showPhysicsShapes
         scoreLabel.isHidden = true
         speed = playerController.defaultSpeed
         sceneView.scene.physicsWorld.contactDelegate = self
@@ -221,6 +223,9 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         let floorScene = SCNScene(named: "playarea.scn")!
         playAreaNode = floorScene.rootNode.childNode(withName: "floor", recursively: false)!
         
+        let decorationScene = SCNScene(named: "playarea.scn")!
+        decorationNode = floorScene.rootNode.childNode(withName: "decoration", recursively: false)!
+        
         let heroScene = SCNScene(named: "gangster.scn")!
         playerNode = heroScene.rootNode.childNode(withName: "The_limited_1", recursively: false)!
     }
@@ -352,11 +357,19 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             node.physicsBody?.categoryBitMask = 32
             node.physicsBody?.contactTestBitMask = 1
         }
-        playArea.geometry?.firstMaterial?.diffuse.contents  = UIColor.green
         playArea.scale = SCNVector3(0.5,0.5,0.5)
-      
+        
+        CreateDecoration()
         
         rootNode.addChildNode(playArea)
+    }
+    
+    func CreateDecoration()
+    {
+        decoration = decorationNode.clone()
+        decoration.name = "Decoration"
+        
+        playArea.addChildNode(decoration)
     }
     
     func CreatePlayer() {

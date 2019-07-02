@@ -40,6 +40,11 @@
 		D16BE16422C2C8360094813A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D16BE16322C2C8360094813A /* GoogleService-Info.plist */; };
 		D1B7D6C722B168890044D362 /* GTC Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D1B7D6C622B168880044D362 /* GTC Logo.png */; };
 		D1B7D6CB22B2718B0044D362 /* GameOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B7D6CA22B2718B0044D362 /* GameOverController.swift */; };
+		D1BB30EF22CB5D5700ED2A25 /* texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D1BB30EA22CB5D5600ED2A25 /* texture.jpg */; };
+		D1BB30F022CB5D5700ED2A25 /* houses.png in Resources */ = {isa = PBXBuildFile; fileRef = D1BB30EB22CB5D5600ED2A25 /* houses.png */; };
+		D1BB30F122CB5D5700ED2A25 /* fence.png in Resources */ = {isa = PBXBuildFile; fileRef = D1BB30EC22CB5D5600ED2A25 /* fence.png */; };
+		D1BB30F222CB5D5700ED2A25 /* grey-concrete-texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D1BB30ED22CB5D5600ED2A25 /* grey-concrete-texture.jpg */; };
+		D1BB30F322CB5D5700ED2A25 /* leaves.png in Resources */ = {isa = PBXBuildFile; fileRef = D1BB30EE22CB5D5700ED2A25 /* leaves.png */; };
 		D1C4D78522B147480019CF12 /* StartMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C4D78422B147470019CF12 /* StartMenuController.swift */; };
 		D1C4D79222B149DD0019CF12 /* gta_sanandreas.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D1C4D79022B149D40019CF12 /* gta_sanandreas.mp3 */; };
 /* End PBXBuildFile section */
@@ -82,6 +87,11 @@
 		D16BE16322C2C8360094813A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D1B7D6C622B168880044D362 /* GTC Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GTC Logo.png"; sourceTree = "<group>"; };
 		D1B7D6CA22B2718B0044D362 /* GameOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverController.swift; sourceTree = "<group>"; };
+		D1BB30EA22CB5D5600ED2A25 /* texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = texture.jpg; sourceTree = "<group>"; };
+		D1BB30EB22CB5D5600ED2A25 /* houses.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = houses.png; sourceTree = "<group>"; };
+		D1BB30EC22CB5D5600ED2A25 /* fence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fence.png; sourceTree = "<group>"; };
+		D1BB30ED22CB5D5600ED2A25 /* grey-concrete-texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "grey-concrete-texture.jpg"; sourceTree = "<group>"; };
+		D1BB30EE22CB5D5700ED2A25 /* leaves.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leaves.png; sourceTree = "<group>"; };
 		D1C4D78422B147470019CF12 /* StartMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartMenuController.swift; sourceTree = "<group>"; };
 		D1C4D79022B149D40019CF12 /* gta_sanandreas.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = gta_sanandreas.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,6 +193,11 @@
 		D1C4D79422B14A070019CF12 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D1BB30EC22CB5D5600ED2A25 /* fence.png */,
+				D1BB30ED22CB5D5600ED2A25 /* grey-concrete-texture.jpg */,
+				D1BB30EB22CB5D5600ED2A25 /* houses.png */,
+				D1BB30EE22CB5D5700ED2A25 /* leaves.png */,
+				D1BB30EA22CB5D5600ED2A25 /* texture.jpg */,
 				D1B7D6C622B168880044D362 /* GTC Logo.png */,
 				84DEA99322AE535200174057 /* Surface.jpeg */,
 				D1C4D79022B149D40019CF12 /* gta_sanandreas.mp3 */,
@@ -270,18 +285,23 @@
 				842B849E22BF961B006EE548 /* hotBombScene.scn in Resources */,
 				D1C4D79222B149DD0019CF12 /* gta_sanandreas.mp3 in Resources */,
 				84AABEEF22C786850006F688 /* facestar.scn in Resources */,
+				D1BB30F222CB5D5700ED2A25 /* grey-concrete-texture.jpg in Resources */,
 				84EF71EC22BCF5D2007520D5 /* explosionParticles.scnp in Resources */,
 				2358F5BD22B521DB005A2250 /* broccoli.scn in Resources */,
+				D1BB30F022CB5D5700ED2A25 /* houses.png in Resources */,
 				841BD7F8229579B100B87AF3 /* LaunchScreen.storyboard in Resources */,
 				84A20AD322BFA19800602CA9 /* bombItemScene.scn in Resources */,
 				840C704722A0097F008EB80F /* gangster.scn in Resources */,
+				D1BB30F122CB5D5700ED2A25 /* fence.png in Resources */,
 				D1B7D6C722B168890044D362 /* GTC Logo.png in Resources */,
 				841BD7F5229579B100B87AF3 /* Assets.xcassets in Resources */,
+				D1BB30F322CB5D5700ED2A25 /* leaves.png in Resources */,
 				233C095022B5A773002451C0 /* lightningBolt.scn in Resources */,
 				D16BE16422C2C8360094813A /* GoogleService-Info.plist in Resources */,
 				84DEA99422AE535200174057 /* Surface.jpeg in Resources */,
 				23852BF022B1823200D46FF6 /* police.scn in Resources */,
 				840C704E22A1114E008EB80F /* playarea.scn in Resources */,
+				D1BB30EF22CB5D5700ED2A25 /* texture.jpg in Resources */,
 				239A693C22B65666009B5753 /* snowFlake.scn in Resources */,
 				841BD7F0229579B000B87AF3 /* Main.storyboard in Resources */,
 				2358F5E022B57376005A2250 /* candyCane.scn in Resources */,
