@@ -22,6 +22,17 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     @IBOutlet var sceneView: ARSCNView!
     @IBOutlet weak var scoreLabel: UILabel!
     
+
+    @IBOutlet weak var bombStackOne: UIButton!
+    
+    
+    @IBOutlet weak var bombStackTwo: UIButton!
+    
+    
+    @IBOutlet weak var bombStackThree: UIButton!
+    
+    
+    var bombStackRow = [UIButton]()
     @IBOutlet weak var placeBombButton: UIButton!
     var playAreaNode: SCNNode!
     var playArea: SCNNode!
@@ -81,6 +92,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     
         itemController.InitializeItems()
         InitializeModels()
+        InitializeBombStack()
+        
         placeBombButton.isHidden = true
         UIApplication.shared.isIdleTimerDisabled = true
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(onTap(_:)))
@@ -95,6 +108,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     }
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
+       
         print (contact.nodeA.name! + "   " + contact.nodeB.name!)
         if (contact.nodeA.name == "Gangster" || contact.nodeB.name == "Gangster" )
         {
@@ -160,7 +174,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
                     contactNode.removeFromParentNode()
                 }
             }
-            else if contactNode.physicsBody?.categoryBitMask == 128 {
+            else if contactNode.physicsBody?.categoryBitMask == 128 && bombCount <= 2{
                 PickUpBomb()
                 contactNode.removeFromParentNode()
             }
@@ -293,13 +307,26 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         }
     }
     
+    fileprivate func InitializeBombStack() {
+        bombStackRow.append(bombStackOne)
+        bombStackRow.append(bombStackTwo)
+        bombStackRow.append(bombStackThree)
+        
+        for button in bombStackRow{
+            button.isHidden = true
+            button.layer.cornerRadius = 20
+        }
+    }
+    
     func InitializePlaceBombButton()
     {
-        let color = UIColor.black
-        placeBombButton.isHidden = false
+        let color = UIColor.clear
         placeBombButton.backgroundColor = color
+        placeBombButton.layer.cornerRadius = 50
+        placeBombButton.isHidden = false
+        
         placeBombButton.alpha = 0.5
-    
+
     }
     
     
@@ -415,7 +442,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     
     func PickUpBomb ()
     {
-        if (bombCount <= 5){
+        if (bombCount <= 2){
             bombCount+=1
             BombUIUpdate()
         }
@@ -436,13 +463,30 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
 
     func BombUIUpdate()
     {
+        var iterator = 1
+        for button in bombStackRow{
+            
+            if(iterator > bombCount)
+            {
+                if(button.isHidden == false){
+                    button.isHidden = true
+                }
+            }
+            else
+            {
+                if(button.isHidden == true){
+                    button.isHidden = false
+                }
+            }
+            
+            iterator+=1
+        }
+
         if(bombCount <= 0 && placeBombButton.alpha >= 0.5){
             placeBombButton.alpha = 0.5
-            placeBombButton.setTitle(String(0), for: .normal)
         }
         else{
             placeBombButton.alpha = 1.0
-            placeBombButton.setTitle(String(bombCount), for: .normal)
         }
         
     }
@@ -481,8 +525,6 @@ extension ViewController: SCNSceneRendererDelegate {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch = touches.first!
         currentTouchLocation = touch.location(in: self.sceneView)
-        
-        
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)

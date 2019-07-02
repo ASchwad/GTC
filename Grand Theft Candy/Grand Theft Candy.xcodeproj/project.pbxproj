@@ -13,6 +13,8 @@
 		23852BEE22B1805700D46FF6 /* EnemyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23852BED22B1805600D46FF6 /* EnemyController.swift */; };
 		23852BF022B1823200D46FF6 /* police.scn in Resources */ = {isa = PBXBuildFile; fileRef = 23852BEF22B1823200D46FF6 /* police.scn */; };
 		239A693C22B65666009B5753 /* snowFlake.scn in Resources */ = {isa = PBXBuildFile; fileRef = 239A693B22B65666009B5753 /* snowFlake.scn */; };
+		8406B8CF22CBEF5C00C87CDA /* bomboverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 8406B8CE22CBEF5C00C87CDA /* bomboverlay.png */; };
+		8406B8D122CBEFFD00C87CDA /* bombstack.png in Resources */ = {isa = PBXBuildFile; fileRef = 8406B8D022CBEFFD00C87CDA /* bombstack.png */; };
 		840C704722A0097F008EB80F /* gangster.scn in Resources */ = {isa = PBXBuildFile; fileRef = 840C704322A0097E008EB80F /* gangster.scn */; };
 		840C704822A0097F008EB80F /* ARController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840C704422A0097E008EB80F /* ARController.swift */; };
 		840C704922A0097F008EB80F /* HorizontalPlane.swift in Sources */ = {isa = PBXBuildFile; fileRef = 840C704522A0097F008EB80F /* HorizontalPlane.swift */; };
@@ -56,6 +58,8 @@
 		23852BED22B1805600D46FF6 /* EnemyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyController.swift; sourceTree = "<group>"; };
 		23852BEF22B1823200D46FF6 /* police.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = police.scn; sourceTree = "<group>"; };
 		239A693B22B65666009B5753 /* snowFlake.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = snowFlake.scn; sourceTree = "<group>"; };
+		8406B8CE22CBEF5C00C87CDA /* bomboverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomboverlay.png; sourceTree = "<group>"; };
+		8406B8D022CBEFFD00C87CDA /* bombstack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bombstack.png; sourceTree = "<group>"; };
 		840C704322A0097E008EB80F /* gangster.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = gangster.scn; sourceTree = "<group>"; };
 		840C704422A0097E008EB80F /* ARController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ARController.swift; sourceTree = "<group>"; };
 		840C704522A0097F008EB80F /* HorizontalPlane.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalPlane.swift; sourceTree = "<group>"; };
@@ -145,6 +149,8 @@
 				84B451EF22BCCC76006F0AA0 /* HotBomb.swift */,
 				847BE2672295C0FB003A1A35 /* Helpers.swift */,
 				840C704522A0097F008EB80F /* HorizontalPlane.swift */,
+				8406B8CE22CBEF5C00C87CDA /* bomboverlay.png */,
+				8406B8D022CBEFFD00C87CDA /* bombstack.png */,
 				841BD7EE229579B000B87AF3 /* Main.storyboard */,
 				841BD7F6229579B100B87AF3 /* LaunchScreen.storyboard */,
 				D1C4D79422B14A070019CF12 /* Assets */,
@@ -300,6 +306,8 @@
 				D16BE16422C2C8360094813A /* GoogleService-Info.plist in Resources */,
 				84DEA99422AE535200174057 /* Surface.jpeg in Resources */,
 				23852BF022B1823200D46FF6 /* police.scn in Resources */,
+				8406B8D122CBEFFD00C87CDA /* bombstack.png in Resources */,
+				8406B8CF22CBEF5C00C87CDA /* bomboverlay.png in Resources */,
 				840C704E22A1114E008EB80F /* playarea.scn in Resources */,
 				D1BB30EF22CB5D5700ED2A25 /* texture.jpg in Resources */,
 				239A693C22B65666009B5753 /* snowFlake.scn in Resources */,

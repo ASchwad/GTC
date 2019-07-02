@@ -34,12 +34,28 @@
                                     <segue destination="KTB-nt-HEf" kind="show" identifier="GameOver" animates="NO" id="Xnd-YV-1UN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjV-ci-0kX">
-                                <rect key="frame" x="553" y="292" width="94" height="63"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cjV-ci-0kX">
+                                <rect key="frame" x="531" y="255" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="bomboverlay.png"/>
                                 <connections>
                                     <action selector="OnPlaceBombPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ds4-Lx-7SI"/>
                                 </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHu-N4-GDd" userLabel="bombStack2">
+                                <rect key="frame" x="639" y="295" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="bombstack.png"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NFX-9e-TY9" userLabel="bombStack3">
+                                <rect key="frame" x="639" y="255" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="bombstack.png"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="m2x-ww-mSR" userLabel="bombStack1">
+                                <rect key="frame" x="639" y="335" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="bombstack.png"/>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -53,6 +69,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="bombStackOne" destination="m2x-ww-mSR" id="amR-6t-8dj"/>
+                        <outlet property="bombStackThree" destination="NFX-9e-TY9" id="Tm4-OR-IJ1"/>
+                        <outlet property="bombStackTwo" destination="yHu-N4-GDd" id="a3M-AH-u56"/>
                         <outlet property="placeBombButton" destination="cjV-ci-0kX" id="zwH-l9-zeQ"/>
                         <outlet property="sceneView" destination="hgW-Om-R22" id="JUH-1B-o61"/>
                         <outlet property="scoreLabel" destination="UUU-9Q-2ir" id="INK-qM-uH4"/>
@@ -277,8 +296,10 @@
     </scenes>
     <resources>
         <image name="GTC Logo.png" width="864" height="880"/>
+        <image name="bomboverlay.png" width="800" height="800"/>
+        <image name="bombstack.png" width="221" height="228"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Gct-gT-TEy"/>
+        <segue reference="NeJ-AG-ENV"/>
     </inferredMetricsTieBreakers>
 </document>
