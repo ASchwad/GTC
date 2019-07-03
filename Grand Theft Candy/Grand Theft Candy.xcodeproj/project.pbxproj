@@ -13,6 +13,7 @@
 		23852BEE22B1805700D46FF6 /* EnemyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23852BED22B1805600D46FF6 /* EnemyController.swift */; };
 		23852BF022B1823200D46FF6 /* police.scn in Resources */ = {isa = PBXBuildFile; fileRef = 23852BEF22B1823200D46FF6 /* police.scn */; };
 		239A693C22B65666009B5753 /* snowFlake.scn in Resources */ = {isa = PBXBuildFile; fileRef = 239A693B22B65666009B5753 /* snowFlake.scn */; };
+		23C0182822CD43CD0063F524 /* policeStar.png in Resources */ = {isa = PBXBuildFile; fileRef = 23C0182722CD43CD0063F524 /* policeStar.png */; };
 		8406B8CF22CBEF5C00C87CDA /* bomboverlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 8406B8CE22CBEF5C00C87CDA /* bomboverlay.png */; };
 		8406B8D122CBEFFD00C87CDA /* bombstack.png in Resources */ = {isa = PBXBuildFile; fileRef = 8406B8D022CBEFFD00C87CDA /* bombstack.png */; };
 		840C704722A0097F008EB80F /* gangster.scn in Resources */ = {isa = PBXBuildFile; fileRef = 840C704322A0097E008EB80F /* gangster.scn */; };
@@ -58,6 +59,7 @@
 		23852BED22B1805600D46FF6 /* EnemyController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnemyController.swift; sourceTree = "<group>"; };
 		23852BEF22B1823200D46FF6 /* police.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = police.scn; sourceTree = "<group>"; };
 		239A693B22B65666009B5753 /* snowFlake.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = snowFlake.scn; sourceTree = "<group>"; };
+		23C0182722CD43CD0063F524 /* policeStar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = policeStar.png; sourceTree = "<group>"; };
 		8406B8CE22CBEF5C00C87CDA /* bomboverlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bomboverlay.png; sourceTree = "<group>"; };
 		8406B8D022CBEFFD00C87CDA /* bombstack.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bombstack.png; sourceTree = "<group>"; };
 		840C704322A0097E008EB80F /* gangster.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = gangster.scn; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 		D1C4D79422B14A070019CF12 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				23C0182722CD43CD0063F524 /* policeStar.png */,
 				D1BB30EC22CB5D5600ED2A25 /* fence.png */,
 				D1BB30ED22CB5D5600ED2A25 /* grey-concrete-texture.jpg */,
 				D1BB30EB22CB5D5600ED2A25 /* houses.png */,
@@ -308,6 +311,7 @@
 				23852BF022B1823200D46FF6 /* police.scn in Resources */,
 				8406B8D122CBEFFD00C87CDA /* bombstack.png in Resources */,
 				8406B8CF22CBEF5C00C87CDA /* bomboverlay.png in Resources */,
+				23C0182822CD43CD0063F524 /* policeStar.png in Resources */,
 				840C704E22A1114E008EB80F /* playarea.scn in Resources */,
 				D1BB30EF22CB5D5700ED2A25 /* texture.jpg in Resources */,
 				239A693C22B65666009B5753 /* snowFlake.scn in Resources */,

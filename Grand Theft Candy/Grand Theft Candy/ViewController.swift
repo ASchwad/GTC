@@ -32,6 +32,9 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     @IBOutlet weak var bombStackThree: UIButton!
     
     
+    @IBOutlet weak var policeStarLabel: UILabel!
+    
+    
     var bombStackRow = [UIButton]()
     @IBOutlet weak var placeBombButton: UIButton!
     var playAreaNode: SCNNode!
@@ -52,6 +55,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
 
     
     var score = 0
+    var policeKillCounter = 0
     
     var isSlow = false
     var isFast = false
@@ -102,9 +106,29 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         
         //sceneView.debugOptions = ARSCNDebugOptions.showPhysicsShapes
         scoreLabel.isHidden = true
+        policeStarLabel.isHidden = true
         speed = playerController.defaultSpeed
         sceneView.scene.physicsWorld.contactDelegate = self
         sceneView.isMultipleTouchEnabled = true
+    }
+    
+    func createPoliceStarLabel(policeStarCounter: String) {
+        let font = UIFont.systemFont(ofSize: 17)
+        let fullString = NSMutableAttributedString(string: "")
+        
+        let imageAttachment = NSTextAttachment()
+        let image = UIImage(named: "policeStar.png")
+        
+        imageAttachment.bounds = CGRect(x: 0, y: (font.capHeight - image!.size.height).rounded() / 2, width: image!.size.width, height: image!.size.height)
+        imageAttachment.image = image
+        
+        let imageString = NSAttributedString(attachment: imageAttachment)
+    
+        fullString.append(imageString)
+        fullString.append(NSAttributedString(string: ": " + String(policeStarCounter)))
+        
+        policeStarLabel.textAlignment = .center
+        policeStarLabel.attributedText = fullString
     }
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
@@ -170,6 +194,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
                     // zerstöre polizei
                     bombController.PerformExplosion(contactNode: contactNode, playArea: playArea)
                     enemyController.DestroyPolice(police: contactNode)
+                    policeKillCounter += 1
+                    createPoliceStarLabel(policeStarCounter: String(policeKillCounter))
                     
                     contactNode.removeFromParentNode()
                 }
@@ -226,6 +252,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             
             bombController.PerformExplosion(contactNode: contactNode, playArea: playArea)
             enemyController.DestroyPolice(police: policeNode)
+            policeKillCounter += 1
+            createPoliceStarLabel(policeStarCounter: String(policeKillCounter))
             
             contactNode.removeFromParentNode()
             
@@ -355,6 +383,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         InitializePlaceBombButton()
         
         scoreLabel.isHidden = false
+        policeStarLabel.isHidden = false
+        createPoliceStarLabel(policeStarCounter: String(policeKillCounter))
 
         view.removeGestureRecognizer(tapGesture)
         skScene = joystickController.CreateJoysick(view: sceneView)
