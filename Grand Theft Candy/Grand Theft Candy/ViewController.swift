@@ -32,6 +32,9 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     @IBOutlet weak var bombStackThree: UIButton!
     
     
+    @IBOutlet weak var policeStarLabel: UILabel!
+    
+    
     var bombStackRow = [UIButton]()
     @IBOutlet weak var placeBombButton: UIButton!
     var playAreaNode: SCNNode!
@@ -52,6 +55,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
 
     
     var score = 0
+    var policeKillCounter = 0
     
     var isSlow = false
     var isFast = false
@@ -71,6 +75,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     let itemController = ItemController()
     
     var allowToStartGame = true
+    var policeKillOnlyOnce = true
     
     var planes: [ARAnchor: HorizontalPlane] = [:]
     var selectedPlane: HorizontalPlane?
@@ -102,9 +107,29 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         
         //sceneView.debugOptions = ARSCNDebugOptions.showPhysicsShapes
         scoreLabel.isHidden = true
+        policeStarLabel.isHidden = true
         speed = playerController.defaultSpeed
         sceneView.scene.physicsWorld.contactDelegate = self
         sceneView.isMultipleTouchEnabled = true
+    }
+    
+    func createPoliceStarLabel(policeStarCounter: String) {
+        let font = UIFont.systemFont(ofSize: 17)
+        let fullString = NSMutableAttributedString(string: "")
+        
+        let imageAttachment = NSTextAttachment()
+        let image = UIImage(named: "policeStar.png")
+        
+        imageAttachment.bounds = CGRect(x: 0, y: (font.capHeight - image!.size.height).rounded() / 2, width: image!.size.width, height: image!.size.height)
+        imageAttachment.image = image
+        
+        let imageString = NSAttributedString(attachment: imageAttachment)
+    
+        fullString.append(imageString)
+        fullString.append(NSAttributedString(string: ": " + String(policeStarCounter)))
+        
+        policeStarLabel.textAlignment = .center
+        policeStarLabel.attributedText = fullString
     }
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
@@ -166,13 +191,30 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
                     enemyController.enemiesWithCirclePattern = 0
                     state = .gameOver
                 }
-                if (playerIsInvincible) {
+                if(playerIsInvincible) {
                     // zerstöre polizei
                     bombController.PerformExplosion(contactNode: contactNode, playArea: playArea)
                     enemyController.DestroyPolice(police: contactNode)
                     
                     contactNode.removeFromParentNode()
+                    if(policeKillOnlyOnce) {
+                        policeKillCounter += 1
+                        createPoliceStarLabel(policeStarCounter: String(policeKillCounter))
+                        policeKillOnlyOnce = false
+                        
+                        if(contactNode.name == "PoliceWithCirclePattern") {
+                            enemyController.enemiesWithCirclePattern = enemyController.enemiesWithCirclePattern - 1
+                        }
+                        if(contactNode.name == "PoliceWithDiagonalPattern") {
+                            enemyController.enemiesWithDiagonalPattern = enemyController.enemiesWithDiagonalPattern - 1
+                        }
+                        if(contactNode.name == "PoliceWithZigZagPattern") {
+                            enemyController.enemiesWithZigZagPattern = enemyController.enemiesWithZigZagPattern - 1
+                        }
+                    }
+                   
                 }
+
             }
             else if contactNode.physicsBody?.categoryBitMask == 128 && bombCount <= 2{
                 PickUpBomb()
@@ -183,13 +225,14 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
                 contactNode.removeFromParentNode()
                 
                 playerIsInvincible = true
+                policeKillOnlyOnce = true
                 
                 // material heißt Mat.3 (Head und Body benutzen das selbe, deswegen ändert sich auch Farbe der beiden)
                 // Spieler wird blau^^
                 let oldContents = player.childNode(withName: "Head-1", recursively: false)?.geometry?.firstMaterial?.diffuse.contents
                 player.childNode(withName: "Head-1", recursively: false)?.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
                 
-                let delay = 3 // seconds of invincibilty
+                let delay = 3// seconds of invincibilty
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(delay)) {
                     self.playerIsInvincible = false
                     self.player.childNode(withName: "Head-1", recursively: false)?.geometry?.firstMaterial?.diffuse.contents = oldContents
@@ -226,6 +269,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             
             bombController.PerformExplosion(contactNode: contactNode, playArea: playArea)
             enemyController.DestroyPolice(police: policeNode)
+            policeKillCounter += 1
+            createPoliceStarLabel(policeStarCounter: String(policeKillCounter))
             
             contactNode.removeFromParentNode()
             
@@ -355,6 +400,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         InitializePlaceBombButton()
         
         scoreLabel.isHidden = false
+        policeStarLabel.isHidden = false
+        createPoliceStarLabel(policeStarCounter: String(policeKillCounter))
 
         view.removeGestureRecognizer(tapGesture)
         skScene = joystickController.CreateJoysick(view: sceneView)
