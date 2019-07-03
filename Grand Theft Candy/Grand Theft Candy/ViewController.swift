@@ -75,6 +75,7 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     let itemController = ItemController()
     
     var allowToStartGame = true
+    var policeKillOnlyOnce = true
     
     var planes: [ARAnchor: HorizontalPlane] = [:]
     var selectedPlane: HorizontalPlane?
@@ -190,15 +191,30 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
                     enemyController.enemiesWithCirclePattern = 0
                     state = .gameOver
                 }
-                if (playerIsInvincible) {
+                if(playerIsInvincible) {
                     // zerstöre polizei
                     bombController.PerformExplosion(contactNode: contactNode, playArea: playArea)
                     enemyController.DestroyPolice(police: contactNode)
-                    policeKillCounter += 1
-                    createPoliceStarLabel(policeStarCounter: String(policeKillCounter))
                     
                     contactNode.removeFromParentNode()
+                    if(policeKillOnlyOnce) {
+                        policeKillCounter += 1
+                        createPoliceStarLabel(policeStarCounter: String(policeKillCounter))
+                        policeKillOnlyOnce = false
+                        
+                        if(contactNode.name == "PoliceWithCirclePattern") {
+                            enemyController.enemiesWithCirclePattern = enemyController.enemiesWithCirclePattern - 1
+                        }
+                        if(contactNode.name == "PoliceWithDiagonalPattern") {
+                            enemyController.enemiesWithDiagonalPattern = enemyController.enemiesWithDiagonalPattern - 1
+                        }
+                        if(contactNode.name == "PoliceWithZigZagPattern") {
+                            enemyController.enemiesWithZigZagPattern = enemyController.enemiesWithZigZagPattern - 1
+                        }
+                    }
+                   
                 }
+
             }
             else if contactNode.physicsBody?.categoryBitMask == 128 && bombCount <= 2{
                 PickUpBomb()
@@ -209,13 +225,14 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
                 contactNode.removeFromParentNode()
                 
                 playerIsInvincible = true
+                policeKillOnlyOnce = true
                 
                 // material heißt Mat.3 (Head und Body benutzen das selbe, deswegen ändert sich auch Farbe der beiden)
                 // Spieler wird blau^^
                 let oldContents = player.childNode(withName: "Head-1", recursively: false)?.geometry?.firstMaterial?.diffuse.contents
                 player.childNode(withName: "Head-1", recursively: false)?.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
                 
-                let delay = 3 // seconds of invincibilty
+                let delay = 3// seconds of invincibilty
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(delay)) {
                     self.playerIsInvincible = false
                     self.player.childNode(withName: "Head-1", recursively: false)?.geometry?.firstMaterial?.diffuse.contents = oldContents
