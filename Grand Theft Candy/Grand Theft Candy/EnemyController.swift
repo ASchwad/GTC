@@ -316,7 +316,7 @@ final class EnemyController {
             self.enemiesWithCirclePattern = self.enemiesWithCirclePattern + 1
             firstEnemyWithCirclePattern = false
         }
-        else if(score >= 10 && self.enemiesWithDiagonalPattern < 1) {
+        else if(score >= 15 && self.enemiesWithDiagonalPattern < 1) {
             CreatePoliceWithDiagonalPattern(playArea: playArea)
             if(self._multiplicatorForDiagonal >= 0.1) {
                 self._multiplicatorForDiagonal = self._multiplicatorForDiagonal - 0.1
@@ -340,7 +340,7 @@ final class EnemyController {
             self.enemiesWithCirclePattern = self.enemiesWithCirclePattern + 1
         }
         
-        else if(score >= 10 && self.enemiesWithDiagonalPattern < 1 && !firstEnemyWithDiagonalPattern) {
+        else if(score >= 15 && self.enemiesWithDiagonalPattern < 1 && !firstEnemyWithDiagonalPattern) {
             Timer.scheduledTimer(withTimeInterval: 6.0, repeats: false) { (nil) in
                 self.CreatePoliceWithDiagonalPattern(playArea: playArea)
             }
