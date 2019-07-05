@@ -38,9 +38,19 @@
 		84EF71EC22BCF5D2007520D5 /* explosionParticles.scnp in Resources */ = {isa = PBXBuildFile; fileRef = 84EF71EB22BCF5D2007520D5 /* explosionParticles.scnp */; };
 		84EF71EE22BF6F92007520D5 /* BombController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84EF71ED22BF6F92007520D5 /* BombController.swift */; };
 		ACCF252F5D04EAFF8B09691F /* Pods_Grand_Theft_Candy.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9305D77D1DA2A52C35372408 /* Pods_Grand_Theft_Candy.framework */; };
+		D136F93B22CF3431004646DD /* highscorepng.png in Resources */ = {isa = PBXBuildFile; fileRef = D136F93822CF3431004646DD /* highscorepng.png */; };
+		D136F93C22CF3431004646DD /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = D136F93922CF3431004646DD /* play.png */; };
+		D136F93D22CF3431004646DD /* wasted.png in Resources */ = {isa = PBXBuildFile; fileRef = D136F93A22CF3431004646DD /* wasted.png */; };
+		D136F94022CF3C1E004646DD /* icon_80.png in Resources */ = {isa = PBXBuildFile; fileRef = D136F93E22CF3C1E004646DD /* icon_80.png */; };
+		D136F94122CF3C1E004646DD /* icon_120.png in Resources */ = {isa = PBXBuildFile; fileRef = D136F93F22CF3C1E004646DD /* icon_120.png */; };
+		D136F94322CF3ECA004646DD /* wasted.wav in Resources */ = {isa = PBXBuildFile; fileRef = D136F94222CF3ECA004646DD /* wasted.wav */; };
+		D136F94D22CF5437004646DD /* textures in Resources */ = {isa = PBXBuildFile; fileRef = D136F94A22CF5437004646DD /* textures */; };
+		D136F94E22CF5438004646DD /* twist_danceFixed.dae in Resources */ = {isa = PBXBuildFile; fileRef = D136F94B22CF5437004646DD /* twist_danceFixed.dae */; };
+		D136F94F22CF5438004646DD /* idleFixed.dae in Resources */ = {isa = PBXBuildFile; fileRef = D136F94C22CF5437004646DD /* idleFixed.dae */; };
 		D15C90EF22B8EFE600E129FE /* HighscoreController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15C90EE22B8EFE600E129FE /* HighscoreController.swift */; };
 		D16BE16222C1FDE90094813A /* ItemController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16BE16122C1FDE90094813A /* ItemController.swift */; };
 		D16BE16422C2C8360094813A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D16BE16322C2C8360094813A /* GoogleService-Info.plist */; };
+		D170A07022CF8498007157ED /* ip_obeseMan_running.dae in Resources */ = {isa = PBXBuildFile; fileRef = D170A06F22CF8497007157ED /* ip_obeseMan_running.dae */; };
 		D1B7D6C722B168890044D362 /* GTC Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D1B7D6C622B168880044D362 /* GTC Logo.png */; };
 		D1B7D6CB22B2718B0044D362 /* GameOverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B7D6CA22B2718B0044D362 /* GameOverController.swift */; };
 		D1BB30EF22CB5D5700ED2A25 /* texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D1BB30EA22CB5D5600ED2A25 /* texture.jpg */; };
@@ -88,9 +98,19 @@
 		9305D77D1DA2A52C35372408 /* Pods_Grand_Theft_Candy.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Grand_Theft_Candy.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B71E8B7922BF160A55849235 /* Pods-Grand Theft Candy.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grand Theft Candy.release.xcconfig"; path = "Target Support Files/Pods-Grand Theft Candy/Pods-Grand Theft Candy.release.xcconfig"; sourceTree = "<group>"; };
 		C064F787F583BB874A41C6E3 /* Pods-Grand Theft Candy.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Grand Theft Candy.debug.xcconfig"; path = "Target Support Files/Pods-Grand Theft Candy/Pods-Grand Theft Candy.debug.xcconfig"; sourceTree = "<group>"; };
+		D136F93822CF3431004646DD /* highscorepng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = highscorepng.png; sourceTree = "<group>"; };
+		D136F93922CF3431004646DD /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
+		D136F93A22CF3431004646DD /* wasted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wasted.png; sourceTree = "<group>"; };
+		D136F93E22CF3C1E004646DD /* icon_80.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_80.png; sourceTree = "<group>"; };
+		D136F93F22CF3C1E004646DD /* icon_120.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_120.png; sourceTree = "<group>"; };
+		D136F94222CF3ECA004646DD /* wasted.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = wasted.wav; sourceTree = "<group>"; };
+		D136F94A22CF5437004646DD /* textures */ = {isa = PBXFileReference; lastKnownFileType = folder; path = textures; sourceTree = "<group>"; };
+		D136F94B22CF5437004646DD /* twist_danceFixed.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = twist_danceFixed.dae; sourceTree = "<group>"; };
+		D136F94C22CF5437004646DD /* idleFixed.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = idleFixed.dae; sourceTree = "<group>"; };
 		D15C90EE22B8EFE600E129FE /* HighscoreController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighscoreController.swift; sourceTree = "<group>"; };
 		D16BE16122C1FDE90094813A /* ItemController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemController.swift; sourceTree = "<group>"; };
 		D16BE16322C2C8360094813A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		D170A06F22CF8497007157ED /* ip_obeseMan_running.dae */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml.dae; path = ip_obeseMan_running.dae; sourceTree = "<group>"; };
 		D1B7D6C622B168880044D362 /* GTC Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "GTC Logo.png"; sourceTree = "<group>"; };
 		D1B7D6CA22B2718B0044D362 /* GameOverController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameOverController.swift; sourceTree = "<group>"; };
 		D1BB30EA22CB5D5600ED2A25 /* texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = texture.jpg; sourceTree = "<group>"; };
@@ -151,8 +171,6 @@
 				84B451EF22BCCC76006F0AA0 /* HotBomb.swift */,
 				847BE2672295C0FB003A1A35 /* Helpers.swift */,
 				840C704522A0097F008EB80F /* HorizontalPlane.swift */,
-				8406B8CE22CBEF5C00C87CDA /* bomboverlay.png */,
-				8406B8D022CBEFFD00C87CDA /* bombstack.png */,
 				841BD7EE229579B000B87AF3 /* Main.storyboard */,
 				841BD7F6229579B100B87AF3 /* LaunchScreen.storyboard */,
 				D1C4D79422B14A070019CF12 /* Assets */,
@@ -201,7 +219,17 @@
 		D1C4D79422B14A070019CF12 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D136F94C22CF5437004646DD /* idleFixed.dae */,
+				D170A06F22CF8497007157ED /* ip_obeseMan_running.dae */,
+				D136F94A22CF5437004646DD /* textures */,
+				D136F94B22CF5437004646DD /* twist_danceFixed.dae */,
+				8406B8CE22CBEF5C00C87CDA /* bomboverlay.png */,
+				8406B8D022CBEFFD00C87CDA /* bombstack.png */,
 				23C0182722CD43CD0063F524 /* policeStar.png */,
+				D136F93822CF3431004646DD /* highscorepng.png */,
+				D136F94222CF3ECA004646DD /* wasted.wav */,
+				D136F93922CF3431004646DD /* play.png */,
+				D136F93A22CF3431004646DD /* wasted.png */,
 				D1BB30EC22CB5D5600ED2A25 /* fence.png */,
 				D1BB30ED22CB5D5600ED2A25 /* grey-concrete-texture.jpg */,
 				D1BB30EB22CB5D5600ED2A25 /* houses.png */,
@@ -210,6 +238,8 @@
 				D1B7D6C622B168880044D362 /* GTC Logo.png */,
 				84DEA99322AE535200174057 /* Surface.jpeg */,
 				D1C4D79022B149D40019CF12 /* gta_sanandreas.mp3 */,
+				D136F93E22CF3C1E004646DD /* icon_80.png */,
+				D136F93F22CF3C1E004646DD /* icon_120.png */,
 			);
 			name = Assets;
 			sourceTree = "<group>";
@@ -292,32 +322,42 @@
 			buildActionMask = 2147483647;
 			files = (
 				842B849E22BF961B006EE548 /* hotBombScene.scn in Resources */,
+				D136F94E22CF5438004646DD /* twist_danceFixed.dae in Resources */,
 				D1C4D79222B149DD0019CF12 /* gta_sanandreas.mp3 in Resources */,
 				84AABEEF22C786850006F688 /* facestar.scn in Resources */,
 				D1BB30F222CB5D5700ED2A25 /* grey-concrete-texture.jpg in Resources */,
 				84EF71EC22BCF5D2007520D5 /* explosionParticles.scnp in Resources */,
 				2358F5BD22B521DB005A2250 /* broccoli.scn in Resources */,
+				D170A07022CF8498007157ED /* ip_obeseMan_running.dae in Resources */,
 				D1BB30F022CB5D5700ED2A25 /* houses.png in Resources */,
 				841BD7F8229579B100B87AF3 /* LaunchScreen.storyboard in Resources */,
+				D136F94D22CF5437004646DD /* textures in Resources */,
 				84A20AD322BFA19800602CA9 /* bombItemScene.scn in Resources */,
+				D136F94322CF3ECA004646DD /* wasted.wav in Resources */,
 				840C704722A0097F008EB80F /* gangster.scn in Resources */,
 				D1BB30F122CB5D5700ED2A25 /* fence.png in Resources */,
 				D1B7D6C722B168890044D362 /* GTC Logo.png in Resources */,
 				841BD7F5229579B100B87AF3 /* Assets.xcassets in Resources */,
 				D1BB30F322CB5D5700ED2A25 /* leaves.png in Resources */,
+				D136F93C22CF3431004646DD /* play.png in Resources */,
 				233C095022B5A773002451C0 /* lightningBolt.scn in Resources */,
 				D16BE16422C2C8360094813A /* GoogleService-Info.plist in Resources */,
 				84DEA99422AE535200174057 /* Surface.jpeg in Resources */,
 				23852BF022B1823200D46FF6 /* police.scn in Resources */,
+				D136F94F22CF5438004646DD /* idleFixed.dae in Resources */,
 				8406B8D122CBEFFD00C87CDA /* bombstack.png in Resources */,
 				8406B8CF22CBEF5C00C87CDA /* bomboverlay.png in Resources */,
+				D136F93B22CF3431004646DD /* highscorepng.png in Resources */,
 				23C0182822CD43CD0063F524 /* policeStar.png in Resources */,
+				D136F93D22CF3431004646DD /* wasted.png in Resources */,
 				840C704E22A1114E008EB80F /* playarea.scn in Resources */,
 				D1BB30EF22CB5D5700ED2A25 /* texture.jpg in Resources */,
+				D136F94122CF3C1E004646DD /* icon_120.png in Resources */,
 				239A693C22B65666009B5753 /* snowFlake.scn in Resources */,
 				841BD7F0229579B000B87AF3 /* Main.storyboard in Resources */,
 				2358F5E022B57376005A2250 /* candyCane.scn in Resources */,
 				84EF71E922BCF3E7007520D5 /* spark.png in Resources */,
+				D136F94022CF3C1E004646DD /* icon_80.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

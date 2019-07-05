@@ -53,6 +53,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     var hotBomb: SCNNode!
     var bombCount = 0
 
+    var animations = [String: CAAnimation]()
+    var idle:Bool = true
     
     var score = 0
     
@@ -226,11 +228,11 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
                         }
                     }
 
-            }
+            }//Bombe
             else if contactNode.physicsBody?.categoryBitMask == 128 && bombCount <= 2{
                 PickUpBomb()
                 contactNode.removeFromParentNode()
-            }
+            }//Stern
             else if contactNode.physicsBody?.categoryBitMask == 256 {
                 contactNode.physicsBody = nil // seperat removed, weil sonst die Funktion mehrmals aufgerufen wird
                 contactNode.removeFromParentNode()
@@ -239,13 +241,13 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
                 
                 // material heißt Mat.3 (Head und Body benutzen das selbe, deswegen ändert sich auch Farbe der beiden)
                 // Spieler wird blau^^
-                let oldContents = player.childNode(withName: "Head-1", recursively: false)?.geometry?.firstMaterial?.diffuse.contents
-                player.childNode(withName: "Head-1", recursively: false)?.geometry?.firstMaterial?.diffuse.contents = UIColor.blue
+                let oldContents = player.childNode(withName: "rdmobj00-001", recursively: false)?.geometry?.firstMaterial?.diffuse.contents
+                player.childNode(withName: "rdmobj00-001", recursively: false)?.geometry?.firstMaterial?.diffuse.contents = UIColor.yellow
                 
                 let delay = 3// seconds of invincibilty
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(delay)) {
                     self.playerIsInvincible = false
-                    self.player.childNode(withName: "Head-1", recursively: false)?.geometry?.firstMaterial?.diffuse.contents = oldContents
+                    self.player.childNode(withName: "rdmobj00-001", recursively: false)?.geometry?.firstMaterial?.diffuse.contents = oldContents
                 }
             }
         }
@@ -292,9 +294,6 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         
         let decorationScene = SCNScene(named: "playarea.scn")!
         decorationNode = floorScene.rootNode.childNode(withName: "decoration", recursively: false)!
-        
-        let heroScene = SCNScene(named: "gangster.scn")!
-        playerNode = heroScene.rootNode.childNode(withName: "The_limited_1", recursively: false)!
     }
 
     
@@ -455,18 +454,56 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     }
     
     func CreatePlayer() {
-        player = playerNode.clone()
-        player.name = "Gangster"
-        player.position = SCNVector3(0.0, 0.09, 0.0)
-        player.eulerAngles = SCNVector3(0, DegreeToRad(degree: 180),0)
-        player.scale = SCNVector3(0.00004, 0.00004, 0.00004)
         
-        player.geometry = SCNBox(width: 0.00004, height: 0.00004, length: 0.00004, chamferRadius: 0)
+        let heroScene = SCNScene(named: "ip_obeseMan_running.dae")!
+        let playerNode = SCNNode()
+        
+        // Add all the child nodes to the parent node
+        for child in heroScene.rootNode.childNodes {
+            playerNode.addChildNode(child)
+        }
+        player = playerNode
+        player.scale = SCNVector3(0.025,0.025,0.025)
+        player.name = "Gangster"
+        player.geometry = SCNBox(width: 0.0003, height: 0.0003, length: 0.0003, chamferRadius: 0)
         player.physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(geometry: player.geometry!, options: nil))
         player.physicsBody?.categoryBitMask = 1
         
         playArea.addChildNode(player)
+        
+        loadAnimation(withKey: "dancing", sceneName: "twist_danceFixed", animationIdentifier: "twist_danceFixed-1")
+        
+        loadAnimation(withKey: "idle", sceneName: "idleFixed", animationIdentifier: "idleFixed-1")
+        
+        playAnimation(key: "dancing")
     }
+    
+    func loadAnimation(withKey: String, sceneName:String, animationIdentifier:String) {
+        let sceneURL = Bundle.main.url(forResource: sceneName, withExtension: "dae")
+        let sceneSource = SCNSceneSource(url: sceneURL!, options: nil)
+        
+        if let animationObject = sceneSource?.entryWithIdentifier(animationIdentifier, withClass: CAAnimation.self) {
+            // The animation will only play once
+            animationObject.repeatCount = .infinity
+            // To create smooth transitions between animations
+            animationObject.fadeInDuration = CGFloat(1)
+            animationObject.fadeOutDuration = CGFloat(0.7)
+            
+            // Store the animation for later use
+            animations[withKey] = animationObject
+        }
+    }
+    
+    func playAnimation(key: String) {
+        // Add the animation to start playing it right away
+        sceneView.scene.rootNode.addAnimation(animations[key]!, forKey: key)
+    }
+    
+    func stopAnimation(key: String) {
+        // Stop the animation with a smooth transition
+        sceneView.scene.rootNode.removeAnimation(forKey: key, blendOutDuration: CGFloat(0.5))
+    }
+
     
     public func updateJoystick() {
         
@@ -513,6 +550,8 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
     @IBAction func OnPlaceBombPressed(_ sender: Any) {
         if(bombCount > 0){
             PlaceBomb()
+        }else{
+            
         }
     }
 
@@ -558,9 +597,15 @@ extension ViewController: SCNSceneRendererDelegate {
     }
     // store touch in global scope
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-            let touch = touches.first!
-            currentTouchLocation = touch.location(in: self.sceneView)
+        if(animations.count>0){
+            stopAnimation(key: "idle")
+            stopAnimation(key: "dancing")
+            print("Touch recognized")
+        }
         
+        let touch = touches.first!
+        currentTouchLocation = touch.location(in: self.sceneView)
+    
         var touchXPoint = currentTouchLocation.x
         var touchYPoint = sceneView.bounds.size.height - currentTouchLocation.y
         
@@ -584,11 +629,13 @@ extension ViewController: SCNSceneRendererDelegate {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-            joystickController.SnapBackJoystick()
-            isTouched = false
-            isValidTouch = false
+        joystickController.SnapBackJoystick()
+        isTouched = false
+        isValidTouch = false
+        if(animations.count>0){
+            playAnimation(key: "idle")
+        }
     }
-    
     
 }
 

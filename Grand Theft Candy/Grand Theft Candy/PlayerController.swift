@@ -11,9 +11,9 @@ import SpriteKit
 
 final class PlayerController {
     
-    let defaultSpeed: float3 = float3 (0.003)
-    let fastSpeed: float3 = float3 (0.007)
-    let slowSpeed = float3 (0.001)
+    let defaultSpeed: float3 = float3 (0.005)
+    let fastSpeed: float3 = float3 (0.008)
+    let slowSpeed = float3 (0.002)
 
     init()
     {

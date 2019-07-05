@@ -2,7 +2,7 @@
 //  GameOverController.swift
 //  Grand Theft Candy
 //
-//  Created by Egeler Lea on 12.06.19.
+//  Created by Alex Schoenenwald on 12.06.19.
 //  Copyright © 2019 Gruppe02. All rights reserved.
 //
 
@@ -10,8 +10,10 @@
 import UIKit
 import FirebaseDatabase
 import Firebase
+import AVFoundation
 
 class GameOverController: UIViewController {
+    var audioPlayer = AVAudioPlayer()
     
     @IBOutlet weak var scoreLabel: UILabel!
     var score:Int = 0
@@ -43,5 +45,13 @@ class GameOverController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         scoreLabel.text = "\(score)"
+        
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL.init(fileURLWithPath: Bundle.main.path(forResource: "wasted", ofType: "wav")!))
+            audioPlayer.prepareToPlay()
+            audioPlayer.play()
+        } catch {
+            print(error)
+        }
     }
 }
