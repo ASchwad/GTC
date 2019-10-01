@@ -3,6 +3,8 @@
 # Grand Theft Candy
 Jump into the world of Grand Theft Candy. Collect candy and escape the police, can you make it to the highscore?
 
+We bring the old memories of Vice City into your living room. Find a flat surface and start our game. The game world is projected on this flat surface and you can move via a joystick on the screen.
+
 Items:
 - Candy Cane: +2 Points
 - Brokkoli: -10 Points
@@ -13,6 +15,10 @@ Items:
 --> Destroyed Police Car: +10 Points
 
 We implemented 4 different police movement patterns. These patterns vary with increasing score. The further you get, the harder the game will be. We integrated Firebase for the highscore funtionality.
+
+## Get Started
+
+The pods are already installed in this Repository. Clone this repo, build it in XCode and install it on your apple device (Iphone 7 or better due to ARKit processor requirements). Have fun!
 
 ## Disclaimer
 
