@@ -1,4 +1,5 @@
-![Grand Theft Candy](GTC.png)
+<img src="GTC.png" width="400">
+
 # Grand Theft Candy
 Jump into the world of Grand Theft Candy. Collect candy and escape the police, can you make it to the highscore?
 
