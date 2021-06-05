@@ -5,7 +5,7 @@ Jump into the world of Grand Theft Candy. Collect candy and escape the police, c
 
 We bring back the old memories of Vice City into your living room. The game world is projected on a flat surface and you can move via a joystick on the screen.
 
-![](docs/canvas_positioning.gif)
+![](docs/showcase.gif)
 ![](docs/gameplay.gif)
 
 Items:
