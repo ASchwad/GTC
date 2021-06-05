@@ -3,7 +3,10 @@
 # Grand Theft Candy
 Jump into the world of Grand Theft Candy. Collect candy and escape the police, can you make it to the highscore?
 
-We bring the old memories of Vice City into your living room. Find a flat surface and start our game. The game world is projected on this flat surface and you can move via a joystick on the screen.
+We bring back the old memories of Vice City into your living room. The game world is projected on a flat surface and you can move via a joystick on the screen.
+
+![](docs/canvas_positioning.gif)
+![](docs/gameplay.gif)
 
 Items:
 - Candy Cane: +2 Points
