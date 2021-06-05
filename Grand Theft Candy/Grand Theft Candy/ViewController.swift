@@ -127,25 +127,27 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
         
         let imageString = NSAttributedString(attachment: imageAttachment)
         
-        if(score >= 6 && score < 16) {
-            policeStarString.append(imageString)
-        }
-        if(score >= 16 && score < 26) {
-            policeStarString.append(imageString)
-            policeStarString.append(imageString)
-        }
-        if(score >= 26) {
-            policeStarString.append(imageString)
-            policeStarString.append(imageString)
-            policeStarString.append(imageString)
-        }
         
-        if(score < 6) {
-            policeStarString = NSMutableAttributedString(string: "")
+        DispatchQueue.main.async {
+            if(self.score >= 6 && self.score < 16) {
+                policeStarString.append(imageString)
+            }
+            if(self.score >= 16 && self.score < 26) {
+                policeStarString.append(imageString)
+                policeStarString.append(imageString)
+            }
+            if(self.score >= 26) {
+                policeStarString.append(imageString)
+                policeStarString.append(imageString)
+                policeStarString.append(imageString)
+            }
+            
+            if(self.score < 6) {
+                policeStarString = NSMutableAttributedString(string: "")
+            }
+            
+            self.policeStarLabel.attributedText = policeStarString
         }
-        
-        policeStarLabel.attributedText = policeStarString
-        
     }
     
     func physicsWorld(_ world: SCNPhysicsWorld, didBegin contact: SCNPhysicsContact) {
@@ -169,7 +171,9 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
                 
                 //access label text from other thread
                 // oder mit scene kit text overlay?
-                scoreLabel.text = "Score: \(score)"
+                DispatchQueue.main.async {
+                    self.scoreLabel.text = "Score: \(self.score)"
+                }
                 itemController.CreateIncItem(playArea: playArea)
                 
                 createPoliceStarLabel()
@@ -177,7 +181,9 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             } else if contactNode.physicsBody?.categoryBitMask == 4 {
                 contactNode.removeFromParentNode()
                 score -= 10
-                scoreLabel.text = "Score: \(score)"
+                DispatchQueue.main.async {
+                    self.scoreLabel.text = "Score: \(self.score)"
+                }
                 createPoliceStarLabel()
             }
             else if contactNode.physicsBody?.categoryBitMask == 8 {
@@ -194,7 +200,9 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             }
             else if contactNode.physicsBody?.categoryBitMask == 32 {
                 if(state != .gameOver){
-                    self.performSegue(withIdentifier: "GameOver", sender: Any?.self)
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "GameOver", sender: Any?.self)
+                    }
                     enemyController.enemiesWithZigZagPattern = 0
                     enemyController.enemiesWithDiagonalPattern = 0
                     enemyController.enemiesWithCirclePattern = 0
@@ -204,7 +212,9 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
             }
             else if contactNode.physicsBody?.categoryBitMask == 64 {
                 if(state != .gameOver && !playerIsInvincible){
-                    self.performSegue(withIdentifier: "GameOver", sender: Any?.self)
+                    DispatchQueue.main.async {
+                        self.performSegue(withIdentifier: "GameOver", sender: Any?.self)
+                    }
                     enemyController.enemiesWithZigZagPattern = 0
                     enemyController.enemiesWithDiagonalPattern = 0
                     enemyController.enemiesWithCirclePattern = 0
@@ -277,8 +287,9 @@ class ViewController: UIViewController ,ARSCNViewDelegate, SCNPhysicsContactDele
                 policeNode = contact.nodeB
             }
             score += 5
-            scoreLabel.text = "Score: \(score)"
-            
+            DispatchQueue.main.async {
+                self.scoreLabel.text = "Score: \(self.score)"
+            }
             bombController.PerformExplosion(contactNode: contactNode, playArea: playArea)
             enemyController.DestroyPolice(police: policeNode)
             
